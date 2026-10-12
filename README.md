@@ -1,0 +1,1 @@
+# optymalizacja-wielokryterialna-dyskretna
