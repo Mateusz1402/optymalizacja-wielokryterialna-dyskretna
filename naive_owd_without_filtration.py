@@ -13,6 +13,7 @@ def naive_owd_without_filtration(points: List[Point]) -> List[Point]:
     X = list(points)
     P: List[Point] = []
     i = 0
+    matches = 0
 
     while i < len(X):
         Y = X[i]
@@ -21,6 +22,7 @@ def naive_owd_without_filtration(points: List[Point]) -> List[Point]:
         j = i + 1
         while j < len(X):
             X_j = X[j]
+            matches += 1
             if dominates(Y, X_j):
                 # Y dominates X(j) -> remove X(j)
                 X.pop(j)
@@ -48,7 +50,7 @@ def naive_owd_without_filtration(points: List[Point]) -> List[Point]:
                 X.remove(Y)
         else:
             i += 1
-    return P
+    return P, matches
 
 
 
@@ -58,6 +60,6 @@ smoke_test = [
         (4, 1), (3, 5)
     ]
 
-wynik = naive_owd_without_filtration(smoke_test)
-print(wynik)
+wynik, porownania = naive_owd_without_filtration(smoke_test)
+print(f"Zbiór niezdominowany: {wynik}\nLiczba Porównania: {porownania}")
 
