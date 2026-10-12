@@ -27,11 +27,12 @@ def naive_owd_without_filtration(points: List[Point]) -> List[Point]:
                 # Y dominates X(j) -> remove X(j)
                 X.pop(j)
             elif dominates(X_j, Y):
+                matches += 1
                 # X_j dominates Y --> change Y for new candidate
                 if Y in X:
                     Y_idx = X.index(Y)
                     X.pop(Y_idx)
-
+                    # When reducing the size of table of one element (on the left side of "j" indexer), the indexer "j" has to be based.  
                     if Y_idx < j:
                         j -= 1
                 Y = X_j
