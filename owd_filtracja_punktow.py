@@ -1,5 +1,21 @@
-def dominates(y, x):
-    return all(vy <= vx for vy, vx in zip(y, x)) and any(vy < vx for vy, vx in zip(y, x))
+def porownaj(y, x):
+    # Porównanie dwóch punktów w jednym przebiegu po współrzędnych:
+    #  1 -> y dominuje x (wszystkie y_i <= x_i i co najmniej jedna ostro mniejsza)
+    # -1 -> x dominuje y
+    #  0 -> punkty nieporównywalne lub równe
+    y_lepszy = x_lepszy = False
+    for vy, vx in zip(y, x):
+        if vy < vx:
+            y_lepszy = True
+        elif vx < vy:
+            x_lepszy = True
+        if y_lepszy and x_lepszy:
+            return 0
+    if y_lepszy:
+        return 1
+    if x_lepszy:
+        return -1
+    return 0
 
 def algorytm_z_filtracja(X):
     P = [] # zbiór rozwiązań niezdominowanych
@@ -7,35 +23,33 @@ def algorytm_z_filtracja(X):
     liczba_porownan = 0
     
     while X_kandydaci:
-        Y = X_kandydaci[0]
+        i_Y = 0 # indeks kandydata na punkt niezdominowany
         j = 1
         
         while j < len(X_kandydaci):
             liczba_porownan += 1
-            if dominates(Y, X_kandydaci[j]):
+            wynik = porownaj(X_kandydaci[i_Y], X_kandydaci[j])
+            if wynik == 1:
                 X_kandydaci.pop(j)
+            elif wynik == -1:
+                # X(j) dominuje Y -> usuwamy Y, nowym kandydatem jest X(j) (po usunięciu na pozycji j - 1)
+                X_kandydaci.pop(i_Y)
+                i_Y = j - 1
             else:
-                liczba_porownan += 1
-                if dominates(X_kandydaci[j], Y):
-                    X_kandydaci.remove(Y)
-                    Y = X_kandydaci[j - 1]
-                else:
-                    j += 1
+                j += 1
                     
+        Y = X_kandydaci[i_Y]
         P.append(Y)
         
+        # Filtracja punktów zdominowanych przez Y.
+        # Punkty za Y zostały już porównane z Y w pętli powyżej (zdominowane usunięto),
+        # więc wystarczy sprawdzić tylko punkty leżące przed Y.
         nowi_kandydaci = []
-        # Filtracja punktów zdominowanych przez Y
-        for x in X_kandydaci:
-            if x != Y:
-                liczba_porownan += 1
-                if not dominates(Y, x):
-                    nowi_kandydaci.append(x)
-        X_kandydaci = nowi_kandydaci
-        
-        if len(X_kandydaci) == 1:
-            P.append(X_kandydaci[0])
-            break
+        for x in X_kandydaci[:i_Y]:
+            liczba_porownan += 1
+            if porownaj(Y, x) != 1:
+                nowi_kandydaci.append(x)
+        X_kandydaci = nowi_kandydaci + X_kandydaci[i_Y + 1:]
             
     return P, liczba_porownan
 
