@@ -1,18 +1,24 @@
 from typing import List, Tuple
-Point = List[float, float]
+#Point = List[float, float]
 
 
-def dominates(p1: Point, p2: Point) -> bool:
+def dominates(p1: Tuple[float, ...], p2: Tuple[float, ...]) -> bool:
     """
-    Minimalizing points variant.
-    Return True if p1 dominates p2.
+    Minimalizing points variant, any number of criteria.
+    Return True if p1 dominates p2: p1 is not worse in every criterion and better in at least one.
     """
-    return (p1[0] <= p2[0] and p1[1] <= p2[1]) and (p1[0] < p2[0] or p1[1] < p2[1])
+    strictly_better = False
+    for a, b in zip(p1, p2):
+        if a > b:
+            return False
+        if a < b:
+            strictly_better = True
+    return strictly_better
 
 
 
-def owd_ideal_point(dataset: List[Point]) -> Tuple[List[Point], int]:
-    P: List[Point] = []
+def owd_ideal_point(dataset: List[Tuple[float, float]]) -> Tuple[List[Tuple[float, float]], int]:
+    P: List[Tuple[float, float]] = []
     comparison_counter = 0
 
     if not dataset:
@@ -22,7 +28,7 @@ def owd_ideal_point(dataset: List[Point]) -> Tuple[List[Point], int]:
     xmin = tuple(min(point[c] for point in dataset) for c in range(k))
     print(f"Punkt idealny xmin: {xmin}")
 
-    def dist_sq(pt: Point) -> float:
+    def dist_sq(pt: Tuple[float, float]) -> float:
         return sum((pt[c] - xmin[c]) ** 2 for c in range(k))
 
     sorted_X = sorted(dataset, key=dist_sq)

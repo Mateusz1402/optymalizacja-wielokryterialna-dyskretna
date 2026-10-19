@@ -2,7 +2,9 @@
 
 Run with:  python app.py
 """
+import contextlib
 import csv
+import io
 import random
 import re
 import time
@@ -19,14 +21,18 @@ import numpy as np
 
 from data_browser import DataBrowser
 from data_generator import DISTRIBUTIONS, generate_points
-from owd_filtracja_punktow import algorytm_z_filtracja
-from owd_punkt_idealny import algorytm_punkt_idealny
+import naive_owd_ideal_point
+import naive_owd_with_filtration
+import naive_owd_without_filtration
 
-# Every algorithm minimises all criteria: it takes (points, compared=Counter)
-# and returns (nondominated, n_comparisons). Maximised criteria are negated before the call.
+# name -> (module, function name). Every algorithm minimises all criteria, takes a list of points
+# and returns (nondominated, n_comparisons); maximised criteria are negated before the call.
+# The module must compare points through its module-level `dominates(a, b)` function –
+# the app wraps it to record which points took part in comparisons.
 ALGORITHMS = {
-    "Algorytm z filtracją": algorytm_z_filtracja,
-    "Algorytm punktu idealnego": algorytm_punkt_idealny,
+    "Algorytm bez filtracji": (naive_owd_without_filtration, "naive_owd_without_filtration"),
+    "Algorytm z filtracją": (naive_owd_with_filtration, "owd_z_filtracja"),
+    "Algorytm punktu idealnego": (naive_owd_ideal_point, "owd_ideal_point"),
 }
 
 # Plot layers: key -> (label, enabled by default)
@@ -55,6 +61,7 @@ HISTORY_COLUMNS = [
     ("n_nondominated", "|P|", 50),
     ("n_comparisons", "porównania", 85),
     ("time_ms", "czas [ms]", 80),
+    ("correct", "poprawny", 110),
 ]
 
 
@@ -66,20 +73,58 @@ def parse_numbers(text):
     return [float(p.replace(",", ".")) for p in parts]
 
 
-def parse_directions(text, n_criteria):
-    """Parse 'min', 'max' or 'min; max; ...' into a list of +1 (min) / -1 (max) signs."""
-    parts = [p.lower() for p in re.split(r"[;,\s]+", text.strip()) if p]
-    if not parts or any(p not in ("min", "max") for p in parts):
-        raise ValueError("Kierunek: podaj „min”, „max” albo listę np. „min; max”")
-    if len(parts) == 1:
-        parts *= n_criteria
-    if len(parts) != n_criteria:
-        raise ValueError(f"Liczba kierunków ({len(parts)}) nie zgadza się z liczbą kryteriów ({n_criteria})")
-    return [1 if p == "min" else -1 for p in parts]
-
-
 def format_directions(signs):
     return ";".join("min" if s == 1 else "max" for s in signs)
+
+
+@contextlib.contextmanager
+def track_comparisons(module, compared):
+    """Temporarily replace module.dominates with a version that counts compared points."""
+    original = module.dominates
+
+    def counting_dominates(a, b):
+        compared[a] += 1
+        compared[b] += 1
+        return original(a, b)
+
+    module.dominates = counting_dominates
+    try:
+        yield
+    finally:
+        module.dominates = original
+
+
+def _dominated_by_any(targets, dominators, chunk=256):
+    """Boolean mask: is targets[i] Pareto-dominated (minimisation) by any row of dominators?"""
+    result = np.zeros(len(targets), dtype=bool)
+    if len(dominators) == 0:
+        return result
+    for start in range(0, len(targets), chunk):
+        t = targets[start:start + chunk, None, :]
+        d = dominators[None, :, :]
+        result[start:start + chunk] = ((d <= t).all(axis=2) & (d < t).any(axis=2)).any(axis=1)
+    return result
+
+
+def verify_pareto(data, mask):
+    """Check the reported nondominated set against the Pareto definition (minimisation).
+
+    Returns (n_extra, n_missing): reported points that are dominated, and nondominated
+    points that were not reported. Costs O(N * |P|) instead of O(N^2).
+    """
+    n_extra = int(_dominated_by_any(data[mask], data).sum())
+    rest = data[~mask]
+    # A dominated point is always dominated by some nondominated one, so if P is correct
+    # every remaining point is dominated by P; only the exceptions need a full check.
+    suspects = rest[~_dominated_by_any(rest, data[mask])]
+    n_missing = int((~_dominated_by_any(suspects, data)).sum())
+    return n_extra, n_missing
+
+
+def format_correctness(n_extra, n_missing):
+    if n_extra == 0 and n_missing == 0:
+        return "tak"
+    return f"NIE (+{n_extra} zbędne, -{n_missing} brak)"
 
 
 class DebouncedCanvas(FigureCanvasTkAgg):
@@ -115,6 +160,8 @@ class ExperimentApp(tk.Tk):
         self.points_array = None  # the same data as a numpy array (for plotting)
         self.layer_artists = {}   # plot layer key -> matplotlib artist
         self.criteria_names = []  # custom criterion names (missing ones default to f1, f2, ...)
+        self.criteria_directions = []  # "min" / "max" per criterion (missing ones default to min)
+        self.criterion_rows = []  # (name_var, direction_var, widgets) for every row of the criteria panel
         self.data_browser = None  # DataBrowser window, if open
         self.selected_ids = []    # points selected in the data browser (highlighted on the plot)
         self.selection_artist = None
@@ -129,9 +176,53 @@ class ExperimentApp(tk.Tk):
         self._update_axis_choices()
 
     # ------------------------------------------------------------------ GUI
+    def _build_scrollable_panel(self):
+        """Left column inside a scrollable canvas – the settings do not fit on small screens."""
+        container = ttk.Frame(self)
+        container.grid(row=0, column=0, sticky="ns")
+        background = ttk.Style().lookup("TFrame", "background")
+        canvas = tk.Canvas(container, highlightthickness=0, borderwidth=0, background=background or None)
+        scrollbar = ttk.Scrollbar(container, orient="vertical", command=canvas.yview)
+        aqua = self.tk.call("tk", "windowingsystem") == "aqua"
+        # macOS sends many small wheel deltas (trackpad), other systems one event per notch
+        canvas.configure(yscrollcommand=scrollbar.set, yscrollincrement=4 if aqua else 20)
+        canvas.pack(side="left", fill="y")
+        scrollbar.pack(side="right", fill="y")
+        panel = ttk.Frame(canvas, padding=8)
+        canvas.create_window((0, 0), window=panel, anchor="nw")
+
+        def on_panel_resize(_event):
+            canvas.configure(scrollregion=canvas.bbox("all"), width=panel.winfo_reqwidth())
+
+        def on_wheel(event):
+            if canvas.yview() == (0.0, 1.0):
+                return  # everything fits, nothing to scroll
+            if event.num == 4:
+                step = -1
+            elif event.num == 5:
+                step = 1
+            elif aqua:
+                step = -event.delta  # macOS reports small deltas
+            else:
+                step = -event.delta // 120
+            canvas.yview_scroll(step, "units")
+
+        def bind_wheel(_event):
+            for sequence in ("<MouseWheel>", "<Button-4>", "<Button-5>"):
+                canvas.bind_all(sequence, on_wheel)
+
+        def unbind_wheel(_event):
+            for sequence in ("<MouseWheel>", "<Button-4>", "<Button-5>"):
+                canvas.unbind_all(sequence)
+
+        panel.bind("<Configure>", on_panel_resize)
+        # The wheel scrolls the panel only while the pointer is over it
+        container.bind("<Enter>", bind_wheel)
+        container.bind("<Leave>", unbind_wheel)
+        return panel
+
     def _build_controls(self):
-        panel = ttk.Frame(self, padding=8)
-        panel.grid(row=0, column=0, sticky="ns")
+        panel = self._build_scrollable_panel()
 
         algo_box = ttk.LabelFrame(panel, text="Algorytm", padding=6)
         algo_box.pack(fill="x", pady=4)
@@ -146,9 +237,8 @@ class ExperimentApp(tk.Tk):
         self.stds_var = tk.StringVar(value="3")
         self.n_alternatives_var = tk.StringVar(value="100")
         self.n_criteria_var = tk.StringVar(value="2")
-        self.seed_var = tk.StringVar(value="42")
+        self.seed_var = tk.StringVar(value="67")
         self.round_var = tk.BooleanVar(value=False)
-        self.directions_var = tk.StringVar(value="min")
 
         row = 0
         ttk.Label(data_box, text="Rozkład").grid(row=row, column=0, sticky="w")
@@ -165,24 +255,29 @@ class ExperimentApp(tk.Tk):
         ttk.Entry(data_box, textvariable=self.seed_var, width=10).grid(row=row, column=1, sticky="ew")
         ttk.Button(data_box, text="Losuj", width=6, command=self._random_seed).grid(row=row, column=2)
         row += 1
-        ttk.Label(data_box, text="Kierunek").grid(row=row, column=0, sticky="w")
-        ttk.Combobox(data_box, textvariable=self.directions_var, values=["min", "max"],
-                     width=12).grid(row=row, column=1, columnspan=2, sticky="ew")
-        row += 1
-        ttk.Label(data_box, text="Nazwy kryteriów").grid(row=row, column=0, sticky="w")
-        self.names_var = tk.StringVar()
-        names_entry = ttk.Entry(data_box, textvariable=self.names_var, width=14)
-        names_entry.grid(row=row, column=1, columnspan=2, sticky="ew")
-        names_entry.bind("<Return>", lambda _: self._apply_names_from_entry())
-        names_entry.bind("<FocusOut>", lambda _: self._apply_names_from_entry())
-        row += 1
         ttk.Checkbutton(data_box, text="Zaokrąglaj do liczb całkowitych",
                         variable=self.round_var).grid(row=row, column=0, columnspan=3, sticky="w")
         row += 1
-        ttk.Label(data_box, text="Średnią, odchylenie i kierunek można podać\nosobno dla każdego kryterium, "
-                                 "np. „10; 20”,\n„min; max”. Nazwy kryteriów rozdzielaj „;”\n(Enter zatwierdza). Pusty seed = losowy.",
+        ttk.Label(data_box, text="Średnią i odchylenie można podać osobno\ndla każdego kryterium, np. „10; 20”.\n"
+                                 "Pusty seed = losowy.",
                   foreground="gray").grid(row=row, column=0, columnspan=3, sticky="w", pady=(4, 0))
         data_box.columnconfigure(1, weight=1)
+
+        criteria_box = ttk.LabelFrame(panel, text="Kryteria", padding=6)
+        criteria_box.pack(fill="x", pady=4)
+        self.criteria_rows_frame = ttk.Frame(criteria_box)
+        self.criteria_rows_frame.pack(fill="x")
+        ttk.Label(self.criteria_rows_frame, text="nazwa", foreground="gray").grid(row=0, column=1, sticky="w")
+        ttk.Label(self.criteria_rows_frame, text="kierunek", foreground="gray").grid(row=0, column=2, sticky="w")
+        self.criteria_rows_frame.columnconfigure(1, weight=1)
+        buttons = ttk.Frame(criteria_box)
+        buttons.pack(fill="x", pady=(4, 0))
+        ttk.Button(buttons, text="Wszystkie min", command=lambda: self._set_all_directions("min")).pack(
+            side="left", expand=True, fill="x")
+        ttk.Button(buttons, text="Wszystkie max", command=lambda: self._set_all_directions("max")).pack(
+            side="left", expand=True, fill="x")
+        ttk.Label(criteria_box, text="Nazwę zatwierdza Enter. Kierunek działa\nod następnego uruchomienia.",
+                  foreground="gray").pack(anchor="w", pady=(4, 0))
         self.n_criteria_var.trace_add("write", lambda *_: self._update_axis_choices())
 
         actions = ttk.Frame(panel)
@@ -264,7 +359,7 @@ class ExperimentApp(tk.Tk):
     def _update_axis_choices(self):
         k = self._n_criteria()
         names = self._names(k)
-        self.names_var.set("; ".join(names))
+        self._sync_criterion_rows(k)
         # Axes are tracked by index, so renaming a criterion keeps the selection
         current = [combo.current() for combo in self.axis_combos]
         for i, combo in enumerate(self.axis_combos):
@@ -292,10 +387,47 @@ class ExperimentApp(tk.Tk):
         if self.data_browser is not None:
             self.data_browser.set_names(self._names(self._data_k()))
 
-    def _apply_names_from_entry(self):
+    def _directions(self, k):
+        """'min'/'max' for the first k criteria (default min when not chosen)."""
+        return [self.criteria_directions[i] if i < len(self.criteria_directions) else "min" for i in range(k)]
+
+    def _sync_criterion_rows(self, k):
+        """Make the criteria panel show exactly k rows (name + direction) with the current values."""
+        while len(self.criterion_rows) > k:
+            for widget in self.criterion_rows.pop()[2]:
+                widget.destroy()
+        while len(self.criterion_rows) < k:
+            i = len(self.criterion_rows)
+            name_var, direction_var = tk.StringVar(), tk.StringVar()
+            label = ttk.Label(self.criteria_rows_frame, text=f"{i + 1}.")
+            label.grid(row=i + 1, column=0, sticky="w", padx=(0, 4))
+            entry = ttk.Entry(self.criteria_rows_frame, textvariable=name_var, width=14)
+            entry.grid(row=i + 1, column=1, sticky="ew", pady=1)
+            entry.bind("<Return>", lambda _: self._apply_names_from_rows())
+            entry.bind("<FocusOut>", lambda _: self._apply_names_from_rows())
+            combo = ttk.Combobox(self.criteria_rows_frame, textvariable=direction_var, values=["min", "max"],
+                                 state="readonly", width=5)
+            combo.grid(row=i + 1, column=2, sticky="w", padx=(4, 0), pady=1)
+            combo.bind("<<ComboboxSelected>>", lambda _, index=i: self._set_direction(index))
+            self.criterion_rows.append((name_var, direction_var, (label, entry, combo)))
+        for (name_var, direction_var, _), name, direction in zip(self.criterion_rows, self._names(k),
+                                                                  self._directions(k)):
+            name_var.set(name)
+            direction_var.set(direction)
+
+    def _set_direction(self, index):
+        directions = self._directions(max(len(self.criteria_directions), index + 1))
+        directions[index] = self.criterion_rows[index][1].get()
+        self.criteria_directions = directions
+
+    def _set_all_directions(self, direction):
         k = self._n_criteria()
-        parts = self.names_var.get().split(";")
-        names = [parts[i] if i < len(parts) else "" for i in range(k)]
+        self.criteria_directions = [direction] * max(k, len(self.criteria_directions))
+        self._sync_criterion_rows(k)
+
+    def _apply_names_from_rows(self):
+        k = len(self.criterion_rows)
+        names = [name_var.get() for name_var, _, _ in self.criterion_rows]
         if names != self._names(k):
             self._set_names(names)
 
@@ -322,7 +454,7 @@ class ExperimentApp(tk.Tk):
             "n_criteria": int(self.n_criteria_var.get()),
             "seed": int(seed_text),
             "round_values": self.round_var.get(),
-            "directions": parse_directions(self.directions_var.get(), int(self.n_criteria_var.get())),
+            "directions": [1 if d == "min" else -1 for d in self._directions(int(self.n_criteria_var.get()))],
         }
 
     def _generate(self):
@@ -338,22 +470,28 @@ class ExperimentApp(tk.Tk):
         signs = self.data_params["directions"]
         # Algorithms minimise, so maximised criteria are negated (f -> -f)
         points_min = [tuple(s * v for s, v in zip(signs, x)) for x in self.points]
-        algorithm = ALGORITHMS[name]
+        module, function_name = ALGORITHMS[name]
+        algorithm = getattr(module, function_name)
 
-        # Timed run without comparison tracking, so the bookkeeping does not distort the time
-        start = time.perf_counter()
-        algorithm(points_min)
-        elapsed_ms = (time.perf_counter() - start) * 1000
+        # Debug prints of the algorithms are swallowed, so they do not flood the console
+        with contextlib.redirect_stdout(io.StringIO()):
+            # Timed run without comparison tracking, so the bookkeeping does not distort the time
+            start = time.perf_counter()
+            algorithm(points_min)
+            elapsed_ms = (time.perf_counter() - start) * 1000
 
-        compared = Counter()
-        nondominated, n_comparisons = algorithm(points_min, compared=compared)
+            compared = Counter()
+            with track_comparisons(module, compared):
+                nondominated, n_comparisons = algorithm(points_min)
         nondominated = set(nondominated)
+        mask = np.array([x in nondominated for x in points_min], dtype=bool)
         self.result = {
             "algorithm": name,
-            "nondominated_mask": np.array([x in nondominated for x in points_min], dtype=bool),
+            "nondominated_mask": mask,
             "compared_counts": np.array([compared[x] for x in points_min], dtype=int),
             "n_comparisons": n_comparisons,
             "time_ms": elapsed_ms,
+            "correctness": verify_pareto(np.array(points_min, dtype=float), mask),
         }
         self._add_history_row()
 
@@ -376,6 +514,7 @@ class ExperimentApp(tk.Tk):
             "n_nondominated": int(r["nondominated_mask"].sum()),
             "n_comparisons": r["n_comparisons"],
             "time_ms": round(r["time_ms"], 3),
+            "correct": format_correctness(*r["correctness"]),
         }
         self.history.append(row)
         self.history_tree.insert("", "end", values=[row[c[0]] for c in HISTORY_COLUMNS])
@@ -396,7 +535,8 @@ class ExperimentApp(tk.Tk):
             f"Zdominowane: {len(self.points) - n_nondominated}\n"
             f"Porównywane: {n_compared}\n"
             f"Liczba porównań: {r['n_comparisons']}\n"
-            f"Czas: {r['time_ms']:.3f} ms"
+            f"Czas: {r['time_ms']:.3f} ms\n"
+            f"Poprawny wynik: {format_correctness(*r['correctness'])}"
         )
 
     # -------------------------------------------------------------- actions
@@ -584,7 +724,8 @@ class ExperimentApp(tk.Tk):
             f.write(f"# rozklad: {p['distribution']}; srednia: {p['means']}; odchylenie: {p['stds']}\n")
             f.write(f"# N: {p['n_alternatives']}; k: {p['n_criteria']}; seed: {p['seed']}; "
                     f"zaokraglanie: {p['round_values']}; kierunek: {format_directions(p['directions'])}\n")
-            f.write(f"# liczba_porownan: {r['n_comparisons']}; czas_ms: {r['time_ms']:.3f}\n")
+            f.write(f"# liczba_porownan: {r['n_comparisons']}; czas_ms: {r['time_ms']:.3f}; "
+                    f"poprawny: {format_correctness(*r['correctness'])}\n")
             writer = csv.writer(f)
             writer.writerow(["id"] + self._names(k) + ["status", "udzial_w_porownaniach"])
             for i, x in enumerate(self.points):

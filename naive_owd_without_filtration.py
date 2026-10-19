@@ -1,17 +1,22 @@
 from typing import List, Tuple
 
-Point = Tuple[float, float]
+#Point = Tuple[float, float]
 
-def dominates(a: Point, b: Point) -> bool:
-    "True if a dominates b in the Pareto approach."
-    if ((a[0] <= b[0]) or (a[0] < b[0])) and ((a[1] <= b[1]) or (a[1] < b[1])):
-        return True
+def dominates(a: Tuple[float, ...], b: Tuple[float, ...]) -> bool:
+    "True if a dominates b in the Pareto approach (minimization, any number of criteria)."
+    strictly_better = False
+    for a_c, b_c in zip(a, b):
+        if a_c > b_c:
+            return False
+        if a_c < b_c:
+            strictly_better = True
+    return strictly_better
 
 
 
-def naive_owd_without_filtration(points: List[Point]) -> List[Point]:
+def naive_owd_without_filtration(points: List[Tuple[float, float]]) -> List[Tuple[float, float]]:
     X = list(points)
-    P: List[Point] = []
+    P: List[Tuple[float, float]] = []
     i = 0
     matches = 0
 
@@ -54,13 +59,12 @@ def naive_owd_without_filtration(points: List[Point]) -> List[Point]:
     return P, matches
 
 
-
-smoke_test = [
+if __name__ == "__main__":
+    smoke_test = [
         (5, 5), (3, 6), (4, 4), (5, 3), (3, 3),
         (1, 8), (3, 4), (4, 5), (3, 10), (6, 6),
         (4, 1), (3, 5)
     ]
 
-wynik, porownania = naive_owd_without_filtration(smoke_test)
-print(f"Zbiór niezdominowany: {wynik}\nLiczba Porównania: {porownania}")
-
+    wynik, porownania = naive_owd_without_filtration(smoke_test)
+    print(f"Zbiór niezdominowany: {wynik}\nLiczba Porównania: {porownania}")
