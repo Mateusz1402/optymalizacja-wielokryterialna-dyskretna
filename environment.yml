@@ -1,0 +1,13 @@
+# Conda environment for the multi-criteria optimisation experiments app.
+#   conda env create -f environment.yml
+#   conda activate owd_env
+#   python app.py
+name: owd_env
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11
+  - numpy>=1.26
+  - matplotlib>=3.8
+  # Tk >= 8.6.13 from conda-forge renders noticeably smoother on macOS (Apple Silicon)
+  - tk>=8.6.13

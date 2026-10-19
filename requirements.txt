@@ -1,0 +1,4 @@
+# For pip / venv users (Tkinter must come with the Python installation).
+# Conda users: see environment.yml
+numpy>=1.26
+matplotlib>=3.8
