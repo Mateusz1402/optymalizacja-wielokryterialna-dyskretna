@@ -8,7 +8,8 @@ def dominates(y, x):
             ostro_mniejszy = True
     return ostro_mniejszy
 
-def algorytm_punkt_idealny(X):
+def algorytm_punkt_idealny(X, compared=None):
+    # compared: optional Counter - counts how many comparisons each point took part in
     if not X:
         return [], 0
 
@@ -38,6 +39,9 @@ def algorytm_punkt_idealny(X):
         for d_x, x in kandydaci[1:]:
             if d_x > d_Y:
                 liczba_porownan += 1
+                if compared is not None:
+                    compared[Y] += 1
+                    compared[x] += 1
                 if dominates(Y, x):
                     continue
             nowi_kandydaci.append((d_x, x))

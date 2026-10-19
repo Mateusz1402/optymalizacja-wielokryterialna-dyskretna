@@ -17,7 +17,8 @@ def porownaj(y, x):
         return -1
     return 0
 
-def algorytm_z_filtracja(X):
+def algorytm_z_filtracja(X, compared=None):
+    # compared: optional Counter - counts how many comparisons each point took part in
     P = [] # zbiór rozwiązań niezdominowanych
     X_kandydaci = list(X)
     liczba_porownan = 0
@@ -28,6 +29,9 @@ def algorytm_z_filtracja(X):
         
         while j < len(X_kandydaci):
             liczba_porownan += 1
+            if compared is not None:
+                compared[X_kandydaci[i_Y]] += 1
+                compared[X_kandydaci[j]] += 1
             wynik = porownaj(X_kandydaci[i_Y], X_kandydaci[j])
             if wynik == 1:
                 X_kandydaci.pop(j)
@@ -47,6 +51,9 @@ def algorytm_z_filtracja(X):
         nowi_kandydaci = []
         for x in X_kandydaci[:i_Y]:
             liczba_porownan += 1
+            if compared is not None:
+                compared[Y] += 1
+                compared[x] += 1
             if porownaj(Y, x) != 1:
                 nowi_kandydaci.append(x)
         X_kandydaci = nowi_kandydaci + X_kandydaci[i_Y + 1:]
