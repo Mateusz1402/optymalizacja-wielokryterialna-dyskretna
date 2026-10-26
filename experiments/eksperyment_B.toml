@@ -1,0 +1,38 @@
+# Eksperyment: K1 ≥ 50 zbiorów 100-elementowych, K2 ≥ 25 zbiorów 1000-elementowych
+# i K3 ≥ 20 zbiorów 10000-elementowych, liczba kryteriów 2, 3, 4, 5, 10.
+# Na każdym zbiorze uruchamiane są wszystkie algorytmy (ten sam zbiór dla każdego algorytmu).
+#
+# Uruchomienie:  python run_experiments.py experiments/eksperyment_B.toml
+# Nowy eksperyment = kopia tego pliku ze zmienionymi parametrami.
+
+name = "eksperyment_B"          # przedrostek katalogu z wynikami (results/<name>_<data>/)
+base_seed = 2026                # z niego wyliczane są seedy wszystkich zbiorów – ten sam plik = te same dane
+
+# Algorytmy do porównania (nazwy jak w aplikacji, z ALGORITHMS w experiment.py).
+# Punktu idealnego = z sortowaniem wstępnym, pozostałe – bez sortowania.
+algorithms = ["Algorytm bez filtracji", "Algorytm z filtracją", "Algorytm punktu idealnego"]
+
+# Generowanie danych
+distribution = "normal"         # normal, uniform, exponential, gamma, lognormal, poisson
+mean = 10.0
+std = 3.0
+round_values = false            # true = wartości całkowite (więcej remisów / duplikatów)
+directions = "min"              # "min", "max" albo lista dla każdego kryterium, np. ["min", "max"]
+
+# Domyślna lista liczby kryteriów (można ją nadpisać w pojedynczej sekcji [[sizes]])
+criteria = [2, 3, 4, 5, 10]
+
+verify = true                   # sprawdzanie każdego wyniku z definicją dominacji Pareto
+
+# Rozmiary zbiorów: N = liczba alternatyw, repetitions = liczba losowych zbiorów (K)
+[[sizes]]
+n_alternatives = 100
+repetitions = 50                # K1
+
+[[sizes]]
+n_alternatives = 1000
+repetitions = 25                # K2
+
+[[sizes]]
+n_alternatives = 10000
+repetitions = 20                # K3

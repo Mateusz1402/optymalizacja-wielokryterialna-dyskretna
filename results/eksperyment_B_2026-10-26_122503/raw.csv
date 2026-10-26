@@ -1,0 +1,1426 @@
+n_alternatives,n_criteria,repetition,seed,algorithm,n_nondominated,n_comparisons,time_ms,correct
+100,2,0,2724092798,Algorytm bez filtracji,4,163,0.0549,tak
+100,2,0,2724092798,Algorytm z filtracją,4,252,0.0594,tak
+100,2,0,2724092798,Algorytm punktu idealnego,4,110,0.0882,tak
+100,2,1,1001269739,Algorytm bez filtracji,5,136,0.0437,tak
+100,2,1,1001269739,Algorytm z filtracją,5,144,0.0315,tak
+100,2,1,1001269739,Algorytm punktu idealnego,5,106,0.0784,tak
+100,2,2,3989478215,Algorytm bez filtracji,5,155,0.0493,"NIE (+1 zbędne, -1 brak)"
+100,2,2,3989478215,Algorytm z filtracją,5,196,0.0403,tak
+100,2,2,3989478215,Algorytm punktu idealnego,5,109,0.0713,tak
+100,2,3,2653178752,Algorytm bez filtracji,5,160,0.0519,"NIE (+0 zbędne, -1 brak)"
+100,2,3,2653178752,Algorytm z filtracją,6,178,0.0376,tak
+100,2,3,2653178752,Algorytm punktu idealnego,6,114,0.071,tak
+100,2,4,3753953860,Algorytm bez filtracji,6,169,0.0547,"NIE (+0 zbędne, -1 brak)"
+100,2,4,3753953860,Algorytm z filtracją,7,275,0.0539,tak
+100,2,4,3753953860,Algorytm punktu idealnego,7,159,0.0765,tak
+100,2,5,3387629839,Algorytm bez filtracji,4,141,0.0438,"NIE (+1 zbędne, -1 brak)"
+100,2,5,3387629839,Algorytm z filtracją,4,139,0.0294,tak
+100,2,5,3387629839,Algorytm punktu idealnego,4,104,0.069,tak
+100,2,6,2079418643,Algorytm bez filtracji,3,125,0.0376,"NIE (+0 zbędne, -1 brak)"
+100,2,6,2079418643,Algorytm z filtracją,4,137,0.0291,tak
+100,2,6,2079418643,Algorytm punktu idealnego,4,105,0.0695,tak
+100,2,7,4056156770,Algorytm bez filtracji,5,175,0.0532,tak
+100,2,7,4056156770,Algorytm z filtracją,5,191,0.0387,tak
+100,2,7,4056156770,Algorytm punktu idealnego,5,114,0.0695,tak
+100,2,8,3944351073,Algorytm bez filtracji,5,163,0.0459,tak
+100,2,8,3944351073,Algorytm z filtracją,5,197,0.0392,tak
+100,2,8,3944351073,Algorytm punktu idealnego,5,124,0.0727,tak
+100,2,9,1553873108,Algorytm bez filtracji,6,234,0.0691,"NIE (+0 zbędne, -1 brak)"
+100,2,9,1553873108,Algorytm z filtracją,7,371,0.071,tak
+100,2,9,1553873108,Algorytm punktu idealnego,7,198,0.0812,tak
+100,2,10,26164721,Algorytm bez filtracji,6,241,0.0718,"NIE (+0 zbędne, -1 brak)"
+100,2,10,26164721,Algorytm z filtracją,7,355,0.0677,tak
+100,2,10,26164721,Algorytm punktu idealnego,7,126,0.0733,tak
+100,2,11,2841250479,Algorytm bez filtracji,6,176,0.0509,"NIE (+0 zbędne, -1 brak)"
+100,2,11,2841250479,Algorytm z filtracją,7,206,0.0425,tak
+100,2,11,2841250479,Algorytm punktu idealnego,7,137,0.0759,tak
+100,2,12,1334977877,Algorytm bez filtracji,5,191,0.0552,"NIE (+0 zbędne, -1 brak)"
+100,2,12,1334977877,Algorytm z filtracją,6,239,0.0473,tak
+100,2,12,1334977877,Algorytm punktu idealnego,6,161,0.0772,tak
+100,2,13,4180123129,Algorytm bez filtracji,6,214,0.0625,tak
+100,2,13,4180123129,Algorytm z filtracją,6,254,0.049,tak
+100,2,13,4180123129,Algorytm punktu idealnego,6,128,0.0724,tak
+100,2,14,1724980155,Algorytm bez filtracji,5,144,0.0393,tak
+100,2,14,1724980155,Algorytm z filtracją,5,178,0.0362,tak
+100,2,14,1724980155,Algorytm punktu idealnego,5,116,0.0738,tak
+100,2,15,2440727975,Algorytm bez filtracji,5,214,0.062,tak
+100,2,15,2440727975,Algorytm z filtracją,5,232,0.0452,tak
+100,2,15,2440727975,Algorytm punktu idealnego,5,135,0.0777,tak
+100,2,16,2912631262,Algorytm bez filtracji,3,143,0.0404,"NIE (+0 zbędne, -1 brak)"
+100,2,16,2912631262,Algorytm z filtracją,4,239,0.0474,tak
+100,2,16,2912631262,Algorytm punktu idealnego,4,132,0.08,tak
+100,2,17,3781800463,Algorytm bez filtracji,4,167,0.0469,"NIE (+0 zbędne, -3 brak)"
+100,2,17,3781800463,Algorytm z filtracją,7,281,0.055,tak
+100,2,17,3781800463,Algorytm punktu idealnego,7,122,0.0759,tak
+100,2,18,957707343,Algorytm bez filtracji,4,126,0.0338,tak
+100,2,18,957707343,Algorytm z filtracją,4,145,0.0318,tak
+100,2,18,957707343,Algorytm punktu idealnego,4,115,0.0745,tak
+100,2,19,3202621587,Algorytm bez filtracji,3,127,0.033,"NIE (+0 zbędne, -1 brak)"
+100,2,19,3202621587,Algorytm z filtracją,4,153,0.0327,tak
+100,2,19,3202621587,Algorytm punktu idealnego,4,107,0.0711,tak
+100,2,20,1528931496,Algorytm bez filtracji,9,237,0.0713,tak
+100,2,20,1528931496,Algorytm z filtracją,9,360,0.0695,tak
+100,2,20,1528931496,Algorytm punktu idealnego,9,169,0.0793,tak
+100,2,21,2213992845,Algorytm bez filtracji,9,222,0.065,"NIE (+0 zbędne, -1 brak)"
+100,2,21,2213992845,Algorytm z filtracją,10,449,0.0839,tak
+100,2,21,2213992845,Algorytm punktu idealnego,10,166,0.078,tak
+100,2,22,935077287,Algorytm bez filtracji,5,238,0.0702,"NIE (+0 zbędne, -1 brak)"
+100,2,22,935077287,Algorytm z filtracją,6,286,0.0548,tak
+100,2,22,935077287,Algorytm punktu idealnego,6,119,0.0705,tak
+100,2,23,2536990529,Algorytm bez filtracji,6,265,0.08,"NIE (+0 zbędne, -1 brak)"
+100,2,23,2536990529,Algorytm z filtracją,7,290,0.0563,tak
+100,2,23,2536990529,Algorytm punktu idealnego,7,134,0.0726,tak
+100,2,24,1947202987,Algorytm bez filtracji,10,255,0.0763,tak
+100,2,24,1947202987,Algorytm z filtracją,10,343,0.0657,tak
+100,2,24,1947202987,Algorytm punktu idealnego,10,180,0.0788,tak
+100,2,25,1347462157,Algorytm bez filtracji,2,145,0.0385,tak
+100,2,25,1347462157,Algorytm z filtracją,2,144,0.0305,tak
+100,2,25,1347462157,Algorytm punktu idealnego,2,99,0.069,tak
+100,2,26,2044088754,Algorytm bez filtracji,5,155,0.043,"NIE (+0 zbędne, -1 brak)"
+100,2,26,2044088754,Algorytm z filtracją,6,194,0.0394,tak
+100,2,26,2044088754,Algorytm punktu idealnego,6,126,0.0722,tak
+100,2,27,132460184,Algorytm bez filtracji,3,139,0.0356,tak
+100,2,27,132460184,Algorytm z filtracją,3,199,0.0375,tak
+100,2,27,132460184,Algorytm punktu idealnego,3,106,0.0671,tak
+100,2,28,3576318171,Algorytm bez filtracji,7,214,0.0613,tak
+100,2,28,3576318171,Algorytm z filtracją,7,264,0.05,tak
+100,2,28,3576318171,Algorytm punktu idealnego,7,160,0.0776,tak
+100,2,29,3837440876,Algorytm bez filtracji,3,139,0.0359,tak
+100,2,29,3837440876,Algorytm z filtracją,3,147,0.0297,tak
+100,2,29,3837440876,Algorytm punktu idealnego,3,105,0.0659,tak
+100,2,30,2148953227,Algorytm bez filtracji,5,163,0.0436,tak
+100,2,30,2148953227,Algorytm z filtracją,5,176,0.035,tak
+100,2,30,2148953227,Algorytm punktu idealnego,5,142,0.0733,tak
+100,2,31,4276589472,Algorytm bez filtracji,10,232,0.067,tak
+100,2,31,4276589472,Algorytm z filtracją,10,330,0.0696,tak
+100,2,31,4276589472,Algorytm punktu idealnego,10,178,0.0829,tak
+100,2,32,1674717098,Algorytm bez filtracji,6,159,0.0433,tak
+100,2,32,1674717098,Algorytm z filtracją,6,212,0.0415,tak
+100,2,32,1674717098,Algorytm punktu idealnego,6,124,0.0706,tak
+100,2,33,4019261717,Algorytm bez filtracji,3,184,0.0497,tak
+100,2,33,4019261717,Algorytm z filtracją,3,283,0.051,tak
+100,2,33,4019261717,Algorytm punktu idealnego,3,109,0.0678,tak
+100,2,34,3322499510,Algorytm bez filtracji,7,215,0.0612,tak
+100,2,34,3322499510,Algorytm z filtracją,7,255,0.0552,tak
+100,2,34,3322499510,Algorytm punktu idealnego,7,149,0.0783,tak
+100,2,35,179238436,Algorytm bez filtracji,3,158,0.0418,tak
+100,2,35,179238436,Algorytm z filtracją,3,189,0.035,tak
+100,2,35,179238436,Algorytm punktu idealnego,3,100,0.0661,tak
+100,2,36,1451207779,Algorytm bez filtracji,7,177,0.0494,"NIE (+2 zbędne, -1 brak)"
+100,2,36,1451207779,Algorytm z filtracją,6,216,0.0418,tak
+100,2,36,1451207779,Algorytm punktu idealnego,6,141,0.0745,tak
+100,2,37,2997285898,Algorytm bez filtracji,10,223,0.0641,"NIE (+1 zbędne, -1 brak)"
+100,2,37,2997285898,Algorytm z filtracją,10,364,0.0679,tak
+100,2,37,2997285898,Algorytm punktu idealnego,10,202,0.0826,tak
+100,2,38,1186419696,Algorytm bez filtracji,1,103,0.023,tak
+100,2,38,1186419696,Algorytm z filtracją,1,105,0.0226,tak
+100,2,38,1186419696,Algorytm punktu idealnego,1,99,0.0683,tak
+100,2,39,2247766424,Algorytm bez filtracji,6,192,0.053,"NIE (+1 zbędne, -1 brak)"
+100,2,39,2247766424,Algorytm z filtracją,6,282,0.0531,tak
+100,2,39,2247766424,Algorytm punktu idealnego,6,147,0.0736,tak
+100,2,40,1803253590,Algorytm bez filtracji,4,136,0.035,tak
+100,2,40,1803253590,Algorytm z filtracją,4,140,0.0285,tak
+100,2,40,1803253590,Algorytm punktu idealnego,4,104,0.0682,tak
+100,2,41,1398309364,Algorytm bez filtracji,3,128,0.0318,tak
+100,2,41,1398309364,Algorytm z filtracją,3,137,0.0278,tak
+100,2,41,1398309364,Algorytm punktu idealnego,3,102,0.0657,tak
+100,2,42,627595192,Algorytm bez filtracji,5,122,0.0305,"NIE (+2 zbędne, -1 brak)"
+100,2,42,627595192,Algorytm z filtracją,4,146,0.0302,tak
+100,2,42,627595192,Algorytm punktu idealnego,4,111,0.0667,tak
+100,2,43,2811315075,Algorytm bez filtracji,4,235,0.0695,"NIE (+0 zbędne, -1 brak)"
+100,2,43,2811315075,Algorytm z filtracją,5,239,0.0438,tak
+100,2,43,2811315075,Algorytm punktu idealnego,5,113,0.0692,tak
+100,2,44,2243988562,Algorytm bez filtracji,3,202,0.0553,tak
+100,2,44,2243988562,Algorytm z filtracją,3,247,0.044,tak
+100,2,44,2243988562,Algorytm punktu idealnego,3,104,0.0668,tak
+100,2,45,2946084498,Algorytm bez filtracji,2,140,0.0357,tak
+100,2,45,2946084498,Algorytm z filtracją,2,131,0.0263,tak
+100,2,45,2946084498,Algorytm punktu idealnego,2,99,0.0653,tak
+100,2,46,2600879261,Algorytm bez filtracji,6,147,0.039,"NIE (+0 zbędne, -2 brak)"
+100,2,46,2600879261,Algorytm z filtracją,8,214,0.0419,tak
+100,2,46,2600879261,Algorytm punktu idealnego,8,136,0.072,tak
+100,2,47,2870550327,Algorytm bez filtracji,5,164,0.0435,tak
+100,2,47,2870550327,Algorytm z filtracją,5,156,0.0315,tak
+100,2,47,2870550327,Algorytm punktu idealnego,5,114,0.0682,tak
+100,2,48,1022716337,Algorytm bez filtracji,8,224,0.064,"NIE (+1 zbędne, -1 brak)"
+100,2,48,1022716337,Algorytm z filtracją,8,343,0.0633,tak
+100,2,48,1022716337,Algorytm punktu idealnego,8,172,0.0785,tak
+100,2,49,3343438847,Algorytm bez filtracji,4,138,0.0357,tak
+100,2,49,3343438847,Algorytm z filtracją,4,162,0.033,tak
+100,2,49,3343438847,Algorytm punktu idealnego,4,111,0.0681,tak
+100,3,0,3398206051,Algorytm bez filtracji,15,510,0.1632,"NIE (+0 zbędne, -2 brak)"
+100,3,0,3398206051,Algorytm z filtracją,17,906,0.1679,tak
+100,3,0,3398206051,Algorytm punktu idealnego,17,296,0.1201,tak
+100,3,1,671971657,Algorytm bez filtracji,10,583,0.1886,"NIE (+0 zbędne, -4 brak)"
+100,3,1,671971657,Algorytm z filtracją,14,677,0.1245,tak
+100,3,1,671971657,Algorytm punktu idealnego,14,208,0.1036,tak
+100,3,2,3769738603,Algorytm bez filtracji,7,158,0.0497,"NIE (+0 zbędne, -2 brak)"
+100,3,2,3769738603,Algorytm z filtracją,9,276,0.0574,tak
+100,3,2,3769738603,Algorytm punktu idealnego,9,132,0.0893,tak
+100,3,3,183940307,Algorytm bez filtracji,16,355,0.1129,tak
+100,3,3,183940307,Algorytm z filtracją,16,734,0.1386,tak
+100,3,3,183940307,Algorytm punktu idealnego,16,230,0.1078,tak
+100,3,4,4192966598,Algorytm bez filtracji,15,424,0.1375,"NIE (+2 zbędne, -3 brak)"
+100,3,4,4192966598,Algorytm z filtracją,16,630,0.1185,tak
+100,3,4,4192966598,Algorytm punktu idealnego,16,295,0.1129,tak
+100,3,5,2948792867,Algorytm bez filtracji,20,392,0.1267,tak
+100,3,5,2948792867,Algorytm z filtracją,20,844,0.1569,tak
+100,3,5,2948792867,Algorytm punktu idealnego,20,331,0.1238,tak
+100,3,6,1848480949,Algorytm bez filtracji,10,455,0.1466,"NIE (+1 zbędne, -3 brak)"
+100,3,6,1848480949,Algorytm z filtracją,12,715,0.1339,tak
+100,3,6,1848480949,Algorytm punktu idealnego,12,206,0.0991,tak
+100,3,7,2308464696,Algorytm bez filtracji,14,528,0.1695,"NIE (+0 zbędne, -1 brak)"
+100,3,7,2308464696,Algorytm z filtracją,15,855,0.1579,tak
+100,3,7,2308464696,Algorytm punktu idealnego,15,277,0.1156,tak
+100,3,8,1062961908,Algorytm bez filtracji,12,452,0.1457,"NIE (+0 zbędne, -1 brak)"
+100,3,8,1062961908,Algorytm z filtracją,13,540,0.1037,tak
+100,3,8,1062961908,Algorytm punktu idealnego,13,194,0.0969,tak
+100,3,9,2507245444,Algorytm bez filtracji,12,637,0.2073,"NIE (+1 zbędne, -2 brak)"
+100,3,9,2507245444,Algorytm z filtracją,13,543,0.1062,tak
+100,3,9,2507245444,Algorytm punktu idealnego,13,200,0.107,tak
+100,3,10,3928452796,Algorytm bez filtracji,3,262,0.0845,"NIE (+0 zbędne, -2 brak)"
+100,3,10,3928452796,Algorytm z filtracją,5,215,0.0457,tak
+100,3,10,3928452796,Algorytm punktu idealnego,5,109,0.0873,tak
+100,3,11,247270018,Algorytm bez filtracji,11,511,0.1698,"NIE (+0 zbędne, -4 brak)"
+100,3,11,247270018,Algorytm z filtracją,15,773,0.1494,tak
+100,3,11,247270018,Algorytm punktu idealnego,15,250,0.1396,tak
+100,3,12,2730431330,Algorytm bez filtracji,21,570,0.1856,"NIE (+1 zbędne, -3 brak)"
+100,3,12,2730431330,Algorytm z filtracją,23,1492,0.2699,tak
+100,3,12,2730431330,Algorytm punktu idealnego,23,470,0.152,tak
+100,3,13,1282994223,Algorytm bez filtracji,14,623,0.2013,"NIE (+0 zbędne, -3 brak)"
+100,3,13,1282994223,Algorytm z filtracją,17,1020,0.1847,tak
+100,3,13,1282994223,Algorytm punktu idealnego,17,264,0.116,tak
+100,3,14,143376662,Algorytm bez filtracji,9,299,0.0937,"NIE (+0 zbędne, -1 brak)"
+100,3,14,143376662,Algorytm z filtracją,10,656,0.1213,tak
+100,3,14,143376662,Algorytm punktu idealnego,10,155,0.0917,tak
+100,3,15,3237003771,Algorytm bez filtracji,12,387,0.1246,"NIE (+1 zbędne, -4 brak)"
+100,3,15,3237003771,Algorytm z filtracją,15,570,0.1093,tak
+100,3,15,3237003771,Algorytm punktu idealnego,15,208,0.0991,tak
+100,3,16,2087098329,Algorytm bez filtracji,14,291,0.092,"NIE (+0 zbędne, -2 brak)"
+100,3,16,2087098329,Algorytm z filtracją,16,551,0.1055,tak
+100,3,16,2087098329,Algorytm punktu idealnego,16,222,0.1016,tak
+100,3,17,2332301091,Algorytm bez filtracji,13,406,0.128,"NIE (+2 zbędne, -2 brak)"
+100,3,17,2332301091,Algorytm z filtracją,13,755,0.1413,tak
+100,3,17,2332301091,Algorytm punktu idealnego,13,203,0.0986,tak
+100,3,18,2573347576,Algorytm bez filtracji,19,582,0.1917,"NIE (+0 zbędne, -2 brak)"
+100,3,18,2573347576,Algorytm z filtracją,21,978,0.1805,tak
+100,3,18,2573347576,Algorytm punktu idealnego,21,343,0.1267,tak
+100,3,19,1692919978,Algorytm bez filtracji,10,488,0.1585,"NIE (+0 zbędne, -2 brak)"
+100,3,19,1692919978,Algorytm z filtracją,12,495,0.0947,tak
+100,3,19,1692919978,Algorytm punktu idealnego,12,189,0.1007,tak
+100,3,20,4210850787,Algorytm bez filtracji,22,805,0.2613,"NIE (+0 zbędne, -4 brak)"
+100,3,20,4210850787,Algorytm z filtracją,26,1520,0.2785,tak
+100,3,20,4210850787,Algorytm punktu idealnego,26,530,0.1582,tak
+100,3,21,863954424,Algorytm bez filtracji,12,429,0.1401,"NIE (+0 zbędne, -2 brak)"
+100,3,21,863954424,Algorytm z filtracją,14,653,0.1235,tak
+100,3,21,863954424,Algorytm punktu idealnego,14,219,0.1027,tak
+100,3,22,1169668617,Algorytm bez filtracji,9,246,0.0754,"NIE (+0 zbędne, -1 brak)"
+100,3,22,1169668617,Algorytm z filtracją,10,356,0.0708,tak
+100,3,22,1169668617,Algorytm punktu idealnego,10,146,0.0885,tak
+100,3,23,894392969,Algorytm bez filtracji,13,390,0.1235,"NIE (+0 zbędne, -3 brak)"
+100,3,23,894392969,Algorytm z filtracją,16,796,0.1485,tak
+100,3,23,894392969,Algorytm punktu idealnego,16,285,0.116,tak
+100,3,24,46706259,Algorytm bez filtracji,10,568,0.1815,tak
+100,3,24,46706259,Algorytm z filtracją,10,506,0.0936,tak
+100,3,24,46706259,Algorytm punktu idealnego,10,195,0.1,tak
+100,3,25,575462974,Algorytm bez filtracji,19,861,0.2795,tak
+100,3,25,575462974,Algorytm z filtracją,19,1172,0.209,tak
+100,3,25,575462974,Algorytm punktu idealnego,19,307,0.1172,tak
+100,3,26,3328584424,Algorytm bez filtracji,21,739,0.2404,"NIE (+0 zbędne, -2 brak)"
+100,3,26,3328584424,Algorytm z filtracją,23,1456,0.2618,tak
+100,3,26,3328584424,Algorytm punktu idealnego,23,397,0.139,tak
+100,3,27,1919102245,Algorytm bez filtracji,21,467,0.1521,"NIE (+2 zbędne, -1 brak)"
+100,3,27,1919102245,Algorytm z filtracją,20,882,0.1661,tak
+100,3,27,1919102245,Algorytm punktu idealnego,20,349,0.1284,tak
+100,3,28,1889320343,Algorytm bez filtracji,13,344,0.1075,"NIE (+0 zbędne, -2 brak)"
+100,3,28,1889320343,Algorytm z filtracją,15,665,0.1226,tak
+100,3,28,1889320343,Algorytm punktu idealnego,15,274,0.113,tak
+100,3,29,2284115464,Algorytm bez filtracji,10,188,0.0565,tak
+100,3,29,2284115464,Algorytm z filtracją,10,282,0.057,tak
+100,3,29,2284115464,Algorytm punktu idealnego,10,150,0.0884,tak
+100,3,30,116790449,Algorytm bez filtracji,9,219,0.0784,"NIE (+0 zbędne, -1 brak)"
+100,3,30,116790449,Algorytm z filtracją,10,456,0.0875,tak
+100,3,30,116790449,Algorytm punktu idealnego,10,160,0.093,tak
+100,3,31,4153420924,Algorytm bez filtracji,15,422,0.1384,"NIE (+1 zbędne, -2 brak)"
+100,3,31,4153420924,Algorytm z filtracją,16,769,0.1425,tak
+100,3,31,4153420924,Algorytm punktu idealnego,16,295,0.114,tak
+100,3,32,2724906681,Algorytm bez filtracji,9,340,0.1068,tak
+100,3,32,2724906681,Algorytm z filtracją,9,347,0.0679,tak
+100,3,32,2724906681,Algorytm punktu idealnego,9,157,0.0889,tak
+100,3,33,3104992459,Algorytm bez filtracji,21,567,0.1862,"NIE (+0 zbędne, -2 brak)"
+100,3,33,3104992459,Algorytm z filtracją,23,1253,0.2304,tak
+100,3,33,3104992459,Algorytm punktu idealnego,23,395,0.1393,tak
+100,3,34,783114936,Algorytm bez filtracji,14,448,0.1445,"NIE (+2 zbędne, -4 brak)"
+100,3,34,783114936,Algorytm z filtracją,16,654,0.1416,tak
+100,3,34,783114936,Algorytm punktu idealnego,16,285,0.1156,tak
+100,3,35,4206574445,Algorytm bez filtracji,8,399,0.1258,"NIE (+0 zbędne, -1 brak)"
+100,3,35,4206574445,Algorytm z filtracją,9,354,0.0682,tak
+100,3,35,4206574445,Algorytm punktu idealnego,9,150,0.0893,tak
+100,3,36,2740056564,Algorytm bez filtracji,14,450,0.145,tak
+100,3,36,2740056564,Algorytm z filtracją,14,673,0.126,tak
+100,3,36,2740056564,Algorytm punktu idealnego,14,252,0.1128,tak
+100,3,37,1475491554,Algorytm bez filtracji,18,533,0.1755,"NIE (+0 zbędne, -1 brak)"
+100,3,37,1475491554,Algorytm z filtracją,19,803,0.1482,tak
+100,3,37,1475491554,Algorytm punktu idealnego,19,306,0.1218,tak
+100,3,38,329089350,Algorytm bez filtracji,13,536,0.1738,"NIE (+0 zbędne, -1 brak)"
+100,3,38,329089350,Algorytm z filtracją,14,510,0.0973,tak
+100,3,38,329089350,Algorytm punktu idealnego,14,221,0.1037,tak
+100,3,39,731086917,Algorytm bez filtracji,12,389,0.124,"NIE (+2 zbędne, -2 brak)"
+100,3,39,731086917,Algorytm z filtracją,12,580,0.1093,tak
+100,3,39,731086917,Algorytm punktu idealnego,12,207,0.1001,tak
+100,3,40,1396674305,Algorytm bez filtracji,26,861,0.2869,"NIE (+0 zbędne, -4 brak)"
+100,3,40,1396674305,Algorytm z filtracją,30,2174,0.3883,tak
+100,3,40,1396674305,Algorytm punktu idealnego,30,619,0.184,tak
+100,3,41,1254984380,Algorytm bez filtracji,6,251,0.0798,"NIE (+1 zbędne, -2 brak)"
+100,3,41,1254984380,Algorytm z filtracją,7,313,0.0639,tak
+100,3,41,1254984380,Algorytm punktu idealnego,7,126,0.0886,tak
+100,3,42,1467126350,Algorytm bez filtracji,8,211,0.0641,"NIE (+0 zbędne, -1 brak)"
+100,3,42,1467126350,Algorytm z filtracją,9,274,0.0724,tak
+100,3,42,1467126350,Algorytm punktu idealnego,9,154,0.1144,tak
+100,3,43,4686148,Algorytm bez filtracji,7,246,0.0843,tak
+100,3,43,4686148,Algorytm z filtracją,7,464,0.0897,tak
+100,3,43,4686148,Algorytm punktu idealnego,7,133,0.092,tak
+100,3,44,1748481819,Algorytm bez filtracji,3,142,0.0394,"NIE (+0 zbędne, -1 brak)"
+100,3,44,1748481819,Algorytm z filtracją,4,167,0.0368,tak
+100,3,44,1748481819,Algorytm punktu idealnego,4,115,0.0814,tak
+100,3,45,2760761213,Algorytm bez filtracji,11,565,0.184,"NIE (+0 zbędne, -5 brak)"
+100,3,45,2760761213,Algorytm z filtracją,16,951,0.1738,tak
+100,3,45,2760761213,Algorytm punktu idealnego,16,261,0.114,tak
+100,3,46,535651611,Algorytm bez filtracji,8,304,0.0926,"NIE (+0 zbędne, -1 brak)"
+100,3,46,535651611,Algorytm z filtracją,9,491,0.092,tak
+100,3,46,535651611,Algorytm punktu idealnego,9,135,0.0918,tak
+100,3,47,2656139750,Algorytm bez filtracji,12,432,0.1402,"NIE (+0 zbędne, -5 brak)"
+100,3,47,2656139750,Algorytm z filtracją,17,1053,0.1925,tak
+100,3,47,2656139750,Algorytm punktu idealnego,17,256,0.1191,tak
+100,3,48,3100034020,Algorytm bez filtracji,13,396,0.1273,"NIE (+0 zbędne, -1 brak)"
+100,3,48,3100034020,Algorytm z filtracją,14,490,0.0953,tak
+100,3,48,3100034020,Algorytm punktu idealnego,14,222,0.1042,tak
+100,3,49,292755435,Algorytm bez filtracji,12,430,0.1371,"NIE (+2 zbędne, -4 brak)"
+100,3,49,292755435,Algorytm z filtracją,14,605,0.1137,tak
+100,3,49,292755435,Algorytm punktu idealnego,14,265,0.1117,tak
+100,4,0,591097043,Algorytm bez filtracji,33,1445,0.4842,"NIE (+1 zbędne, -3 brak)"
+100,4,0,591097043,Algorytm z filtracją,35,2757,0.4994,tak
+100,4,0,591097043,Algorytm punktu idealnego,35,776,0.2267,tak
+100,4,1,1529518648,Algorytm bez filtracji,18,530,0.1814,"NIE (+0 zbędne, -3 brak)"
+100,4,1,1529518648,Algorytm z filtracją,21,1020,0.1926,tak
+100,4,1,1529518648,Algorytm punktu idealnego,21,339,0.1438,tak
+100,4,2,1093310370,Algorytm bez filtracji,20,587,0.1947,"NIE (+1 zbędne, -4 brak)"
+100,4,2,1093310370,Algorytm z filtracją,23,1432,0.2651,tak
+100,4,2,1093310370,Algorytm punktu idealnego,23,441,0.1635,tak
+100,4,3,4281623299,Algorytm bez filtracji,18,449,0.1534,"NIE (+0 zbędne, -2 brak)"
+100,4,3,4281623299,Algorytm z filtracją,20,1068,0.2086,tak
+100,4,3,4281623299,Algorytm punktu idealnego,20,370,0.1528,tak
+100,4,4,3833288573,Algorytm bez filtracji,23,716,0.2446,"NIE (+0 zbędne, -4 brak)"
+100,4,4,3833288573,Algorytm z filtracją,27,1814,0.3335,tak
+100,4,4,3833288573,Algorytm punktu idealnego,27,526,0.1677,tak
+100,4,5,3773996667,Algorytm bez filtracji,19,657,0.2184,"NIE (+0 zbędne, -3 brak)"
+100,4,5,3773996667,Algorytm z filtracją,22,1076,0.2008,tak
+100,4,5,3773996667,Algorytm punktu idealnego,22,322,0.134,tak
+100,4,6,2761733613,Algorytm bez filtracji,36,1369,0.4694,"NIE (+3 zbędne, -4 brak)"
+100,4,6,2761733613,Algorytm z filtracją,37,2533,0.466,tak
+100,4,6,2761733613,Algorytm punktu idealnego,37,839,0.2384,tak
+100,4,7,1680272648,Algorytm bez filtracji,31,1250,0.42,"NIE (+0 zbędne, -3 brak)"
+100,4,7,1680272648,Algorytm z filtracją,34,2777,0.5058,tak
+100,4,7,1680272648,Algorytm punktu idealnego,34,833,0.2274,tak
+100,4,8,1657586264,Algorytm bez filtracji,28,962,0.3239,"NIE (+0 zbędne, -4 brak)"
+100,4,8,1657586264,Algorytm z filtracją,32,2365,0.4503,tak
+100,4,8,1657586264,Algorytm punktu idealnego,32,648,0.2213,tak
+100,4,9,628868168,Algorytm bez filtracji,28,969,0.3651,"NIE (+1 zbędne, -4 brak)"
+100,4,9,628868168,Algorytm z filtracją,31,2363,0.4791,tak
+100,4,9,628868168,Algorytm punktu idealnego,31,685,0.2352,tak
+100,4,10,2695438019,Algorytm bez filtracji,32,944,0.3523,"NIE (+0 zbędne, -1 brak)"
+100,4,10,2695438019,Algorytm z filtracją,33,2219,0.4508,tak
+100,4,10,2695438019,Algorytm punktu idealnego,33,751,0.2197,tak
+100,4,11,836319871,Algorytm bez filtracji,21,856,0.2883,"NIE (+0 zbędne, -4 brak)"
+100,4,11,836319871,Algorytm z filtracją,25,1285,0.2392,tak
+100,4,11,836319871,Algorytm punktu idealnego,25,437,0.161,tak
+100,4,12,3040491716,Algorytm bez filtracji,31,1260,0.4259,"NIE (+1 zbędne, -4 brak)"
+100,4,12,3040491716,Algorytm z filtracją,34,2905,0.5246,tak
+100,4,12,3040491716,Algorytm punktu idealnego,34,828,0.2367,tak
+100,4,13,3243928539,Algorytm bez filtracji,25,1041,0.3888,"NIE (+0 zbędne, -2 brak)"
+100,4,13,3243928539,Algorytm z filtracją,27,1641,0.335,tak
+100,4,13,3243928539,Algorytm punktu idealnego,27,520,0.19,tak
+100,4,14,3384011151,Algorytm bez filtracji,24,659,0.2502,"NIE (+2 zbędne, -4 brak)"
+100,4,14,3384011151,Algorytm z filtracją,26,1594,0.3345,tak
+100,4,14,3384011151,Algorytm punktu idealnego,26,490,0.1942,tak
+100,4,15,129818285,Algorytm bez filtracji,32,1285,0.489,"NIE (+0 zbędne, -6 brak)"
+100,4,15,129818285,Algorytm z filtracją,38,2808,0.527,tak
+100,4,15,129818285,Algorytm punktu idealnego,38,826,0.2359,tak
+100,4,16,47146971,Algorytm bez filtracji,15,789,0.2718,"NIE (+0 zbędne, -2 brak)"
+100,4,16,47146971,Algorytm z filtracją,17,995,0.1957,tak
+100,4,16,47146971,Algorytm punktu idealnego,17,285,0.1423,tak
+100,4,17,590892775,Algorytm bez filtracji,22,886,0.3082,"NIE (+0 zbędne, -4 brak)"
+100,4,17,590892775,Algorytm z filtracją,26,1643,0.3099,tak
+100,4,17,590892775,Algorytm punktu idealnego,26,507,0.179,tak
+100,4,18,1643488476,Algorytm bez filtracji,40,1838,0.6917,"NIE (+0 zbędne, -4 brak)"
+100,4,18,1643488476,Algorytm z filtracją,44,4404,0.8932,tak
+100,4,18,1643488476,Algorytm punktu idealnego,44,1253,0.349,tak
+100,4,19,4293629922,Algorytm bez filtracji,15,515,0.1935,"NIE (+0 zbędne, -3 brak)"
+100,4,19,4293629922,Algorytm z filtracją,18,831,0.1791,tak
+100,4,19,4293629922,Algorytm punktu idealnego,18,287,0.148,tak
+100,4,20,1976772533,Algorytm bez filtracji,21,683,0.2533,"NIE (+1 zbędne, -4 brak)"
+100,4,20,1976772533,Algorytm z filtracją,24,1611,0.3277,tak
+100,4,20,1976772533,Algorytm punktu idealnego,24,437,0.1776,tak
+100,4,21,347501654,Algorytm bez filtracji,29,1141,0.4296,"NIE (+0 zbędne, -6 brak)"
+100,4,21,347501654,Algorytm z filtracją,35,2612,0.5349,tak
+100,4,21,347501654,Algorytm punktu idealnego,35,798,0.2552,tak
+100,4,22,4117940769,Algorytm bez filtracji,10,639,0.235,"NIE (+0 zbędne, -2 brak)"
+100,4,22,4117940769,Algorytm z filtracją,12,562,0.1172,tak
+100,4,22,4117940769,Algorytm punktu idealnego,12,162,0.1113,tak
+100,4,23,1462510694,Algorytm bez filtracji,25,1023,0.3506,"NIE (+0 zbędne, -5 brak)"
+100,4,23,1462510694,Algorytm z filtracją,30,2420,0.4484,tak
+100,4,23,1462510694,Algorytm punktu idealnego,30,573,0.1877,tak
+100,4,24,1773240425,Algorytm bez filtracji,30,1126,0.3925,"NIE (+0 zbędne, -4 brak)"
+100,4,24,1773240425,Algorytm z filtracją,34,2128,0.4073,tak
+100,4,24,1773240425,Algorytm punktu idealnego,34,739,0.2233,tak
+100,4,25,44492010,Algorytm bez filtracji,19,503,0.1893,"NIE (+0 zbędne, -2 brak)"
+100,4,25,44492010,Algorytm z filtracją,21,1086,0.2293,tak
+100,4,25,44492010,Algorytm punktu idealnego,21,340,0.1585,tak
+100,4,26,4118584138,Algorytm bez filtracji,35,1370,0.5144,"NIE (+1 zbędne, -5 brak)"
+100,4,26,4118584138,Algorytm z filtracją,39,2924,0.5912,tak
+100,4,26,4118584138,Algorytm punktu idealnego,39,882,0.2727,tak
+100,4,27,380402998,Algorytm bez filtracji,22,1076,0.4087,"NIE (+1 zbędne, -7 brak)"
+100,4,27,380402998,Algorytm z filtracją,28,2528,0.5165,tak
+100,4,27,380402998,Algorytm punktu idealnego,28,595,0.2124,tak
+100,4,28,3883063920,Algorytm bez filtracji,24,705,0.2668,"NIE (+0 zbędne, -2 brak)"
+100,4,28,3883063920,Algorytm z filtracją,26,1449,0.297,tak
+100,4,28,3883063920,Algorytm punktu idealnego,26,482,0.19,tak
+100,4,29,2000833894,Algorytm bez filtracji,31,844,0.3155,"NIE (+0 zbędne, -2 brak)"
+100,4,29,2000833894,Algorytm z filtracją,33,2131,0.4355,tak
+100,4,29,2000833894,Algorytm punktu idealnego,33,666,0.2189,tak
+100,4,30,1540717895,Algorytm bez filtracji,13,451,0.1669,"NIE (+0 zbędne, -4 brak)"
+100,4,30,1540717895,Algorytm z filtracją,17,876,0.1886,tak
+100,4,30,1540717895,Algorytm punktu idealnego,17,256,0.141,tak
+100,4,31,3057398323,Algorytm bez filtracji,25,1045,0.387,"NIE (+0 zbędne, -5 brak)"
+100,4,31,3057398323,Algorytm z filtracją,30,2479,0.4978,tak
+100,4,31,3057398323,Algorytm punktu idealnego,30,607,0.2268,tak
+100,4,32,3832830561,Algorytm bez filtracji,21,569,0.2128,"NIE (+1 zbędne, -4 brak)"
+100,4,32,3832830561,Algorytm z filtracją,24,1329,0.2471,tak
+100,4,32,3832830561,Algorytm punktu idealnego,24,447,0.1605,tak
+100,4,33,186938818,Algorytm bez filtracji,21,842,0.2829,"NIE (+0 zbędne, -4 brak)"
+100,4,33,186938818,Algorytm z filtracją,25,1643,0.3024,tak
+100,4,33,186938818,Algorytm punktu idealnego,25,460,0.1612,tak
+100,4,34,2094914673,Algorytm bez filtracji,18,1105,0.3714,"NIE (+0 zbędne, -9 brak)"
+100,4,34,2094914673,Algorytm z filtracją,27,1731,0.32,tak
+100,4,34,2094914673,Algorytm punktu idealnego,27,442,0.16,tak
+100,4,35,3649537270,Algorytm bez filtracji,32,1250,0.4703,"NIE (+1 zbędne, -4 brak)"
+100,4,35,3649537270,Algorytm z filtracją,35,3070,0.6305,tak
+100,4,35,3649537270,Algorytm punktu idealnego,35,794,0.2545,tak
+100,4,36,1146213080,Algorytm bez filtracji,32,1427,0.5385,"NIE (+0 zbędne, -6 brak)"
+100,4,36,1146213080,Algorytm z filtracją,38,3031,0.6117,tak
+100,4,36,1146213080,Algorytm punktu idealnego,38,907,0.2734,tak
+100,4,37,2281645065,Algorytm bez filtracji,26,945,0.3598,"NIE (+0 zbędne, -4 brak)"
+100,4,37,2281645065,Algorytm z filtracją,30,1783,0.368,tak
+100,4,37,2281645065,Algorytm punktu idealnego,30,600,0.2125,tak
+100,4,38,3367183605,Algorytm bez filtracji,22,716,0.267,"NIE (+0 zbędne, -3 brak)"
+100,4,38,3367183605,Algorytm z filtracją,25,1417,0.2957,tak
+100,4,38,3367183605,Algorytm punktu idealnego,25,426,0.1743,tak
+100,4,39,1591715732,Algorytm bez filtracji,18,494,0.1803,"NIE (+0 zbędne, -3 brak)"
+100,4,39,1591715732,Algorytm z filtracją,21,1067,0.2212,tak
+100,4,39,1591715732,Algorytm punktu idealnego,21,392,0.1698,tak
+100,4,40,361714207,Algorytm bez filtracji,11,684,0.261,tak
+100,4,40,361714207,Algorytm z filtracją,11,401,0.0898,tak
+100,4,40,361714207,Algorytm punktu idealnego,11,152,0.1191,tak
+100,4,41,3281111747,Algorytm bez filtracji,31,931,0.353,"NIE (+0 zbędne, -2 brak)"
+100,4,41,3281111747,Algorytm z filtracją,33,2287,0.4669,tak
+100,4,41,3281111747,Algorytm punktu idealnego,33,699,0.2393,tak
+100,4,42,776098326,Algorytm bez filtracji,22,1172,0.4285,"NIE (+0 zbędne, -5 brak)"
+100,4,42,776098326,Algorytm z filtracją,27,1927,0.3422,tak
+100,4,42,776098326,Algorytm punktu idealnego,27,484,0.1701,tak
+100,4,43,1409655170,Algorytm bez filtracji,26,918,0.3076,"NIE (+0 zbędne, -3 brak)"
+100,4,43,1409655170,Algorytm z filtracją,29,1629,0.2995,tak
+100,4,43,1409655170,Algorytm punktu idealnego,29,522,0.178,tak
+100,4,44,1197790596,Algorytm bez filtracji,23,965,0.3223,"NIE (+0 zbędne, -3 brak)"
+100,4,44,1197790596,Algorytm z filtracją,26,1810,0.3291,tak
+100,4,44,1197790596,Algorytm punktu idealnego,26,562,0.2098,tak
+100,4,45,1174414294,Algorytm bez filtracji,24,664,0.2663,"NIE (+3 zbędne, -5 brak)"
+100,4,45,1174414294,Algorytm z filtracją,26,1535,0.3481,tak
+100,4,45,1174414294,Algorytm punktu idealnego,26,563,0.22,tak
+100,4,46,3262566306,Algorytm bez filtracji,34,1152,0.4591,"NIE (+0 zbędne, -5 brak)"
+100,4,46,3262566306,Algorytm z filtracją,39,2625,0.5688,tak
+100,4,46,3262566306,Algorytm punktu idealnego,39,882,0.2816,tak
+100,4,47,2725445190,Algorytm bez filtracji,15,565,0.2081,"NIE (+0 zbędne, -3 brak)"
+100,4,47,2725445190,Algorytm z filtracją,18,1076,0.2245,tak
+100,4,47,2725445190,Algorytm punktu idealnego,18,297,0.1492,tak
+100,4,48,601001425,Algorytm bez filtracji,21,843,0.3155,"NIE (+0 zbędne, -3 brak)"
+100,4,48,601001425,Algorytm z filtracją,24,1768,0.3617,tak
+100,4,48,601001425,Algorytm punktu idealnego,24,416,0.1745,tak
+100,4,49,4043115677,Algorytm bez filtracji,23,632,0.2345,"NIE (+0 zbędne, -3 brak)"
+100,4,49,4043115677,Algorytm z filtracją,26,1242,0.256,tak
+100,4,49,4043115677,Algorytm punktu idealnego,26,507,0.1886,tak
+100,5,0,2384108168,Algorytm bez filtracji,36,1672,0.5987,"NIE (+0 zbędne, -9 brak)"
+100,5,0,2384108168,Algorytm z filtracją,45,3877,0.7519,tak
+100,5,0,2384108168,Algorytm punktu idealnego,45,1156,0.3187,tak
+100,5,1,964394483,Algorytm bez filtracji,37,1921,0.6931,"NIE (+0 zbędne, -8 brak)"
+100,5,1,964394483,Algorytm z filtracją,45,4030,0.825,tak
+100,5,1,964394483,Algorytm punktu idealnego,45,1138,0.341,tak
+100,5,2,1846754102,Algorytm bez filtracji,35,1465,0.5649,"NIE (+1 zbędne, -7 brak)"
+100,5,2,1846754102,Algorytm z filtracją,41,3831,0.8097,tak
+100,5,2,1846754102,Algorytm punktu idealnego,41,1027,0.3098,tak
+100,5,3,470076458,Algorytm bez filtracji,20,781,0.3015,"NIE (+0 zbędne, -4 brak)"
+100,5,3,470076458,Algorytm z filtracją,24,1304,0.2792,tak
+100,5,3,470076458,Algorytm punktu idealnego,24,395,0.1886,tak
+100,5,4,1408333552,Algorytm bez filtracji,50,2268,0.8738,"NIE (+0 zbędne, -5 brak)"
+100,5,4,1408333552,Algorytm z filtracją,55,5841,1.1483,tak
+100,5,4,1408333552,Algorytm punktu idealnego,55,1606,0.3979,tak
+100,5,5,2014399162,Algorytm bez filtracji,21,993,0.3587,"NIE (+0 zbędne, -6 brak)"
+100,5,5,2014399162,Algorytm z filtracją,27,2033,0.3968,tak
+100,5,5,2014399162,Algorytm punktu idealnego,27,483,0.187,tak
+100,5,6,492942539,Algorytm bez filtracji,43,1860,0.662,"NIE (+0 zbędne, -4 brak)"
+100,5,6,492942539,Algorytm z filtracją,47,4273,0.8619,tak
+100,5,6,492942539,Algorytm punktu idealnego,47,1289,0.364,tak
+100,5,7,2297477253,Algorytm bez filtracji,33,1227,0.4832,"NIE (+0 zbędne, -3 brak)"
+100,5,7,2297477253,Algorytm z filtracją,36,2841,0.5874,tak
+100,5,7,2297477253,Algorytm punktu idealnego,36,806,0.2658,tak
+100,5,8,1322745529,Algorytm bez filtracji,21,780,0.2739,"NIE (+0 zbędne, -3 brak)"
+100,5,8,1322745529,Algorytm z filtracją,24,1615,0.3223,tak
+100,5,8,1322745529,Algorytm punktu idealnego,24,410,0.1734,tak
+100,5,9,1729382153,Algorytm bez filtracji,45,1902,0.7013,"NIE (+0 zbędne, -5 brak)"
+100,5,9,1729382153,Algorytm z filtracją,50,4788,0.9159,tak
+100,5,9,1729382153,Algorytm punktu idealnego,50,1384,0.3793,tak
+100,5,10,3654301790,Algorytm bez filtracji,43,2001,0.7688,"NIE (+0 zbędne, -12 brak)"
+100,5,10,3654301790,Algorytm z filtracją,55,5596,1.1322,tak
+100,5,10,3654301790,Algorytm punktu idealnego,55,1747,0.4617,tak
+100,5,11,361116813,Algorytm bez filtracji,42,2146,0.7697,"NIE (+1 zbędne, -9 brak)"
+100,5,11,361116813,Algorytm z filtracją,50,5153,0.982,tak
+100,5,11,361116813,Algorytm punktu idealnego,50,1437,0.369,tak
+100,5,12,3570386680,Algorytm bez filtracji,31,1252,0.4691,"NIE (+0 zbędne, -5 brak)"
+100,5,12,3570386680,Algorytm z filtracją,36,2188,0.4566,tak
+100,5,12,3570386680,Algorytm punktu idealnego,36,739,0.2567,tak
+100,5,13,1542654643,Algorytm bez filtracji,52,2389,0.9361,"NIE (+0 zbędne, -5 brak)"
+100,5,13,1542654643,Algorytm z filtracją,57,5809,1.1996,tak
+100,5,13,1542654643,Algorytm punktu idealnego,57,1762,0.4276,tak
+100,5,14,1572585000,Algorytm bez filtracji,46,1904,0.6815,"NIE (+0 zbędne, -5 brak)"
+100,5,14,1572585000,Algorytm z filtracją,51,4679,0.8746,tak
+100,5,14,1572585000,Algorytm punktu idealnego,51,1387,0.3656,tak
+100,5,15,3088858575,Algorytm bez filtracji,42,2102,0.8074,"NIE (+3 zbędne, -7 brak)"
+100,5,15,3088858575,Algorytm z filtracją,46,4298,0.8854,tak
+100,5,15,3088858575,Algorytm punktu idealnego,46,1246,0.3582,tak
+100,5,16,1437981166,Algorytm bez filtracji,50,2300,0.8907,"NIE (+1 zbędne, -8 brak)"
+100,5,16,1437981166,Algorytm z filtracją,57,5608,1.1416,tak
+100,5,16,1437981166,Algorytm punktu idealnego,57,1748,0.4559,tak
+100,5,17,2196976053,Algorytm bez filtracji,37,1027,0.3913,"NIE (+3 zbędne, -2 brak)"
+100,5,17,2196976053,Algorytm z filtracją,36,2295,0.4887,tak
+100,5,17,2196976053,Algorytm punktu idealnego,36,813,0.2375,tak
+100,5,18,2522694960,Algorytm bez filtracji,45,1711,0.602,"NIE (+0 zbędne, -4 brak)"
+100,5,18,2522694960,Algorytm z filtracją,49,4511,0.8231,tak
+100,5,18,2522694960,Algorytm punktu idealnego,49,1428,0.3597,tak
+100,5,19,970123727,Algorytm bez filtracji,49,1782,0.6744,"NIE (+1 zbędne, -3 brak)"
+100,5,19,970123727,Algorytm z filtracją,51,5111,1.0442,tak
+100,5,19,970123727,Algorytm punktu idealnego,51,1397,0.3914,tak
+100,5,20,2656726838,Algorytm bez filtracji,35,1349,0.5141,"NIE (+0 zbędne, -4 brak)"
+100,5,20,2656726838,Algorytm z filtracją,39,3112,0.6198,tak
+100,5,20,2656726838,Algorytm punktu idealnego,39,913,0.2716,tak
+100,5,21,1837697868,Algorytm bez filtracji,22,1313,0.4589,"NIE (+0 zbędne, -8 brak)"
+100,5,21,1837697868,Algorytm z filtracją,30,2037,0.3761,tak
+100,5,21,1837697868,Algorytm punktu idealnego,30,566,0.205,tak
+100,5,22,2524058017,Algorytm bez filtracji,38,1170,0.408,"NIE (+0 zbędne, -3 brak)"
+100,5,22,2524058017,Algorytm z filtracją,41,3082,0.605,tak
+100,5,22,2524058017,Algorytm punktu idealnego,41,920,0.2957,tak
+100,5,23,3511591699,Algorytm bez filtracji,38,2084,0.795,"NIE (+0 zbędne, -7 brak)"
+100,5,23,3511591699,Algorytm z filtracją,45,4445,0.934,tak
+100,5,23,3511591699,Algorytm punktu idealnego,45,1185,0.3528,tak
+100,5,24,2950261403,Algorytm bez filtracji,45,1703,0.6113,"NIE (+2 zbędne, -5 brak)"
+100,5,24,2950261403,Algorytm z filtracją,48,3801,0.7152,tak
+100,5,24,2950261403,Algorytm punktu idealnego,48,1253,0.3281,tak
+100,5,25,3839578457,Algorytm bez filtracji,32,987,0.353,"NIE (+0 zbędne, -3 brak)"
+100,5,25,3839578457,Algorytm z filtracją,35,2095,0.4296,tak
+100,5,25,3839578457,Algorytm punktu idealnego,35,707,0.248,tak
+100,5,26,113713774,Algorytm bez filtracji,39,1527,0.5932,"NIE (+2 zbędne, -8 brak)"
+100,5,26,113713774,Algorytm z filtracją,45,4067,0.831,tak
+100,5,26,113713774,Algorytm punktu idealnego,45,1216,0.3503,tak
+100,5,27,675537987,Algorytm bez filtracji,45,1557,0.5545,"NIE (+0 zbędne, -3 brak)"
+100,5,27,675537987,Algorytm z filtracją,48,4471,0.8206,tak
+100,5,27,675537987,Algorytm punktu idealnego,48,1289,0.3303,tak
+100,5,28,1418677360,Algorytm bez filtracji,54,2411,0.8194,"NIE (+4 zbędne, -4 brak)"
+100,5,28,1418677360,Algorytm z filtracją,54,5091,1.0064,tak
+100,5,28,1418677360,Algorytm punktu idealnego,54,1586,0.423,tak
+100,5,29,534249576,Algorytm bez filtracji,48,1808,0.6932,"NIE (+0 zbędne, -4 brak)"
+100,5,29,534249576,Algorytm z filtracją,52,4575,0.9515,tak
+100,5,29,534249576,Algorytm punktu idealnego,52,1463,0.3805,tak
+100,5,30,2700415726,Algorytm bez filtracji,30,1317,0.4763,"NIE (+0 zbędne, -6 brak)"
+100,5,30,2700415726,Algorytm z filtracją,36,2462,0.4833,tak
+100,5,30,2700415726,Algorytm punktu idealnego,36,810,0.2526,tak
+100,5,31,2229749173,Algorytm bez filtracji,34,1226,0.4319,"NIE (+0 zbędne, -3 brak)"
+100,5,31,2229749173,Algorytm z filtracją,37,3003,0.5928,tak
+100,5,31,2229749173,Algorytm punktu idealnego,37,862,0.2881,tak
+100,5,32,2714096764,Algorytm bez filtracji,38,1490,0.5642,"NIE (+0 zbędne, -7 brak)"
+100,5,32,2714096764,Algorytm z filtracją,45,3823,0.7735,tak
+100,5,32,2714096764,Algorytm punktu idealnego,45,1178,0.3531,tak
+100,5,33,4091687666,Algorytm bez filtracji,44,1868,0.6392,"NIE (+0 zbędne, -7 brak)"
+100,5,33,4091687666,Algorytm z filtracją,51,4769,0.874,tak
+100,5,33,4091687666,Algorytm punktu idealnego,51,1451,0.3601,tak
+100,5,34,1448393856,Algorytm bez filtracji,46,1998,0.683,"NIE (+0 zbędne, -5 brak)"
+100,5,34,1448393856,Algorytm z filtracją,51,5012,0.9895,tak
+100,5,34,1448393856,Algorytm punktu idealnego,51,1443,0.3983,tak
+100,5,35,2588649025,Algorytm bez filtracji,33,1484,0.5803,"NIE (+0 zbędne, -5 brak)"
+100,5,35,2588649025,Algorytm z filtracją,38,2994,0.6265,tak
+100,5,35,2588649025,Algorytm punktu idealnego,38,889,0.2963,tak
+100,5,36,2501975889,Algorytm bez filtracji,41,1748,0.597,"NIE (+0 zbędne, -8 brak)"
+100,5,36,2501975889,Algorytm z filtracją,49,4304,0.7782,tak
+100,5,36,2501975889,Algorytm punktu idealnego,49,1343,0.3399,tak
+100,5,37,850403432,Algorytm bez filtracji,37,1181,0.4068,"NIE (+0 zbędne, -4 brak)"
+100,5,37,850403432,Algorytm z filtracją,41,3474,0.6874,tak
+100,5,37,850403432,Algorytm punktu idealnego,41,997,0.3058,tak
+100,5,38,1417272788,Algorytm bez filtracji,40,1413,0.545,"NIE (+0 zbędne, -5 brak)"
+100,5,38,1417272788,Algorytm z filtracją,45,3832,0.7805,tak
+100,5,38,1417272788,Algorytm punktu idealnego,45,1202,0.3491,tak
+100,5,39,2562292403,Algorytm bez filtracji,45,1616,0.6139,"NIE (+0 zbędne, -4 brak)"
+100,5,39,2562292403,Algorytm z filtracją,49,4209,0.8525,tak
+100,5,39,2562292403,Algorytm punktu idealnego,49,1345,0.3703,tak
+100,5,40,2663723360,Algorytm bez filtracji,40,1756,0.6683,"NIE (+0 zbędne, -5 brak)"
+100,5,40,2663723360,Algorytm z filtracją,45,4685,0.9485,tak
+100,5,40,2663723360,Algorytm punktu idealnego,45,1169,0.3318,tak
+100,5,41,2163719973,Algorytm bez filtracji,44,1803,0.6793,"NIE (+0 zbędne, -7 brak)"
+100,5,41,2163719973,Algorytm z filtracją,51,4790,0.9816,tak
+100,5,41,2163719973,Algorytm punktu idealnego,51,1510,0.3962,tak
+100,5,42,1579737350,Algorytm bez filtracji,40,1724,0.6671,"NIE (+0 zbędne, -8 brak)"
+100,5,42,1579737350,Algorytm z filtracją,48,4110,0.8211,tak
+100,5,42,1579737350,Algorytm punktu idealnego,48,1244,0.372,tak
+100,5,43,3969271121,Algorytm bez filtracji,43,1608,0.5512,"NIE (+0 zbędne, -6 brak)"
+100,5,43,3969271121,Algorytm z filtracją,49,4334,0.7881,tak
+100,5,43,3969271121,Algorytm punktu idealnego,49,1321,0.3471,tak
+100,5,44,3797054061,Algorytm bez filtracji,38,1598,0.544,"NIE (+0 zbędne, -6 brak)"
+100,5,44,3797054061,Algorytm z filtracją,44,4554,0.8437,tak
+100,5,44,3797054061,Algorytm punktu idealnego,44,1166,0.3167,tak
+100,5,45,1239510470,Algorytm bez filtracji,44,1521,0.5275,"NIE (+0 zbędne, -4 brak)"
+100,5,45,1239510470,Algorytm z filtracją,48,4187,0.757,tak
+100,5,45,1239510470,Algorytm punktu idealnego,48,1338,0.3444,tak
+100,5,46,3572896704,Algorytm bez filtracji,37,1763,0.6093,"NIE (+0 zbędne, -8 brak)"
+100,5,46,3572896704,Algorytm z filtracją,45,4278,0.7936,tak
+100,5,46,3572896704,Algorytm punktu idealnego,45,1121,0.3014,tak
+100,5,47,2850653881,Algorytm bez filtracji,56,2462,0.8312,"NIE (+0 zbędne, -5 brak)"
+100,5,47,2850653881,Algorytm z filtracją,61,7180,1.338,tak
+100,5,47,2850653881,Algorytm punktu idealnego,61,1988,0.4443,tak
+100,5,48,894114797,Algorytm bez filtracji,39,1482,0.5122,"NIE (+1 zbędne, -4 brak)"
+100,5,48,894114797,Algorytm z filtracją,42,3193,0.5929,tak
+100,5,48,894114797,Algorytm punktu idealnego,42,998,0.2793,tak
+100,5,49,3414089281,Algorytm bez filtracji,44,1319,0.4488,"NIE (+0 zbędne, -1 brak)"
+100,5,49,3414089281,Algorytm z filtracją,45,3600,0.6553,tak
+100,5,49,3414089281,Algorytm punktu idealnego,45,1087,0.2902,tak
+100,10,0,2074140464,Algorytm bez filtracji,95,4592,1.6151,tak
+100,10,0,2074140464,Algorytm z filtracją,95,13766,2.519,tak
+100,10,0,2074140464,Algorytm punktu idealnego,95,4487,0.9725,tak
+100,10,1,3761332316,Algorytm bez filtracji,91,4519,1.6145,"NIE (+0 zbędne, -3 brak)"
+100,10,1,3761332316,Algorytm z filtracją,94,13553,2.5036,tak
+100,10,1,3761332316,Algorytm punktu idealnego,94,4393,0.9665,tak
+100,10,2,3282903211,Algorytm bez filtracji,90,4253,1.4676,"NIE (+0 zbędne, -1 brak)"
+100,10,2,3282903211,Algorytm z filtracją,91,12739,2.3027,tak
+100,10,2,3282903211,Algorytm punktu idealnego,91,4114,0.8898,tak
+100,10,3,1082982121,Algorytm bez filtracji,85,4397,1.5837,"NIE (+2 zbędne, -6 brak)"
+100,10,3,1082982121,Algorytm z filtracją,89,12769,2.4185,tak
+100,10,3,1082982121,Algorytm punktu idealnego,89,3957,0.8999,tak
+100,10,4,2011288201,Algorytm bez filtracji,84,4087,1.4318,"NIE (+0 zbędne, -5 brak)"
+100,10,4,2011288201,Algorytm z filtracją,89,12271,2.2483,tak
+100,10,4,2011288201,Algorytm punktu idealnego,89,3974,0.8779,tak
+100,10,5,2202097869,Algorytm bez filtracji,93,4590,1.6177,"NIE (+0 zbędne, -2 brak)"
+100,10,5,2202097869,Algorytm z filtracją,95,13762,2.5199,tak
+100,10,5,2202097869,Algorytm punktu idealnego,95,4485,0.9889,tak
+100,10,6,3536498529,Algorytm bez filtracji,89,4248,1.4853,"NIE (+0 zbędne, -3 brak)"
+100,10,6,3536498529,Algorytm z filtracją,92,12731,2.336,tak
+100,10,6,3536498529,Algorytm punktu idealnego,92,4203,0.912,tak
+100,10,7,2953423563,Algorytm bez filtracji,91,4524,1.6687,"NIE (+0 zbędne, -3 brak)"
+100,10,7,2953423563,Algorytm z filtracją,94,13575,2.5326,tak
+100,10,7,2953423563,Algorytm punktu idealnego,94,4401,0.9763,tak
+100,10,8,475558392,Algorytm bez filtracji,99,4894,1.7519,tak
+100,10,8,475558392,Algorytm z filtracją,99,14680,2.7327,tak
+100,10,8,475558392,Algorytm punktu idealnego,99,4854,1.0419,tak
+100,10,9,3203296870,Algorytm bez filtracji,88,4349,1.5232,"NIE (+0 zbędne, -3 brak)"
+100,10,9,3203296870,Algorytm z filtracją,91,13030,2.3542,tak
+100,10,9,3203296870,Algorytm punktu idealnego,91,4190,0.9241,tak
+100,10,10,380221038,Algorytm bez filtracji,96,4697,1.6422,tak
+100,10,10,380221038,Algorytm z filtracją,96,14083,2.5975,tak
+100,10,10,380221038,Algorytm punktu idealnego,96,4584,0.993,tak
+100,10,11,959811873,Algorytm bez filtracji,92,4614,1.6227,"NIE (+0 zbędne, -3 brak)"
+100,10,11,959811873,Algorytm z filtracją,95,13836,2.528,tak
+100,10,11,959811873,Algorytm punktu idealnego,95,4473,0.9573,tak
+100,10,12,496611768,Algorytm bez filtracji,92,4697,1.6853,"NIE (+0 zbędne, -3 brak)"
+100,10,12,496611768,Algorytm z filtracją,95,14081,2.6064,tak
+100,10,12,496611768,Algorytm punktu idealnego,95,4494,1.0543,tak
+100,10,13,4219695278,Algorytm bez filtracji,86,4410,1.5774,"NIE (+0 zbędne, -4 brak)"
+100,10,13,4219695278,Algorytm z filtracją,90,13232,2.4418,tak
+100,10,13,4219695278,Algorytm punktu idealnego,90,4074,0.9013,tak
+100,10,14,382903441,Algorytm bez filtracji,95,4759,1.6748,"NIE (+0 zbędne, -2 brak)"
+100,10,14,382903441,Algorytm z filtracją,97,14273,2.5897,tak
+100,10,14,382903441,Algorytm punktu idealnego,97,4677,1.0405,tak
+100,10,15,1569220570,Algorytm bez filtracji,86,4328,1.5315,"NIE (+0 zbędne, -5 brak)"
+100,10,15,1569220570,Algorytm z filtracją,91,12971,2.4657,tak
+100,10,15,1569220570,Algorytm punktu idealnego,91,4129,0.9134,tak
+100,10,16,257119882,Algorytm bez filtracji,87,4175,1.4588,"NIE (+0 zbędne, -3 brak)"
+100,10,16,257119882,Algorytm z filtracją,90,12491,2.2648,tak
+100,10,16,257119882,Algorytm punktu idealnego,90,4057,0.8716,tak
+100,10,17,835227536,Algorytm bez filtracji,97,4775,1.6577,tak
+100,10,17,835227536,Algorytm z filtracją,97,14319,2.5958,tak
+100,10,17,835227536,Algorytm punktu idealnego,97,4664,1.0033,tak
+100,10,18,1259929263,Algorytm bez filtracji,89,4474,1.5718,"NIE (+0 zbędne, -4 brak)"
+100,10,18,1259929263,Algorytm z filtracją,93,13226,2.3976,tak
+100,10,18,1259929263,Algorytm punktu idealnego,93,4306,0.9344,tak
+100,10,19,3084829021,Algorytm bez filtracji,94,4526,1.6165,tak
+100,10,19,3084829021,Algorytm z filtracją,94,13564,2.4953,tak
+100,10,19,3084829021,Algorytm punktu idealnego,94,4409,0.9616,tak
+100,10,20,1883123951,Algorytm bez filtracji,90,4408,1.5627,"NIE (+0 zbędne, -3 brak)"
+100,10,20,1883123951,Algorytm z filtracją,93,13213,2.4272,tak
+100,10,20,1883123951,Algorytm punktu idealnego,93,4320,0.9416,tak
+100,10,21,1501883068,Algorytm bez filtracji,93,4742,1.6742,"NIE (+0 zbędne, -3 brak)"
+100,10,21,1501883068,Algorytm z filtracją,96,14190,2.6092,tak
+100,10,21,1501883068,Algorytm punktu idealnego,96,4575,0.9933,tak
+100,10,22,2017252190,Algorytm bez filtracji,98,4888,1.7354,"NIE (+0 zbędne, -1 brak)"
+100,10,22,2017252190,Algorytm z filtracją,99,14660,2.6874,tak
+100,10,22,2017252190,Algorytm punktu idealnego,99,4857,1.0596,tak
+100,10,23,854815945,Algorytm bez filtracji,94,4562,1.6216,"NIE (+0 zbędne, -1 brak)"
+100,10,23,854815945,Algorytm z filtracją,95,13677,2.4927,tak
+100,10,23,854815945,Algorytm punktu idealnego,95,4486,0.9731,tak
+100,10,24,3251710165,Algorytm bez filtracji,99,4883,1.7895,tak
+100,10,24,3251710165,Algorytm z filtracją,99,14647,2.7001,tak
+100,10,24,3251710165,Algorytm punktu idealnego,99,4862,1.081,tak
+100,10,25,1537261268,Algorytm bez filtracji,96,4847,1.7745,"NIE (+0 zbędne, -2 brak)"
+100,10,25,1537261268,Algorytm z filtracją,98,14533,3.0155,tak
+100,10,25,1537261268,Algorytm punktu idealnego,98,4781,1.0505,tak
+100,10,26,4285700477,Algorytm bez filtracji,97,4787,1.7125,"NIE (+0 zbędne, -1 brak)"
+100,10,26,4285700477,Algorytm z filtracją,98,14355,3.0516,tak
+100,10,26,4285700477,Algorytm punktu idealnego,98,4756,1.2287,tak
+100,10,27,188684847,Algorytm bez filtracji,76,3935,1.435,"NIE (+0 zbędne, -7 brak)"
+100,10,27,188684847,Algorytm z filtracją,83,10656,2.0214,tak
+100,10,27,188684847,Algorytm punktu idealnego,83,3448,0.8577,tak
+100,10,28,3395322069,Algorytm bez filtracji,100,4950,1.9552,tak
+100,10,28,3395322069,Algorytm z filtracją,100,14850,3.0786,tak
+100,10,28,3395322069,Algorytm punktu idealnego,100,4950,1.1992,tak
+100,10,29,767506556,Algorytm bez filtracji,98,4840,1.9069,tak
+100,10,29,767506556,Algorytm z filtracją,98,14516,2.9802,tak
+100,10,29,767506556,Algorytm punktu idealnego,98,4789,1.1581,tak
+100,10,30,1254596693,Algorytm bez filtracji,84,4381,1.7288,"NIE (+1 zbędne, -7 brak)"
+100,10,30,1254596693,Algorytm z filtracją,90,12559,2.5637,tak
+100,10,30,1254596693,Algorytm punktu idealnego,90,4023,0.9924,tak
+100,10,31,3915697814,Algorytm bez filtracji,94,4716,1.8976,"NIE (+0 zbędne, -2 brak)"
+100,10,31,3915697814,Algorytm z filtracją,96,14117,2.8817,tak
+100,10,31,3915697814,Algorytm punktu idealnego,96,4566,1.111,tak
+100,10,32,2081757098,Algorytm bez filtracji,92,4577,1.8515,"NIE (+0 zbędne, -3 brak)"
+100,10,32,2081757098,Algorytm z filtracją,95,13713,2.8611,tak
+100,10,32,2081757098,Algorytm punktu idealnego,95,4472,0.9902,tak
+100,10,33,1837736202,Algorytm bez filtracji,89,4554,1.6427,"NIE (+0 zbędne, -4 brak)"
+100,10,33,1837736202,Algorytm z filtracją,93,13593,2.4733,tak
+100,10,33,1837736202,Algorytm punktu idealnego,93,4337,0.9376,tak
+100,10,34,3448696767,Algorytm bez filtracji,100,4950,1.7525,tak
+100,10,34,3448696767,Algorytm z filtracją,100,14850,2.7265,tak
+100,10,34,3448696767,Algorytm punktu idealnego,100,4950,1.225,tak
+100,10,35,2223343184,Algorytm bez filtracji,80,3693,1.4046,"NIE (+0 zbędne, -5 brak)"
+100,10,35,2223343184,Algorytm z filtracją,85,11090,2.2651,tak
+100,10,35,2223343184,Algorytm punktu idealnego,85,3616,0.8077,tak
+100,10,36,2862019823,Algorytm bez filtracji,94,4720,1.6407,"NIE (+0 zbędne, -2 brak)"
+100,10,36,2862019823,Algorytm z filtracją,96,14148,2.6007,tak
+100,10,36,2862019823,Algorytm punktu idealnego,96,4575,1.0207,tak
+100,10,37,2790960913,Algorytm bez filtracji,92,4601,1.8336,"NIE (+0 zbędne, -3 brak)"
+100,10,37,2790960913,Algorytm z filtracją,95,13790,2.6232,tak
+100,10,37,2790960913,Algorytm punktu idealnego,95,4502,1.1845,tak
+100,10,38,1455380825,Algorytm bez filtracji,94,4647,1.6914,"NIE (+0 zbędne, -1 brak)"
+100,10,38,1455380825,Algorytm z filtracją,95,13929,2.6439,tak
+100,10,38,1455380825,Algorytm punktu idealnego,95,4480,0.9984,tak
+100,10,39,805632032,Algorytm bez filtracji,96,4703,1.6802,"NIE (+0 zbędne, -1 brak)"
+100,10,39,805632032,Algorytm z filtracją,97,14107,2.6193,tak
+100,10,39,805632032,Algorytm punktu idealnego,97,4677,1.0129,tak
+100,10,40,2352013812,Algorytm bez filtracji,96,4711,1.6248,"NIE (+0 zbędne, -1 brak)"
+100,10,40,2352013812,Algorytm z filtracją,97,14125,2.5452,tak
+100,10,40,2352013812,Algorytm punktu idealnego,97,4699,1.0541,tak
+100,10,41,350158334,Algorytm bez filtracji,91,4430,1.5987,"NIE (+0 zbędne, -1 brak)"
+100,10,41,350158334,Algorytm z filtracją,92,13275,2.4741,tak
+100,10,41,350158334,Algorytm punktu idealnego,92,4242,0.9551,tak
+100,10,42,4286121679,Algorytm bez filtracji,89,4535,1.602,"NIE (+0 zbędne, -4 brak)"
+100,10,42,4286121679,Algorytm z filtracją,93,13266,3.3116,tak
+100,10,42,4286121679,Algorytm punktu idealnego,93,4320,0.955,tak
+100,10,43,2056272971,Algorytm bez filtracji,90,4576,1.6169,"NIE (+0 zbędne, -3 brak)"
+100,10,43,2056272971,Algorytm z filtracją,93,13706,2.6858,tak
+100,10,43,2056272971,Algorytm punktu idealnego,93,4292,1.0439,tak
+100,10,44,35400335,Algorytm bez filtracji,94,4735,1.8727,"NIE (+0 zbędne, -2 brak)"
+100,10,44,35400335,Algorytm z filtracją,96,14208,2.9533,tak
+100,10,44,35400335,Algorytm punktu idealnego,96,4578,1.1178,tak
+100,10,45,3467673999,Algorytm bez filtracji,90,4495,1.7528,"NIE (+0 zbędne, -3 brak)"
+100,10,45,3467673999,Algorytm z filtracją,93,13492,2.76,tak
+100,10,45,3467673999,Algorytm punktu idealnego,93,4298,1.0547,tak
+100,10,46,1930443363,Algorytm bez filtracji,91,4391,1.7713,"NIE (+0 zbędne, -2 brak)"
+100,10,46,1930443363,Algorytm z filtracją,93,13164,2.7357,tak
+100,10,46,1930443363,Algorytm punktu idealnego,93,4320,0.9987,tak
+100,10,47,471696907,Algorytm bez filtracji,92,4692,1.7422,"NIE (+0 zbędne, -4 brak)"
+100,10,47,471696907,Algorytm z filtracją,96,13918,2.8699,tak
+100,10,47,471696907,Algorytm punktu idealnego,96,4599,1.1089,tak
+100,10,48,2333698822,Algorytm bez filtracji,90,4578,1.8098,"NIE (+0 zbędne, -4 brak)"
+100,10,48,2333698822,Algorytm z filtracją,94,13688,2.8087,tak
+100,10,48,2333698822,Algorytm punktu idealnego,94,4399,1.09,tak
+100,10,49,2748131189,Algorytm bez filtracji,95,4746,1.926,"NIE (+0 zbędne, -2 brak)"
+100,10,49,2748131189,Algorytm z filtracją,97,14231,3.1214,tak
+100,10,49,2748131189,Algorytm punktu idealnego,97,4698,1.1298,tak
+1000,2,0,389933961,Algorytm bez filtracji,6,1275,0.3838,"NIE (+0 zbędne, -1 brak)"
+1000,2,0,389933961,Algorytm z filtracją,7,1406,0.3563,tak
+1000,2,0,389933961,Algorytm punktu idealnego,7,1035,0.7394,tak
+1000,2,1,4277721065,Algorytm bez filtracji,11,1419,0.4343,tak
+1000,2,1,4277721065,Algorytm z filtracją,11,1549,0.3904,tak
+1000,2,1,4277721065,Algorytm punktu idealnego,11,1189,0.7715,tak
+1000,2,2,852092403,Algorytm bez filtracji,4,1107,0.3248,"NIE (+0 zbędne, -1 brak)"
+1000,2,2,852092403,Algorytm z filtracją,5,1144,0.3084,tak
+1000,2,2,852092403,Algorytm punktu idealnego,5,1030,0.7296,tak
+1000,2,3,3047621668,Algorytm bez filtracji,6,1481,0.4589,"NIE (+0 zbędne, -1 brak)"
+1000,2,3,3047621668,Algorytm z filtracją,7,1794,0.4307,tak
+1000,2,3,3047621668,Algorytm punktu idealnego,7,1176,0.7612,tak
+1000,2,4,2705904233,Algorytm bez filtracji,10,1542,0.4859,"NIE (+1 zbędne, -2 brak)"
+1000,2,4,2705904233,Algorytm z filtracją,11,1588,0.4013,tak
+1000,2,4,2705904233,Algorytm punktu idealnego,11,1173,0.6904,tak
+1000,2,5,1539132032,Algorytm bez filtracji,10,1796,0.5038,"NIE (+0 zbędne, -1 brak)"
+1000,2,5,1539132032,Algorytm z filtracją,11,2922,0.5675,tak
+1000,2,5,1539132032,Algorytm punktu idealnego,11,1203,0.6972,tak
+1000,2,6,3820911253,Algorytm bez filtracji,8,1356,0.3789,tak
+1000,2,6,3820911253,Algorytm z filtracją,8,1399,0.3277,tak
+1000,2,6,3820911253,Algorytm punktu idealnego,8,1122,0.6801,tak
+1000,2,7,2226906657,Algorytm bez filtracji,5,1659,0.4713,"NIE (+0 zbędne, -1 brak)"
+1000,2,7,2226906657,Algorytm z filtracją,6,1943,0.4054,tak
+1000,2,7,2226906657,Algorytm punktu idealnego,6,1041,0.6607,tak
+1000,2,8,1403190424,Algorytm bez filtracji,12,1503,0.423,"NIE (+0 zbędne, -1 brak)"
+1000,2,8,1403190424,Algorytm z filtracją,13,1923,0.4149,tak
+1000,2,8,1403190424,Algorytm punktu idealnego,13,1205,0.6929,tak
+1000,2,9,3107755062,Algorytm bez filtracji,8,1351,0.3735,"NIE (+0 zbędne, -1 brak)"
+1000,2,9,3107755062,Algorytm z filtracją,9,1760,0.3897,tak
+1000,2,9,3107755062,Algorytm punktu idealnego,9,1087,0.6912,tak
+1000,2,10,3206617585,Algorytm bez filtracji,11,1747,0.51,tak
+1000,2,10,3206617585,Algorytm z filtracją,11,2444,0.493,tak
+1000,2,10,3206617585,Algorytm punktu idealnego,11,1099,0.6712,tak
+1000,2,11,1311406186,Algorytm bez filtracji,5,1494,0.4235,"NIE (+0 zbędne, -2 brak)"
+1000,2,11,1311406186,Algorytm z filtracją,7,1841,0.3958,tak
+1000,2,11,1311406186,Algorytm punktu idealnego,7,1129,0.6712,tak
+1000,2,12,27099044,Algorytm bez filtracji,7,1383,0.3861,"NIE (+0 zbędne, -1 brak)"
+1000,2,12,27099044,Algorytm z filtracją,8,1275,0.3035,tak
+1000,2,12,27099044,Algorytm punktu idealnego,8,1057,0.6593,tak
+1000,2,13,3807527,Algorytm bez filtracji,7,1320,0.3657,tak
+1000,2,13,3807527,Algorytm z filtracją,7,1625,0.3639,tak
+1000,2,13,3807527,Algorytm punktu idealnego,7,1039,0.6535,tak
+1000,2,14,3159585108,Algorytm bez filtracji,6,1123,0.3314,"NIE (+0 zbędne, -1 brak)"
+1000,2,14,3159585108,Algorytm z filtracją,7,1374,0.3645,tak
+1000,2,14,3159585108,Algorytm punktu idealnego,7,1067,0.7348,tak
+1000,2,15,2370408744,Algorytm bez filtracji,7,1354,0.4208,tak
+1000,2,15,2370408744,Algorytm z filtracją,7,1444,0.3345,tak
+1000,2,15,2370408744,Algorytm punktu idealnego,7,1122,0.6791,tak
+1000,2,16,1835543112,Algorytm bez filtracji,13,1383,0.3866,tak
+1000,2,16,1835543112,Algorytm z filtracją,13,1568,0.3973,tak
+1000,2,16,1835543112,Algorytm punktu idealnego,13,1236,0.78,tak
+1000,2,17,3069342314,Algorytm bez filtracji,5,1387,0.3923,"NIE (+0 zbędne, -1 brak)"
+1000,2,17,3069342314,Algorytm z filtracją,6,1333,0.315,tak
+1000,2,17,3069342314,Algorytm punktu idealnego,6,1095,0.6688,tak
+1000,2,18,626465554,Algorytm bez filtracji,8,1799,0.5104,tak
+1000,2,18,626465554,Algorytm z filtracją,8,2866,0.6353,tak
+1000,2,18,626465554,Algorytm punktu idealnego,8,1096,0.7499,tak
+1000,2,19,2040761668,Algorytm bez filtracji,6,1131,0.345,tak
+1000,2,19,2040761668,Algorytm z filtracją,6,1158,0.2868,tak
+1000,2,19,2040761668,Algorytm punktu idealnego,6,1052,0.6623,tak
+1000,2,20,3227100284,Algorytm bez filtracji,7,1147,0.3108,tak
+1000,2,20,3227100284,Algorytm z filtracją,7,1157,0.2901,tak
+1000,2,20,3227100284,Algorytm punktu idealnego,7,1041,0.7366,tak
+1000,2,21,4227751517,Algorytm bez filtracji,4,1372,0.423,tak
+1000,2,21,4227751517,Algorytm z filtracją,4,1420,0.357,tak
+1000,2,21,4227751517,Algorytm punktu idealnego,4,1040,0.7342,tak
+1000,2,22,1000971274,Algorytm bez filtracji,8,1267,0.3488,tak
+1000,2,22,1000971274,Algorytm z filtracją,8,1402,0.3273,tak
+1000,2,22,1000971274,Algorytm punktu idealnego,8,1164,0.681,tak
+1000,2,23,922419613,Algorytm bez filtracji,7,1352,0.4217,"NIE (+0 zbędne, -2 brak)"
+1000,2,23,922419613,Algorytm z filtracją,9,1513,0.3806,tak
+1000,2,23,922419613,Algorytm punktu idealnego,9,1186,0.7632,tak
+1000,2,24,1936597711,Algorytm bez filtracji,5,1147,0.3113,"NIE (+0 zbędne, -1 brak)"
+1000,2,24,1936597711,Algorytm z filtracją,6,1276,0.3045,tak
+1000,2,24,1936597711,Algorytm punktu idealnego,6,1056,0.6611,tak
+1000,3,0,789273764,Algorytm bez filtracji,30,3930,1.3956,"NIE (+0 zbędne, -3 brak)"
+1000,3,0,789273764,Algorytm z filtracją,33,5052,1.0463,tak
+1000,3,0,789273764,Algorytm punktu idealnego,33,2015,0.9965,tak
+1000,3,1,842362834,Algorytm bez filtracji,27,2629,0.8528,"NIE (+1 zbędne, -6 brak)"
+1000,3,1,842362834,Algorytm z filtracją,32,4976,0.9958,tak
+1000,3,1,842362834,Algorytm punktu idealnego,32,2334,1.0324,tak
+1000,3,2,435269429,Algorytm bez filtracji,30,4788,1.6741,"NIE (+1 zbędne, -8 brak)"
+1000,3,2,435269429,Algorytm z filtracją,37,6091,1.1858,tak
+1000,3,2,435269429,Algorytm punktu idealnego,37,2115,0.9834,tak
+1000,3,3,146911449,Algorytm bez filtracji,28,4944,1.6558,"NIE (+1 zbędne, -4 brak)"
+1000,3,3,146911449,Algorytm z filtracją,31,7478,1.357,tak
+1000,3,3,146911449,Algorytm punktu idealnego,31,2401,1.1608,tak
+1000,3,4,426409049,Algorytm bez filtracji,17,3319,1.0325,"NIE (+0 zbędne, -1 brak)"
+1000,3,4,426409049,Algorytm z filtracją,18,3166,0.6642,tak
+1000,3,4,426409049,Algorytm punktu idealnego,18,1247,0.9222,tak
+1000,3,5,918711097,Algorytm bez filtracji,21,3069,0.9747,"NIE (+1 zbędne, -5 brak)"
+1000,3,5,918711097,Algorytm z filtracją,25,2988,0.6368,tak
+1000,3,5,918711097,Algorytm punktu idealnego,25,1720,0.9589,tak
+1000,3,6,3138065513,Algorytm bez filtracji,35,3368,1.1189,"NIE (+0 zbędne, -3 brak)"
+1000,3,6,3138065513,Algorytm z filtracją,38,5629,1.0857,tak
+1000,3,6,3138065513,Algorytm punktu idealnego,38,2946,1.1856,tak
+1000,3,7,3096371378,Algorytm bez filtracji,24,2212,0.7156,"NIE (+0 zbędne, -2 brak)"
+1000,3,7,3096371378,Algorytm z filtracją,26,3163,0.6983,tak
+1000,3,7,3096371378,Algorytm punktu idealnego,26,1632,0.9382,tak
+1000,3,8,3940393361,Algorytm bez filtracji,20,2571,0.7851,"NIE (+0 zbędne, -2 brak)"
+1000,3,8,3940393361,Algorytm z filtracją,22,3576,0.7246,tak
+1000,3,8,3940393361,Algorytm punktu idealnego,22,1976,0.9797,tak
+1000,3,9,2076587530,Algorytm bez filtracji,26,3392,1.0608,"NIE (+1 zbędne, -7 brak)"
+1000,3,9,2076587530,Algorytm z filtracją,32,4182,0.8337,tak
+1000,3,9,2076587530,Algorytm punktu idealnego,32,1909,0.9666,tak
+1000,3,10,2962880134,Algorytm bez filtracji,23,2441,0.7536,"NIE (+0 zbędne, -4 brak)"
+1000,3,10,2962880134,Algorytm z filtracją,27,3816,0.7799,tak
+1000,3,10,2962880134,Algorytm punktu idealnego,27,1657,0.9275,tak
+1000,3,11,880324783,Algorytm bez filtracji,39,4736,1.5226,"NIE (+0 zbędne, -5 brak)"
+1000,3,11,880324783,Algorytm z filtracją,44,7231,1.3411,tak
+1000,3,11,880324783,Algorytm punktu idealnego,44,2715,1.1149,tak
+1000,3,12,2896818300,Algorytm bez filtracji,31,4391,1.396,"NIE (+1 zbędne, -7 brak)"
+1000,3,12,2896818300,Algorytm z filtracją,37,5730,1.0921,tak
+1000,3,12,2896818300,Algorytm punktu idealnego,37,2234,1.0215,tak
+1000,3,13,582258495,Algorytm bez filtracji,18,2732,0.8518,"NIE (+1 zbędne, -3 brak)"
+1000,3,13,582258495,Algorytm z filtracją,20,3094,0.6331,tak
+1000,3,13,582258495,Algorytm punktu idealnego,20,1438,0.8847,tak
+1000,3,14,1726961581,Algorytm bez filtracji,26,4147,1.314,"NIE (+1 zbędne, -4 brak)"
+1000,3,14,1726961581,Algorytm z filtracją,29,5207,0.9957,tak
+1000,3,14,1726961581,Algorytm punktu idealnego,29,2198,0.9981,tak
+1000,3,15,2953335822,Algorytm bez filtracji,34,3763,1.2267,"NIE (+2 zbędne, -5 brak)"
+1000,3,15,2953335822,Algorytm z filtracją,37,4736,0.9179,tak
+1000,3,15,2953335822,Algorytm punktu idealnego,37,2163,0.9968,tak
+1000,3,16,1641913047,Algorytm bez filtracji,34,4232,1.3392,"NIE (+2 zbędne, -4 brak)"
+1000,3,16,1641913047,Algorytm z filtracją,36,6648,1.2587,tak
+1000,3,16,1641913047,Algorytm punktu idealnego,36,2153,1.0073,tak
+1000,3,17,758709816,Algorytm bez filtracji,23,4675,1.4845,tak
+1000,3,17,758709816,Algorytm z filtracją,23,4870,0.9433,tak
+1000,3,17,758709816,Algorytm punktu idealnego,23,1516,0.8865,tak
+1000,3,18,16648893,Algorytm bez filtracji,11,1938,0.5758,"NIE (+0 zbędne, -2 brak)"
+1000,3,18,16648893,Algorytm z filtracją,13,2990,0.6053,tak
+1000,3,18,16648893,Algorytm punktu idealnego,13,1220,0.8338,tak
+1000,3,19,128379471,Algorytm bez filtracji,33,4393,1.407,"NIE (+2 zbędne, -4 brak)"
+1000,3,19,128379471,Algorytm z filtracją,35,7866,1.4786,tak
+1000,3,19,128379471,Algorytm punktu idealnego,35,2501,1.083,tak
+1000,3,20,226246485,Algorytm bez filtracji,28,5612,1.7909,"NIE (+2 zbędne, -10 brak)"
+1000,3,20,226246485,Algorytm z filtracją,36,9390,1.7159,tak
+1000,3,20,226246485,Algorytm punktu idealnego,36,2364,1.0399,tak
+1000,3,21,1424576336,Algorytm bez filtracji,15,2431,0.7393,"NIE (+0 zbędne, -1 brak)"
+1000,3,21,1424576336,Algorytm z filtracją,16,2648,0.5559,tak
+1000,3,21,1424576336,Algorytm punktu idealnego,16,1167,0.8152,tak
+1000,3,22,1894334521,Algorytm bez filtracji,27,4196,1.3456,"NIE (+0 zbędne, -4 brak)"
+1000,3,22,1894334521,Algorytm z filtracją,31,3867,0.7706,tak
+1000,3,22,1894334521,Algorytm punktu idealnego,31,1763,0.9261,tak
+1000,3,23,1376054293,Algorytm bez filtracji,23,2742,0.8765,"NIE (+0 zbędne, -2 brak)"
+1000,3,23,1376054293,Algorytm z filtracją,25,4621,0.9386,tak
+1000,3,23,1376054293,Algorytm punktu idealnego,25,1481,0.8743,tak
+1000,3,24,3145538700,Algorytm bez filtracji,33,4576,1.4239,"NIE (+1 zbędne, -3 brak)"
+1000,3,24,3145538700,Algorytm z filtracją,35,5348,1.0458,tak
+1000,3,24,3145538700,Algorytm punktu idealnego,35,2062,1.1115,tak
+1000,4,0,2712387966,Algorytm bez filtracji,88,16318,5.4611,"NIE (+3 zbędne, -12 brak)"
+1000,4,0,2712387966,Algorytm z filtracją,97,27274,4.9057,tak
+1000,4,0,2712387966,Algorytm punktu idealnego,97,7324,1.9901,tak
+1000,4,1,4215998959,Algorytm bez filtracji,48,10339,3.482,"NIE (+1 zbędne, -6 brak)"
+1000,4,1,4215998959,Algorytm z filtracją,53,11851,2.2227,tak
+1000,4,1,4215998959,Algorytm punktu idealnego,53,3230,1.3316,tak
+1000,4,2,557916149,Algorytm bez filtracji,75,15138,5.1595,"NIE (+3 zbędne, -16 brak)"
+1000,4,2,557916149,Algorytm z filtracją,88,22214,4.0802,tak
+1000,4,2,557916149,Algorytm punktu idealnego,88,7000,2.0578,tak
+1000,4,3,3538938977,Algorytm bez filtracji,73,14521,4.8762,"NIE (+9 zbędne, -20 brak)"
+1000,4,3,3538938977,Algorytm z filtracją,84,19295,3.529,tak
+1000,4,3,3538938977,Algorytm punktu idealnego,84,6002,1.8336,tak
+1000,4,4,3043518513,Algorytm bez filtracji,49,9502,3.2034,"NIE (+0 zbędne, -8 brak)"
+1000,4,4,3043518513,Algorytm z filtracją,57,12109,2.2789,tak
+1000,4,4,3043518513,Algorytm punktu idealnego,57,3355,1.357,tak
+1000,4,5,1979923007,Algorytm bez filtracji,80,14238,4.8174,"NIE (+1 zbędne, -7 brak)"
+1000,4,5,1979923007,Algorytm z filtracją,86,23319,4.4094,tak
+1000,4,5,1979923007,Algorytm punktu idealnego,86,6419,2.0771,tak
+1000,4,6,2321819785,Algorytm bez filtracji,58,9216,3.1009,"NIE (+0 zbędne, -10 brak)"
+1000,4,6,2321819785,Algorytm z filtracją,68,16043,2.9757,tak
+1000,4,6,2321819785,Algorytm punktu idealnego,68,4290,1.579,tak
+1000,4,7,2359621890,Algorytm bez filtracji,54,9345,3.1982,"NIE (+1 zbędne, -7 brak)"
+1000,4,7,2359621890,Algorytm z filtracją,60,14253,2.8409,tak
+1000,4,7,2359621890,Algorytm punktu idealnego,60,4730,1.5972,tak
+1000,4,8,591922615,Algorytm bez filtracji,78,13535,4.604,"NIE (+0 zbędne, -11 brak)"
+1000,4,8,591922615,Algorytm z filtracją,89,19659,3.6387,tak
+1000,4,8,591922615,Algorytm punktu idealnego,89,6910,1.964,tak
+1000,4,9,740235590,Algorytm bez filtracji,94,15796,5.3097,"NIE (+1 zbędne, -12 brak)"
+1000,4,9,740235590,Algorytm z filtracją,105,29092,5.1923,tak
+1000,4,9,740235590,Algorytm punktu idealnego,105,8806,2.3472,tak
+1000,4,10,1619987528,Algorytm bez filtracji,65,11677,3.8585,"NIE (+0 zbędne, -18 brak)"
+1000,4,10,1619987528,Algorytm z filtracją,83,19833,3.5774,tak
+1000,4,10,1619987528,Algorytm punktu idealnego,83,6234,1.8291,tak
+1000,4,11,736813947,Algorytm bez filtracji,53,9310,3.151,"NIE (+0 zbędne, -14 brak)"
+1000,4,11,736813947,Algorytm z filtracją,67,15840,2.8869,tak
+1000,4,11,736813947,Algorytm punktu idealnego,67,4208,1.4871,tak
+1000,4,12,3532404737,Algorytm bez filtracji,50,8400,2.8022,"NIE (+0 zbędne, -16 brak)"
+1000,4,12,3532404737,Algorytm z filtracją,66,11651,2.1809,tak
+1000,4,12,3532404737,Algorytm punktu idealnego,66,3682,1.4093,tak
+1000,4,13,1467519217,Algorytm bez filtracji,64,15441,5.2114,"NIE (+1 zbędne, -10 brak)"
+1000,4,13,1467519217,Algorytm z filtracją,73,14461,2.692,tak
+1000,4,13,1467519217,Algorytm punktu idealnego,73,5402,1.7315,tak
+1000,4,14,263096519,Algorytm bez filtracji,68,14125,4.8037,"NIE (+0 zbędne, -11 brak)"
+1000,4,14,263096519,Algorytm z filtracją,79,22705,4.1735,tak
+1000,4,14,263096519,Algorytm punktu idealnego,79,5279,1.6885,tak
+1000,4,15,2763066754,Algorytm bez filtracji,53,10833,3.7023,"NIE (+1 zbędne, -11 brak)"
+1000,4,15,2763066754,Algorytm z filtracją,63,11950,2.222,tak
+1000,4,15,2763066754,Algorytm punktu idealnego,63,3781,1.4149,tak
+1000,4,16,676489218,Algorytm bez filtracji,68,9838,3.3304,"NIE (+2 zbędne, -13 brak)"
+1000,4,16,676489218,Algorytm z filtracją,79,16631,3.0813,tak
+1000,4,16,676489218,Algorytm punktu idealnego,79,5337,1.7367,tak
+1000,4,17,2228973951,Algorytm bez filtracji,90,13388,4.4833,"NIE (+1 zbędne, -13 brak)"
+1000,4,17,2228973951,Algorytm z filtracją,102,23680,4.285,tak
+1000,4,17,2228973951,Algorytm punktu idealnego,102,7543,2.0727,tak
+1000,4,18,2998738960,Algorytm bez filtracji,72,11069,3.6888,"NIE (+1 zbędne, -11 brak)"
+1000,4,18,2998738960,Algorytm z filtracją,82,19466,3.5513,tak
+1000,4,18,2998738960,Algorytm punktu idealnego,82,5552,1.7589,tak
+1000,4,19,894237366,Algorytm bez filtracji,78,11488,3.8957,"NIE (+1 zbędne, -10 brak)"
+1000,4,19,894237366,Algorytm z filtracją,87,20483,3.7432,tak
+1000,4,19,894237366,Algorytm punktu idealnego,87,6633,1.907,tak
+1000,4,20,4259927178,Algorytm bez filtracji,77,16744,5.645,"NIE (+4 zbędne, -16 brak)"
+1000,4,20,4259927178,Algorytm z filtracją,89,22902,4.1457,tak
+1000,4,20,4259927178,Algorytm punktu idealnego,89,7145,2.0555,tak
+1000,4,21,1182355262,Algorytm bez filtracji,72,10199,3.3987,"NIE (+2 zbędne, -11 brak)"
+1000,4,21,1182355262,Algorytm z filtracją,81,21837,3.9549,tak
+1000,4,21,1182355262,Algorytm punktu idealnego,81,6227,1.8594,tak
+1000,4,22,1777125678,Algorytm bez filtracji,70,13470,4.5774,"NIE (+2 zbędne, -20 brak)"
+1000,4,22,1777125678,Algorytm z filtracją,88,22998,4.1795,tak
+1000,4,22,1777125678,Algorytm punktu idealnego,88,6667,1.9495,tak
+1000,4,23,3351940833,Algorytm bez filtracji,72,13056,4.3687,"NIE (+1 zbędne, -12 brak)"
+1000,4,23,3351940833,Algorytm z filtracją,83,18650,3.3684,tak
+1000,4,23,3351940833,Algorytm punktu idealnego,83,6151,1.8486,tak
+1000,4,24,136852047,Algorytm bez filtracji,71,9817,3.3267,"NIE (+4 zbędne, -12 brak)"
+1000,4,24,136852047,Algorytm z filtracją,79,15451,2.8351,tak
+1000,4,24,136852047,Algorytm punktu idealnego,79,5256,1.6694,tak
+1000,5,0,3172484479,Algorytm bez filtracji,95,17561,6.0649,"NIE (+1 zbędne, -23 brak)"
+1000,5,0,3172484479,Algorytm z filtracją,117,28264,5.1995,tak
+1000,5,0,3172484479,Algorytm punktu idealnego,117,8782,2.483,tak
+1000,5,1,549384814,Algorytm bez filtracji,110,37376,13.8472,"NIE (+1 zbędne, -22 brak)"
+1000,5,1,549384814,Algorytm z filtracją,131,42563,8.326,tak
+1000,5,1,549384814,Algorytm punktu idealnego,131,11385,2.9313,tak
+1000,5,2,3109967787,Algorytm bez filtracji,144,28733,10.5504,"NIE (+0 zbędne, -18 brak)"
+1000,5,2,3109967787,Algorytm z filtracją,162,55403,10.1339,tak
+1000,5,2,3109967787,Algorytm punktu idealnego,162,15864,3.9488,tak
+1000,5,3,1661190356,Algorytm bez filtracji,130,30292,11.9896,"NIE (+1 zbędne, -26 brak)"
+1000,5,3,1661190356,Algorytm z filtracją,155,54401,11.2382,tak
+1000,5,3,1661190356,Algorytm punktu idealnego,155,14853,3.8693,tak
+1000,5,4,3041906543,Algorytm bez filtracji,158,33314,13.2263,"NIE (+3 zbędne, -30 brak)"
+1000,5,4,3041906543,Algorytm z filtracją,185,75661,15.7435,tak
+1000,5,4,3041906543,Algorytm punktu idealnego,185,21227,5.4627,tak
+1000,5,5,3854806600,Algorytm bez filtracji,131,26858,10.9422,"NIE (+2 zbędne, -30 brak)"
+1000,5,5,3854806600,Algorytm z filtracją,159,54108,11.0768,tak
+1000,5,5,3854806600,Algorytm punktu idealnego,159,15990,3.7031,tak
+1000,5,6,2340688977,Algorytm bez filtracji,160,43597,15.0988,"NIE (+1 zbędne, -36 brak)"
+1000,5,6,2340688977,Algorytm z filtracją,195,85732,15.6805,tak
+1000,5,6,2340688977,Algorytm punktu idealnego,195,24898,5.3247,tak
+1000,5,7,532765447,Algorytm bez filtracji,110,20285,6.9342,"NIE (+1 zbędne, -21 brak)"
+1000,5,7,532765447,Algorytm z filtracją,130,40650,7.4682,tak
+1000,5,7,532765447,Algorytm punktu idealnego,130,11228,2.8971,tak
+1000,5,8,1079018292,Algorytm bez filtracji,149,41151,14.5174,"NIE (+5 zbędne, -28 brak)"
+1000,5,8,1079018292,Algorytm z filtracją,172,69897,13.0772,tak
+1000,5,8,1079018292,Algorytm punktu idealnego,172,20147,4.604,tak
+1000,5,9,1832404591,Algorytm bez filtracji,135,33829,13.2276,"NIE (+1 zbędne, -24 brak)"
+1000,5,9,1832404591,Algorytm z filtracją,158,55325,11.3153,tak
+1000,5,9,1832404591,Algorytm punktu idealnego,158,15741,3.717,tak
+1000,5,10,3090753276,Algorytm bez filtracji,143,41681,16.1633,"NIE (+1 zbędne, -34 brak)"
+1000,5,10,3090753276,Algorytm z filtracją,176,75006,15.2002,tak
+1000,5,10,3090753276,Algorytm punktu idealnego,176,19972,4.6889,tak
+1000,5,11,3799901404,Algorytm bez filtracji,139,35000,13.6598,"NIE (+0 zbędne, -17 brak)"
+1000,5,11,3799901404,Algorytm z filtracją,156,49593,9.9431,tak
+1000,5,11,3799901404,Algorytm punktu idealnego,156,14330,3.3724,tak
+1000,5,12,1916145074,Algorytm bez filtracji,121,26004,9.0351,"NIE (+4 zbędne, -30 brak)"
+1000,5,12,1916145074,Algorytm z filtracją,147,47475,8.6751,tak
+1000,5,12,1916145074,Algorytm punktu idealnego,147,14186,3.4062,tak
+1000,5,13,2485424301,Algorytm bez filtracji,83,20405,7.048,"NIE (+1 zbędne, -17 brak)"
+1000,5,13,2485424301,Algorytm z filtracją,99,22705,4.1912,tak
+1000,5,13,2485424301,Algorytm punktu idealnego,99,6463,2.0181,tak
+1000,5,14,214976259,Algorytm bez filtracji,123,28987,10.0546,"NIE (+0 zbędne, -28 brak)"
+1000,5,14,214976259,Algorytm z filtracją,151,47005,8.4979,tak
+1000,5,14,214976259,Algorytm punktu idealnego,151,13961,3.322,tak
+1000,5,15,2420185162,Algorytm bez filtracji,151,31431,10.7581,"NIE (+2 zbędne, -26 brak)"
+1000,5,15,2420185162,Algorytm z filtracją,175,69762,12.6177,tak
+1000,5,15,2420185162,Algorytm punktu idealnego,175,19422,4.2844,tak
+1000,5,16,2516072913,Algorytm bez filtracji,138,38111,14.0005,"NIE (+2 zbędne, -22 brak)"
+1000,5,16,2516072913,Algorytm z filtracją,158,52080,10.3153,tak
+1000,5,16,2516072913,Algorytm punktu idealnego,158,14934,3.8197,tak
+1000,5,17,3816898252,Algorytm bez filtracji,144,31563,10.9585,"NIE (+2 zbędne, -25 brak)"
+1000,5,17,3816898252,Algorytm z filtracją,167,62509,11.4001,tak
+1000,5,17,3816898252,Algorytm punktu idealnego,167,18870,4.1285,tak
+1000,5,18,4204402168,Algorytm bez filtracji,128,38539,13.3946,"NIE (+4 zbędne, -39 brak)"
+1000,5,18,4204402168,Algorytm z filtracją,163,56034,10.2862,tak
+1000,5,18,4204402168,Algorytm punktu idealnego,163,16609,3.845,tak
+1000,5,19,2653941094,Algorytm bez filtracji,154,33404,11.4592,"NIE (+3 zbędne, -24 brak)"
+1000,5,19,2653941094,Algorytm z filtracją,175,69100,12.528,tak
+1000,5,19,2653941094,Algorytm punktu idealnego,175,19877,4.323,tak
+1000,5,20,1052781326,Algorytm bez filtracji,162,42076,14.6121,"NIE (+0 zbędne, -31 brak)"
+1000,5,20,1052781326,Algorytm z filtracją,193,82992,16.0126,tak
+1000,5,20,1052781326,Algorytm punktu idealnego,193,22846,5.5681,tak
+1000,5,21,1275741168,Algorytm bez filtracji,115,22490,8.7094,"NIE (+0 zbędne, -24 brak)"
+1000,5,21,1275741168,Algorytm z filtracją,139,48008,9.9693,tak
+1000,5,21,1275741168,Algorytm punktu idealnego,139,13242,3.1841,tak
+1000,5,22,706227049,Algorytm bez filtracji,137,39692,14.8281,"NIE (+1 zbędne, -36 brak)"
+1000,5,22,706227049,Algorytm z filtracją,172,65773,13.3303,tak
+1000,5,22,706227049,Algorytm punktu idealnego,172,18729,4.267,tak
+1000,5,23,1974467819,Algorytm bez filtracji,129,23792,10.0996,"NIE (+2 zbędne, -19 brak)"
+1000,5,23,1974467819,Algorytm z filtracją,146,45617,9.283,tak
+1000,5,23,1974467819,Algorytm punktu idealnego,146,13772,3.7554,tak
+1000,5,24,3742626834,Algorytm bez filtracji,160,35289,13.6339,"NIE (+1 zbędne, -31 brak)"
+1000,5,24,3742626834,Algorytm z filtracją,190,79143,15.0814,tak
+1000,5,24,3742626834,Algorytm punktu idealnego,190,23340,5.0244,tak
+1000,10,0,405610636,Algorytm bez filtracji,702,332252,127.029,"NIE (+1 zbędne, -58 brak)"
+1000,10,0,405610636,Algorytm z filtracją,759,930626,184.2472,tak
+1000,10,0,405610636,Algorytm punktu idealnego,759,290413,53.8697,tak
+1000,10,1,132155965,Algorytm bez filtracji,631,298860,107.2411,"NIE (+2 zbędne, -80 brak)"
+1000,10,1,132155965,Algorytm z filtracją,709,813279,173.8912,tak
+1000,10,1,132155965,Algorytm punktu idealnego,709,254108,50.0269,tak
+1000,10,2,1317215848,Algorytm bez filtracji,737,339308,127.8908,"NIE (+2 zbędne, -51 brak)"
+1000,10,2,1317215848,Algorytm z filtracją,786,981535,197.6538,tak
+1000,10,2,1317215848,Algorytm punktu idealnego,786,311859,84.9854,tak
+1000,10,3,3287627547,Algorytm bez filtracji,722,347478,126.0959,"NIE (+1 zbędne, -63 brak)"
+1000,10,3,3287627547,Algorytm z filtracją,784,973848,180.5179,tak
+1000,10,3,3287627547,Algorytm punktu idealnego,784,310254,58.488,tak
+1000,10,4,2532874178,Algorytm bez filtracji,804,380459,150.8065,"NIE (+3 zbędne, -41 brak)"
+1000,10,4,2532874178,Algorytm z filtracją,842,1124606,237.4625,tak
+1000,10,4,2532874178,Algorytm punktu idealnego,842,358145,75.7042,tak
+1000,10,5,3871319349,Algorytm bez filtracji,716,327147,130.9581,"NIE (+0 zbędne, -55 brak)"
+1000,10,5,3871319349,Algorytm z filtracją,771,948652,198.0041,tak
+1000,10,5,3871319349,Algorytm punktu idealnego,771,299946,64.0809,tak
+1000,10,6,1176988492,Algorytm bez filtracji,626,287382,105.9563,"NIE (+2 zbędne, -73 brak)"
+1000,10,6,1176988492,Algorytm z filtracją,697,797183,150.4309,tak
+1000,10,6,1176988492,Algorytm punktu idealnego,697,245523,53.4013,tak
+1000,10,7,1916223478,Algorytm bez filtracji,633,298469,121.1158,"NIE (+0 zbędne, -79 brak)"
+1000,10,7,1916223478,Algorytm z filtracją,712,819882,154.744,tak
+1000,10,7,1916223478,Algorytm punktu idealnego,712,255344,47.948,tak
+1000,10,8,3688991602,Algorytm bez filtracji,769,373685,137.5518,"NIE (+0 zbędne, -52 brak)"
+1000,10,8,3688991602,Algorytm z filtracją,821,1080277,204.6929,tak
+1000,10,8,3688991602,Algorytm punktu idealnego,821,340747,64.8725,tak
+1000,10,9,764004253,Algorytm bez filtracji,670,315226,120.196,"NIE (+2 zbędne, -71 brak)"
+1000,10,9,764004253,Algorytm z filtracją,739,880170,179.8372,tak
+1000,10,9,764004253,Algorytm punktu idealnego,739,275984,57.0893,tak
+1000,10,10,2561289479,Algorytm bez filtracji,738,344565,129.876,"NIE (+0 zbędne, -55 brak)"
+1000,10,10,2561289479,Algorytm z filtracją,793,996267,185.2428,tak
+1000,10,10,2561289479,Algorytm punktu idealnego,793,318476,60.2893,tak
+1000,10,11,3170509716,Algorytm bez filtracji,746,359662,139.2666,"NIE (+4 zbędne, -57 brak)"
+1000,10,11,3170509716,Algorytm z filtracją,799,1037051,220.3767,tak
+1000,10,11,3170509716,Algorytm punktu idealnego,799,323042,69.6266,tak
+1000,10,12,2454263501,Algorytm bez filtracji,711,319327,127.5927,"NIE (+1 zbędne, -54 brak)"
+1000,10,12,2454263501,Algorytm z filtracją,764,918194,180.7605,tak
+1000,10,12,2454263501,Algorytm punktu idealnego,764,294560,59.7702,tak
+1000,10,13,2989968375,Algorytm bez filtracji,703,345173,126.9205,"NIE (+4 zbędne, -63 brak)"
+1000,10,13,2989968375,Algorytm z filtracją,762,940126,174.6618,tak
+1000,10,13,2989968375,Algorytm punktu idealnego,762,294171,55.7417,tak
+1000,10,14,4002152374,Algorytm bez filtracji,682,320539,116.8167,"NIE (+0 zbędne, -63 brak)"
+1000,10,14,4002152374,Algorytm z filtracją,745,885275,167.53,tak
+1000,10,14,4002152374,Algorytm punktu idealnego,745,281363,54.6957,tak
+1000,10,15,2199255499,Algorytm bez filtracji,703,337259,135.4227,"NIE (+0 zbędne, -61 brak)"
+1000,10,15,2199255499,Algorytm z filtracją,764,946409,201.4015,tak
+1000,10,15,2199255499,Algorytm punktu idealnego,764,294329,63.3818,tak
+1000,10,16,1491218166,Algorytm bez filtracji,769,364323,136.873,"NIE (+0 zbędne, -44 brak)"
+1000,10,16,1491218166,Algorytm z filtracją,813,1058205,196.9045,tak
+1000,10,16,1491218166,Algorytm punktu idealnego,813,333273,63.3117,tak
+1000,10,17,492524360,Algorytm bez filtracji,684,318263,117.6242,"NIE (+1 zbędne, -71 brak)"
+1000,10,17,492524360,Algorytm z filtracją,754,898439,170.3997,tak
+1000,10,17,492524360,Algorytm punktu idealnego,754,285984,55.0999,tak
+1000,10,18,1225847984,Algorytm bez filtracji,675,290353,114.833,"NIE (+3 zbędne, -46 brak)"
+1000,10,18,1225847984,Algorytm z filtracją,718,818702,175.2602,tak
+1000,10,18,1225847984,Algorytm punktu idealnego,718,259426,56.4394,tak
+1000,10,19,54083976,Algorytm bez filtracji,735,357208,146.4278,"NIE (+3 zbędne, -66 brak)"
+1000,10,19,54083976,Algorytm z filtracją,798,1031178,192.0847,tak
+1000,10,19,54083976,Algorytm punktu idealnego,798,321676,60.9018,tak
+1000,10,20,2210094487,Algorytm bez filtracji,692,332941,134.1781,"NIE (+2 zbędne, -67 brak)"
+1000,10,20,2210094487,Algorytm z filtracją,757,938662,207.4394,tak
+1000,10,20,2210094487,Algorytm punktu idealnego,757,290110,64.6855,tak
+1000,10,21,4041175153,Algorytm bez filtracji,795,388649,153.9168,"NIE (+7 zbędne, -48 brak)"
+1000,10,21,4041175153,Algorytm z filtracją,836,1128042,224.3024,tak
+1000,10,21,4041175153,Algorytm punktu idealnego,836,352734,70.5925,tak
+1000,10,22,2060675403,Algorytm bez filtracji,755,360264,150.0936,"NIE (+0 zbędne, -51 brak)"
+1000,10,22,2060675403,Algorytm z filtracją,806,1026042,230.2928,tak
+1000,10,22,2060675403,Algorytm punktu idealnego,806,328574,71.3938,tak
+1000,10,23,3949999159,Algorytm bez filtracji,656,316615,127.1488,"NIE (+2 zbędne, -72 brak)"
+1000,10,23,3949999159,Algorytm z filtracją,726,859668,190.1776,tak
+1000,10,23,3949999159,Algorytm punktu idealnego,726,266664,59.9378,tak
+1000,10,24,1838864003,Algorytm bez filtracji,720,332120,128.6723,"NIE (+1 zbędne, -52 brak)"
+1000,10,24,1838864003,Algorytm z filtracją,771,957616,179.1555,tak
+1000,10,24,1838864003,Algorytm punktu idealnego,771,300177,58.3794,tak
+10000,2,0,987568605,Algorytm bez filtracji,8,11187,8.8075,"NIE (+0 zbędne, -1 brak)"
+10000,2,0,987568605,Algorytm z filtracją,9,12327,8.4103,tak
+10000,2,0,987568605,Algorytm punktu idealnego,9,10296,7.0043,tak
+10000,2,1,886656349,Algorytm bez filtracji,9,11652,8.8737,"NIE (+0 zbędne, -2 brak)"
+10000,2,1,886656349,Algorytm z filtracją,11,12835,8.939,tak
+10000,2,1,886656349,Algorytm punktu idealnego,11,10285,7.7783,tak
+10000,2,2,2947126987,Algorytm bez filtracji,12,11274,9.0379,"NIE (+0 zbędne, -1 brak)"
+10000,2,2,2947126987,Algorytm z filtracją,13,13402,9.1961,tak
+10000,2,2,2947126987,Algorytm punktu idealnego,13,10618,7.9528,tak
+10000,2,3,257449143,Algorytm bez filtracji,9,11902,8.4123,tak
+10000,2,3,257449143,Algorytm z filtracją,9,13568,8.1314,tak
+10000,2,3,257449143,Algorytm punktu idealnego,9,10160,7.933,tak
+10000,2,4,499119083,Algorytm bez filtracji,5,10473,9.0224,tak
+10000,2,4,499119083,Algorytm z filtracją,5,10667,9.0434,tak
+10000,2,4,499119083,Algorytm punktu idealnego,5,10168,7.3466,tak
+10000,2,5,353620858,Algorytm bez filtracji,8,11420,8.8663,tak
+10000,2,5,353620858,Algorytm z filtracją,8,13557,8.6913,tak
+10000,2,5,353620858,Algorytm punktu idealnego,8,10133,7.6755,tak
+10000,2,6,790910360,Algorytm bez filtracji,7,11157,8.7593,tak
+10000,2,6,790910360,Algorytm z filtracją,7,11061,8.5779,tak
+10000,2,6,790910360,Algorytm punktu idealnego,7,10112,7.9101,tak
+10000,2,7,1824093545,Algorytm bez filtracji,10,10581,8.8852,tak
+10000,2,7,1824093545,Algorytm z filtracją,10,11113,8.6703,tak
+10000,2,7,1824093545,Algorytm punktu idealnego,10,10342,7.9316,tak
+10000,2,8,2075836400,Algorytm bez filtracji,8,11200,8.883,"NIE (+1 zbędne, -1 brak)"
+10000,2,8,2075836400,Algorytm z filtracją,8,12436,8.8122,tak
+10000,2,8,2075836400,Algorytm punktu idealnego,8,10241,7.015,tak
+10000,2,9,2425146778,Algorytm bez filtracji,9,10871,7.8229,"NIE (+0 zbędne, -2 brak)"
+10000,2,9,2425146778,Algorytm z filtracją,11,10850,7.736,tak
+10000,2,9,2425146778,Algorytm punktu idealnego,11,10215,6.9525,tak
+10000,2,10,4277386321,Algorytm bez filtracji,10,10818,8.7868,tak
+10000,2,10,4277386321,Algorytm z filtracją,10,10865,8.6786,tak
+10000,2,10,4277386321,Algorytm punktu idealnego,10,10241,7.819,tak
+10000,2,11,807755039,Algorytm bez filtracji,9,10852,9.0903,"NIE (+0 zbędne, -2 brak)"
+10000,2,11,807755039,Algorytm z filtracją,11,11348,8.8187,tak
+10000,2,11,807755039,Algorytm punktu idealnego,11,10597,7.1907,tak
+10000,2,12,2933356382,Algorytm bez filtracji,9,11808,8.4656,tak
+10000,2,12,2933356382,Algorytm z filtracją,9,11924,8.0531,tak
+10000,2,12,2933356382,Algorytm punktu idealnego,9,10627,7.2157,tak
+10000,2,13,354640112,Algorytm bez filtracji,8,11742,8.1157,"NIE (+2 zbędne, -2 brak)"
+10000,2,13,354640112,Algorytm z filtracją,8,12287,7.7404,tak
+10000,2,13,354640112,Algorytm punktu idealnego,8,10544,7.6073,tak
+10000,2,14,1280814162,Algorytm bez filtracji,9,11267,8.6823,tak
+10000,2,14,1280814162,Algorytm z filtracją,9,12519,8.3239,tak
+10000,2,14,1280814162,Algorytm punktu idealnego,9,10281,7.5201,tak
+10000,2,15,777805402,Algorytm bez filtracji,6,10544,8.7557,tak
+10000,2,15,777805402,Algorytm z filtracją,6,10453,8.6,tak
+10000,2,15,777805402,Algorytm punktu idealnego,6,10031,7.0118,tak
+10000,2,16,692156126,Algorytm bez filtracji,12,11969,8.1833,tak
+10000,2,16,692156126,Algorytm z filtracją,12,13564,8.6256,tak
+10000,2,16,692156126,Algorytm punktu idealnego,12,10907,7.9374,tak
+10000,2,17,2398333679,Algorytm bez filtracji,10,12104,8.2586,"NIE (+0 zbędne, -1 brak)"
+10000,2,17,2398333679,Algorytm z filtracją,11,13857,7.9179,tak
+10000,2,17,2398333679,Algorytm punktu idealnego,11,10369,7.3873,tak
+10000,2,18,3531411549,Algorytm bez filtracji,9,10987,8.6895,"NIE (+0 zbędne, -1 brak)"
+10000,2,18,3531411549,Algorytm z filtracją,10,11648,8.4297,tak
+10000,2,18,3531411549,Algorytm punktu idealnego,10,10529,7.7956,tak
+10000,2,19,491304575,Algorytm bez filtracji,9,11157,8.7537,"NIE (+0 zbędne, -1 brak)"
+10000,2,19,491304575,Algorytm z filtracją,10,11816,8.3352,tak
+10000,2,19,491304575,Algorytm punktu idealnego,10,10301,7.7638,tak
+10000,3,0,1311397190,Algorytm bez filtracji,25,20921,11.2489,"NIE (+0 zbędne, -5 brak)"
+10000,3,0,1311397190,Algorytm z filtracją,30,18552,8.6587,tak
+10000,3,0,1311397190,Algorytm punktu idealnego,30,11399,9.4947,tak
+10000,3,1,3865613301,Algorytm bez filtracji,37,23247,12.8392,"NIE (+0 zbędne, -5 brak)"
+10000,3,1,3865613301,Algorytm z filtracją,42,21475,10.0756,tak
+10000,3,1,3865613301,Algorytm punktu idealnego,42,13267,9.5844,tak
+10000,3,2,895715450,Algorytm bez filtracji,57,23258,13.0148,"NIE (+3 zbędne, -10 brak)"
+10000,3,2,895715450,Algorytm z filtracją,64,29609,12.192,tak
+10000,3,2,895715450,Algorytm punktu idealnego,64,16394,10.8258,tak
+10000,3,3,1997227027,Algorytm bez filtracji,53,23968,14.114,"NIE (+0 zbędne, -5 brak)"
+10000,3,3,1997227027,Algorytm z filtracją,58,29213,12.3189,tak
+10000,3,3,1997227027,Algorytm punktu idealnego,58,15257,10.5118,tak
+10000,3,4,1753439198,Algorytm bez filtracji,59,32428,16.3633,"NIE (+1 zbędne, -10 brak)"
+10000,3,4,1753439198,Algorytm z filtracją,68,37660,13.9918,tak
+10000,3,4,1753439198,Algorytm punktu idealnego,68,17443,10.2871,tak
+10000,3,5,93847418,Algorytm bez filtracji,37,30601,13.2989,"NIE (+0 zbędne, -5 brak)"
+10000,3,5,93847418,Algorytm z filtracją,42,33032,9.7847,tak
+10000,3,5,93847418,Algorytm punktu idealnego,42,12010,8.4821,tak
+10000,3,6,3837821807,Algorytm bez filtracji,40,20345,10.5443,"NIE (+1 zbędne, -9 brak)"
+10000,3,6,3837821807,Algorytm z filtracją,48,22611,9.2033,tak
+10000,3,6,3837821807,Algorytm punktu idealnego,48,14735,9.0351,tak
+10000,3,7,1738051669,Algorytm bez filtracji,56,28100,11.9722,"NIE (+1 zbędne, -8 brak)"
+10000,3,7,1738051669,Algorytm z filtracją,63,33889,10.4382,tak
+10000,3,7,1738051669,Algorytm punktu idealnego,63,17425,10.5334,tak
+10000,3,8,2805203717,Algorytm bez filtracji,37,19199,11.5295,"NIE (+1 zbędne, -6 brak)"
+10000,3,8,2805203717,Algorytm z filtracją,42,19243,9.881,tak
+10000,3,8,2805203717,Algorytm punktu idealnego,42,13047,9.3885,tak
+10000,3,9,3946285103,Algorytm bez filtracji,31,21742,11.543,"NIE (+0 zbędne, -2 brak)"
+10000,3,9,3946285103,Algorytm z filtracją,33,30415,11.1877,tak
+10000,3,9,3946285103,Algorytm punktu idealnego,33,12034,9.3056,tak
+10000,3,10,3137160806,Algorytm bez filtracji,48,25920,14.0823,"NIE (+0 zbędne, -7 brak)"
+10000,3,10,3137160806,Algorytm z filtracją,55,29496,11.8881,tak
+10000,3,10,3137160806,Algorytm punktu idealnego,55,14522,9.9823,tak
+10000,3,11,872043861,Algorytm bez filtracji,34,27261,14.0895,"NIE (+0 zbędne, -4 brak)"
+10000,3,11,872043861,Algorytm z filtracją,38,30221,10.8769,tak
+10000,3,11,872043861,Algorytm punktu idealnego,38,13524,9.9495,tak
+10000,3,12,2884286747,Algorytm bez filtracji,24,15194,9.0571,"NIE (+0 zbędne, -2 brak)"
+10000,3,12,2884286747,Algorytm z filtracją,26,15298,8.1986,tak
+10000,3,12,2884286747,Algorytm punktu idealnego,26,11428,8.4571,tak
+10000,3,13,1743631952,Algorytm bez filtracji,41,26804,14.0565,"NIE (+0 zbędne, -5 brak)"
+10000,3,13,1743631952,Algorytm z filtracją,46,26853,9.7694,tak
+10000,3,13,1743631952,Algorytm punktu idealnego,46,14345,8.9278,tak
+10000,3,14,2436477573,Algorytm bez filtracji,42,26181,11.5355,"NIE (+2 zbędne, -8 brak)"
+10000,3,14,2436477573,Algorytm z filtracją,48,26260,8.1655,tak
+10000,3,14,2436477573,Algorytm punktu idealnego,48,12813,8.7332,tak
+10000,3,15,3042557027,Algorytm bez filtracji,43,26546,12.4075,"NIE (+0 zbędne, -3 brak)"
+10000,3,15,3042557027,Algorytm z filtracją,46,24338,9.3326,tak
+10000,3,15,3042557027,Algorytm punktu idealnego,46,13583,9.2372,tak
+10000,3,16,235426065,Algorytm bez filtracji,45,23204,11.6172,"NIE (+0 zbędne, -5 brak)"
+10000,3,16,235426065,Algorytm z filtracją,50,30164,10.8003,tak
+10000,3,16,235426065,Algorytm punktu idealnego,50,13834,9.4811,tak
+10000,3,17,1307556811,Algorytm bez filtracji,34,17383,10.2002,"NIE (+0 zbędne, -6 brak)"
+10000,3,17,1307556811,Algorytm z filtracją,40,18169,9.5527,tak
+10000,3,17,1307556811,Algorytm punktu idealnego,40,13272,10.1355,tak
+10000,3,18,2380559053,Algorytm bez filtracji,59,26049,12.9024,"NIE (+0 zbędne, -4 brak)"
+10000,3,18,2380559053,Algorytm z filtracją,63,33210,11.4552,tak
+10000,3,18,2380559053,Algorytm punktu idealnego,63,17554,9.7447,tak
+10000,3,19,1333464170,Algorytm bez filtracji,56,28418,13.4954,"NIE (+1 zbędne, -10 brak)"
+10000,3,19,1333464170,Algorytm z filtracją,65,28317,10.5575,tak
+10000,3,19,1333464170,Algorytm punktu idealnego,65,16419,9.782,tak
+10000,4,0,1100917380,Algorytm bez filtracji,151,103000,41.9928,"NIE (+2 zbędne, -26 brak)"
+10000,4,0,1100917380,Algorytm z filtracją,175,118482,27.2086,tak
+10000,4,0,1100917380,Algorytm punktu idealnego,175,42560,15.3527,tak
+10000,4,1,74209195,Algorytm bez filtracji,131,83869,36.626,"NIE (+2 zbędne, -31 brak)"
+10000,4,1,74209195,Algorytm z filtracją,160,108392,27.2857,tak
+10000,4,1,74209195,Algorytm punktu idealnego,160,38030,16.4658,tak
+10000,4,2,2091188605,Algorytm bez filtracji,172,108658,46.4149,"NIE (+1 zbędne, -32 brak)"
+10000,4,2,2091188605,Algorytm z filtracją,203,126627,31.83,tak
+10000,4,2,2091188605,Algorytm punktu idealnego,203,46061,19.0676,tak
+10000,4,3,807284831,Algorytm bez filtracji,113,61347,27.8475,"NIE (+2 zbędne, -28 brak)"
+10000,4,3,807284831,Algorytm z filtracją,139,81816,21.92,tak
+10000,4,3,807284831,Algorytm punktu idealnego,139,29038,12.9603,tak
+10000,4,4,2844464578,Algorytm bez filtracji,131,98883,37.8829,"NIE (+1 zbędne, -28 brak)"
+10000,4,4,2844464578,Algorytm z filtracją,158,101555,22.6244,tak
+10000,4,4,2844464578,Algorytm punktu idealnego,158,30705,13.4142,tak
+10000,4,5,2915149810,Algorytm bez filtracji,155,88036,34.2422,"NIE (+5 zbędne, -25 brak)"
+10000,4,5,2915149810,Algorytm z filtracją,175,108326,26.4069,tak
+10000,4,5,2915149810,Algorytm punktu idealnego,175,37368,15.6672,tak
+10000,4,6,1093729964,Algorytm bez filtracji,154,91340,37.7757,"NIE (+0 zbędne, -24 brak)"
+10000,4,6,1093729964,Algorytm z filtracją,178,103544,22.2729,tak
+10000,4,6,1093729964,Algorytm punktu idealnego,178,40870,14.9893,tak
+10000,4,7,2129746395,Algorytm bez filtracji,129,93208,38.4128,"NIE (+2 zbędne, -27 brak)"
+10000,4,7,2129746395,Algorytm z filtracją,154,94036,23.7824,tak
+10000,4,7,2129746395,Algorytm punktu idealnego,154,34082,15.3638,tak
+10000,4,8,211032213,Algorytm bez filtracji,61,83070,35.4319,"NIE (+1 zbędne, -23 brak)"
+10000,4,8,211032213,Algorytm z filtracją,83,33024,11.6607,tak
+10000,4,8,211032213,Algorytm punktu idealnego,83,15317,11.7223,tak
+10000,4,9,4021717254,Algorytm bez filtracji,157,124569,51.9625,"NIE (+2 zbędne, -29 brak)"
+10000,4,9,4021717254,Algorytm z filtracją,184,157160,34.36,tak
+10000,4,9,4021717254,Algorytm punktu idealnego,184,38527,15.7364,tak
+10000,4,10,3224016048,Algorytm bez filtracji,140,80788,37.2325,"NIE (+3 zbędne, -25 brak)"
+10000,4,10,3224016048,Algorytm z filtracją,162,109264,28.8545,tak
+10000,4,10,3224016048,Algorytm punktu idealnego,162,39727,17.0827,tak
+10000,4,11,966568654,Algorytm bez filtracji,108,80741,35.8779,"NIE (+1 zbędne, -25 brak)"
+10000,4,11,966568654,Algorytm z filtracją,132,73583,18.9168,tak
+10000,4,11,966568654,Algorytm punktu idealnego,132,27608,13.0557,tak
+10000,4,12,1193632684,Algorytm bez filtracji,89,78778,33.143,"NIE (+0 zbędne, -19 brak)"
+10000,4,12,1193632684,Algorytm z filtracją,108,68542,19.6992,tak
+10000,4,12,1193632684,Algorytm punktu idealnego,108,22916,13.867,tak
+10000,4,13,4018079161,Algorytm bez filtracji,142,85198,39.9743,"NIE (+6 zbędne, -25 brak)"
+10000,4,13,4018079161,Algorytm z filtracją,161,102324,23.3058,tak
+10000,4,13,4018079161,Algorytm punktu idealnego,161,35359,16.5745,tak
+10000,4,14,3576473819,Algorytm bez filtracji,183,119763,55.9535,"NIE (+9 zbędne, -32 brak)"
+10000,4,14,3576473819,Algorytm z filtracją,206,154708,37.4848,tak
+10000,4,14,3576473819,Algorytm punktu idealnego,206,51852,21.0917,tak
+10000,4,15,1930193997,Algorytm bez filtracji,160,119634,53.7978,"NIE (+7 zbędne, -36 brak)"
+10000,4,15,1930193997,Algorytm z filtracją,189,143905,31.8927,tak
+10000,4,15,1930193997,Algorytm punktu idealnego,189,48395,17.7287,tak
+10000,4,16,345427666,Algorytm bez filtracji,162,107606,47.3986,"NIE (+3 zbędne, -27 brak)"
+10000,4,16,345427666,Algorytm z filtracją,186,118519,28.4214,tak
+10000,4,16,345427666,Algorytm punktu idealnego,186,42366,17.2838,tak
+10000,4,17,2965231325,Algorytm bez filtracji,128,87385,33.328,"NIE (+1 zbędne, -36 brak)"
+10000,4,17,2965231325,Algorytm z filtracją,163,109181,24.2982,tak
+10000,4,17,2965231325,Algorytm punktu idealnego,163,38352,14.7287,tak
+10000,4,18,2350680483,Algorytm bez filtracji,132,75826,31.7329,"NIE (+3 zbędne, -22 brak)"
+10000,4,18,2350680483,Algorytm z filtracją,151,90836,20.5645,tak
+10000,4,18,2350680483,Algorytm punktu idealnego,151,29257,13.1468,tak
+10000,4,19,3846517587,Algorytm bez filtracji,141,88076,33.6029,"NIE (+3 zbędne, -28 brak)"
+10000,4,19,3846517587,Algorytm z filtracją,166,109837,23.9555,tak
+10000,4,19,3846517587,Algorytm punktu idealnego,166,36630,14.575,tak
+10000,5,0,4181553607,Algorytm bez filtracji,405,450948,185.4966,"NIE (+8 zbędne, -80 brak)"
+10000,5,0,4181553607,Algorytm z filtracją,477,543757,118.6133,tak
+10000,5,0,4181553607,Algorytm punktu idealnego,477,168866,45.0045,tak
+10000,5,1,2368402458,Algorytm bez filtracji,351,300913,121.3268,"NIE (+2 zbędne, -61 brak)"
+10000,5,1,2368402458,Algorytm z filtracją,410,365207,81.4905,tak
+10000,5,1,2368402458,Algorytm punktu idealnego,410,115546,32.2432,tak
+10000,5,2,2166977788,Algorytm bez filtracji,371,360912,143.354,"NIE (+5 zbędne, -90 brak)"
+10000,5,2,2166977788,Algorytm z filtracją,456,504482,113.8448,tak
+10000,5,2,2166977788,Algorytm punktu idealnego,456,140392,42.36,tak
+10000,5,3,3253699866,Algorytm bez filtracji,320,364617,164.2097,"NIE (+1 zbędne, -89 brak)"
+10000,5,3,3253699866,Algorytm z filtracją,408,442417,93.8761,tak
+10000,5,3,3253699866,Algorytm punktu idealnego,408,122941,33.2215,tak
+10000,5,4,549973666,Algorytm bez filtracji,372,279380,118.9158,"NIE (+4 zbędne, -62 brak)"
+10000,5,4,549973666,Algorytm z filtracją,430,496260,111.9587,tak
+10000,5,4,549973666,Algorytm punktu idealnego,430,133113,38.8636,tak
+10000,5,5,1218046716,Algorytm bez filtracji,315,317880,137.836,"NIE (+5 zbędne, -72 brak)"
+10000,5,5,1218046716,Algorytm z filtracją,382,405738,87.6745,tak
+10000,5,5,1218046716,Algorytm punktu idealnego,382,110282,32.6026,tak
+10000,5,6,3386190876,Algorytm bez filtracji,437,379272,153.013,"NIE (+10 zbędne, -77 brak)"
+10000,5,6,3386190876,Algorytm z filtracją,504,600781,133.5813,tak
+10000,5,6,3386190876,Algorytm punktu idealnego,504,171665,45.8129,tak
+10000,5,7,3311710247,Algorytm bez filtracji,342,433059,172.1115,"NIE (+1 zbędne, -99 brak)"
+10000,5,7,3311710247,Algorytm z filtracją,440,477882,102.1519,tak
+10000,5,7,3311710247,Algorytm punktu idealnego,440,140303,39.0003,tak
+10000,5,8,3758862125,Algorytm bez filtracji,317,272824,111.6521,"NIE (+8 zbędne, -67 brak)"
+10000,5,8,3758862125,Algorytm z filtracją,376,330813,72.4693,tak
+10000,5,8,3758862125,Algorytm punktu idealnego,376,101162,30.5468,tak
+10000,5,9,328723144,Algorytm bez filtracji,399,383399,165.5178,"NIE (+6 zbędne, -82 brak)"
+10000,5,9,328723144,Algorytm z filtracją,475,616297,132.8871,tak
+10000,5,9,328723144,Algorytm punktu idealnego,475,166698,47.4782,tak
+10000,5,10,2213739232,Algorytm bez filtracji,333,302239,120.3587,"NIE (+3 zbędne, -71 brak)"
+10000,5,10,2213739232,Algorytm z filtracją,401,414310,85.6025,tak
+10000,5,10,2213739232,Algorytm punktu idealnego,401,112629,34.6796,tak
+10000,5,11,1337390397,Algorytm bez filtracji,321,274639,117.831,"NIE (+4 zbędne, -67 brak)"
+10000,5,11,1337390397,Algorytm z filtracją,384,377987,79.1657,tak
+10000,5,11,1337390397,Algorytm punktu idealnego,384,104197,33.4719,tak
+10000,5,12,342697727,Algorytm bez filtracji,424,401623,160.2578,"NIE (+5 zbędne, -97 brak)"
+10000,5,12,342697727,Algorytm z filtracją,516,651359,141.9837,tak
+10000,5,12,342697727,Algorytm punktu idealnego,516,188459,46.2722,tak
+10000,5,13,524112719,Algorytm bez filtracji,325,358509,151.8956,"NIE (+6 zbędne, -81 brak)"
+10000,5,13,524112719,Algorytm z filtracją,400,479140,99.2687,tak
+10000,5,13,524112719,Algorytm punktu idealnego,400,119169,35.5878,tak
+10000,5,14,3179014249,Algorytm bez filtracji,415,311829,124.016,"NIE (+1 zbędne, -55 brak)"
+10000,5,14,3179014249,Algorytm z filtracją,469,502418,114.8106,tak
+10000,5,14,3179014249,Algorytm punktu idealnego,469,151609,40.0788,tak
+10000,5,15,1321888418,Algorytm bez filtracji,405,413474,175.6993,"NIE (+7 zbędne, -68 brak)"
+10000,5,15,1321888418,Algorytm z filtracją,466,536820,116.2354,tak
+10000,5,15,1321888418,Algorytm punktu idealnego,466,159394,41.9546,tak
+10000,5,16,2832712776,Algorytm bez filtracji,321,283815,115.667,"NIE (+6 zbędne, -71 brak)"
+10000,5,16,2832712776,Algorytm z filtracją,386,356588,77.2444,tak
+10000,5,16,2832712776,Algorytm punktu idealnego,386,105856,33.6362,tak
+10000,5,17,267564084,Algorytm bez filtracji,297,327930,143.3234,"NIE (+4 zbędne, -76 brak)"
+10000,5,17,267564084,Algorytm z filtracją,369,332174,72.5388,tak
+10000,5,17,267564084,Algorytm punktu idealnego,369,96110,28.4362,tak
+10000,5,18,1652664648,Algorytm bez filtracji,295,192457,80.412,"NIE (+5 zbędne, -55 brak)"
+10000,5,18,1652664648,Algorytm z filtracją,345,281310,61.1549,tak
+10000,5,18,1652664648,Algorytm punktu idealnego,345,90799,30.1319,tak
+10000,5,19,2775804223,Algorytm bez filtracji,289,315795,139.8917,"NIE (+3 zbędne, -64 brak)"
+10000,5,19,2775804223,Algorytm z filtracją,350,339964,75.9893,tak
+10000,5,19,2775804223,Algorytm punktu idealnego,350,96794,33.6573,tak
+10000,10,0,411677641,Algorytm bez filtracji,4021,13073113,5549.6185,"NIE (+9 zbędne, -536 brak)"
+10000,10,0,411677641,Algorytm z filtracją,4548,33475126,7657.9852,tak
+10000,10,0,411677641,Algorytm punktu idealnego,4548,10466173,2481.9507,tak
+10000,10,1,2035953293,Algorytm bez filtracji,4263,15180570,6696.7531,"NIE (+17 zbędne, -625 brak)"
+10000,10,1,2035953293,Algorytm z filtracją,4871,38650690,8458.191,tak
+10000,10,1,2035953293,Algorytm punktu idealnego,4871,12037908,2721.7515,tak
+10000,10,2,3186106325,Algorytm bez filtracji,4716,17962530,8093.1197,"NIE (+11 zbędne, -621 brak)"
+10000,10,2,3186106325,Algorytm z filtracją,5326,46554166,10976.3685,tak
+10000,10,2,3186106325,Algorytm punktu idealnego,5326,14375892,3491.1014,tak
+10000,10,3,2316298740,Algorytm bez filtracji,4381,16442685,7438.9464,"NIE (+17 zbędne, -677 brak)"
+10000,10,3,2316298740,Algorytm z filtracją,5041,41288004,9335.1511,tak
+10000,10,3,2316298740,Algorytm punktu idealnego,5041,12877950,2969.5229,tak
+10000,10,4,3910768026,Algorytm bez filtracji,4304,14146980,6734.2807,"NIE (+12 zbędne, -511 brak)"
+10000,10,4,3910768026,Algorytm z filtracją,4803,37319620,8378.264,tak
+10000,10,4,3910768026,Algorytm punktu idealnego,4803,11685111,2776.4269,tak
+10000,10,5,2649557556,Algorytm bez filtracji,4657,17407782,8090.6598,"NIE (+13 zbędne, -607 brak)"
+10000,10,5,2649557556,Algorytm z filtracją,5251,44831096,10561.4129,tak
+10000,10,5,2649557556,Algorytm punktu idealnego,5251,13976830,3458.9421,tak
+10000,10,6,2885661317,Algorytm bez filtracji,4436,16160957,7352.3168,"NIE (+23 zbędne, -627 brak)"
+10000,10,6,2885661317,Algorytm z filtracją,5040,41238001,9881.1163,tak
+10000,10,6,2885661317,Algorytm punktu idealnego,5040,12863280,2943.3669,tak
+10000,10,7,591509237,Algorytm bez filtracji,4513,16499285,8110.5298,"NIE (+13 zbędne, -637 brak)"
+10000,10,7,591509237,Algorytm z filtracją,5137,42824254,9973.3991,tak
+10000,10,7,591509237,Algorytm punktu idealnego,5137,13364344,3302.9245,tak
+10000,10,8,2974539539,Algorytm bez filtracji,4338,16585036,7460.7131,"NIE (+17 zbędne, -679 brak)"
+10000,10,8,2974539539,Algorytm z filtracją,5000,40463349,9506.9162,tak
+10000,10,8,2974539539,Algorytm punktu idealnego,5000,12669546,2961.8816,tak
+10000,10,9,3897763465,Algorytm bez filtracji,4438,16676108,7815.2454,"NIE (+18 zbędne, -654 brak)"
+10000,10,9,3897763465,Algorytm z filtracją,5074,41793651,10274.4649,tak
+10000,10,9,3897763465,Algorytm punktu idealnego,5074,13045877,3190.2216,tak
+10000,10,10,3682583273,Algorytm bez filtracji,4415,16267932,7384.0982,"NIE (+15 zbędne, -653 brak)"
+10000,10,10,3682583273,Algorytm z filtracją,5053,41711048,10293.5829,tak
+10000,10,10,3682583273,Algorytm punktu idealnego,5053,12938254,3226.1471,tak
+10000,10,11,3801732951,Algorytm bez filtracji,4504,16947452,8139.7844,"NIE (+12 zbędne, -652 brak)"
+10000,10,11,3801732951,Algorytm z filtracją,5144,43402981,10631.3761,tak
+10000,10,11,3801732951,Algorytm punktu idealnego,5144,13450322,3212.7521,tak
+10000,10,12,4071784678,Algorytm bez filtracji,4338,15656867,7420.2394,"NIE (+28 zbędne, -631 brak)"
+10000,10,12,4071784678,Algorytm z filtracją,4941,39409995,9851.5238,tak
+10000,10,12,4071784678,Algorytm punktu idealnego,4941,12367182,3265.4705,tak
+10000,10,13,3464080960,Algorytm bez filtracji,4415,15649836,7232.6254,"NIE (+10 zbędne, -585 brak)"
+10000,10,13,3464080960,Algorytm z filtracją,4990,40622190,9875.5178,tak
+10000,10,13,3464080960,Algorytm punktu idealnego,4990,12614012,3204.555,tak
+10000,10,14,537754229,Algorytm bez filtracji,4210,14781348,7019.9766,"NIE (+18 zbędne, -602 brak)"
+10000,10,14,537754229,Algorytm z filtracją,4794,37394385,9620.1889,tak
+10000,10,14,537754229,Algorytm punktu idealnego,4794,11670249,2947.1268,tak
+10000,10,15,2911652752,Algorytm bez filtracji,4581,16394505,8010.2368,"NIE (+13 zbędne, -626 brak)"
+10000,10,15,2911652752,Algorytm z filtracją,5194,43751725,11045.5568,tak
+10000,10,15,2911652752,Algorytm punktu idealnego,5194,13658488,3254.6507,tak
+10000,10,16,1171393350,Algorytm bez filtracji,4284,15375469,7094.3587,"NIE (+10 zbędne, -599 brak)"
+10000,10,16,1171393350,Algorytm z filtracją,4873,38634124,9276.9326,tak
+10000,10,16,1171393350,Algorytm punktu idealnego,4873,12048023,2765.2644,tak
+10000,10,17,2099324054,Algorytm bez filtracji,4175,16337311,7849.2217,"NIE (+13 zbędne, -726 brak)"
+10000,10,17,2099324054,Algorytm z filtracją,4888,39002083,9202.4446,tak
+10000,10,17,2099324054,Algorytm punktu idealnego,4888,12095600,2744.0542,tak
+10000,10,18,1896101869,Algorytm bez filtracji,4379,17282353,7463.8927,"NIE (+21 zbędne, -726 brak)"
+10000,10,18,1896101869,Algorytm z filtracją,5084,42017641,9313.4729,tak
+10000,10,18,1896101869,Algorytm punktu idealnego,5084,13102890,3071.5848,tak
+10000,10,19,4071817338,Algorytm bez filtracji,4413,15704697,6935.9969,"NIE (+27 zbędne, -587 brak)"
+10000,10,19,4071817338,Algorytm z filtracją,4973,39825467,8697.5706,tak
+10000,10,19,4071817338,Algorytm punktu idealnego,4973,12516513,2752.5601,tak

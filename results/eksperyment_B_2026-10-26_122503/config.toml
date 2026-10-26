@@ -1,0 +1,25 @@
+base_seed = 2026
+algorithms = ["Algorytm bez filtracji", "Algorytm z filtracją", "Algorytm punktu idealnego"]
+distribution = "normal"
+mean = 10.0
+std = 3.0
+directions = "min"
+round_values = false
+verify = true
+name = "eksperyment_B"
+criteria = [2, 3, 4, 5, 10]
+
+[[sizes]]
+n_alternatives = 100
+repetitions = 50
+criteria = [2, 3, 4, 5, 10]
+
+[[sizes]]
+n_alternatives = 1000
+repetitions = 25
+criteria = [2, 3, 4, 5, 10]
+
+[[sizes]]
+n_alternatives = 10000
+repetitions = 20
+criteria = [2, 3, 4, 5, 10]
