@@ -1,757 +1,374 @@
-"""GUI for running experiments with multi-criteria (Pareto) optimisation algorithms.
+"""Streamlit app for experiments with multi-criteria (Pareto) optimisation algorithms.
 
-Run with:  python app.py
+Run with:  streamlit run app.py
 """
-import contextlib
-import csv
-import io
 import random
-import re
-import time
-import tkinter as tk
-from collections import Counter
-from datetime import datetime
-from tkinter import filedialog, messagebox, ttk
 
-import matplotlib
-matplotlib.use("TkAgg")
-from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg, NavigationToolbar2Tk
-from matplotlib.figure import Figure
 import numpy as np
+import pandas as pd
+import plotly.graph_objects as go
+import streamlit as st
 
-from data_browser import DataBrowser
 from data_generator import DISTRIBUTIONS, generate_points
-import naive_owd_ideal_point
-import naive_owd_with_filtration
-import naive_owd_without_filtration
+from experiment import (ALGORITHMS, HISTORY_COLUMNS, format_correctness, format_directions,
+                        history_row, ideal_point, result_csv, run_algorithm)
 
-# name -> (module, function name). Every algorithm minimises all criteria, takes a list of points
-# and returns (nondominated, n_comparisons); maximised criteria are negated before the call.
-# The module must compare points through its module-level `dominates(a, b)` function –
-# the app wraps it to record which points took part in comparisons.
-ALGORITHMS = {
-    "Algorytm bez filtracji": (naive_owd_without_filtration, "naive_owd_without_filtration"),
-    "Algorytm z filtracją": (naive_owd_with_filtration, "owd_z_filtracja"),
-    "Algorytm punktu idealnego": (naive_owd_ideal_point, "owd_ideal_point"),
-}
+DEFAULT_MEAN, DEFAULT_STD = 10.0, 3.0
+CRITERIA_COLUMNS = ["name", "direction", "mean", "std"]
+RESERVED_NAMES = {"id", "status", "porównania"}
 
-# Plot layers: key -> (label, enabled by default)
 LAYERS = {
-    "all": ("Zbiór punktów", True),
-    "dominated": ("Zdominowane", True),
-    "compared": ("Porównywane", False),
-    "nondominated": ("Niezdominowane", True),
-    "front": ("Linia frontu Pareto (2D)", True),
-    "ideal": ("Punkt idealny", False),
+    "all": "Zbiór punktów",
+    "dominated": "Zdominowane",
+    "compared": "Porównywane",
+    "nondominated": "Niezdominowane",
+    "front": "Front Pareto (2D)",
+    "ideal": "Punkt idealny",
+}
+DEFAULT_LAYERS = ["all", "dominated", "nondominated", "front"]
+
+STATUS_FILTERS = {
+    "all": "Wszystkie",
+    "nondominated": "Niezdominowane",
+    "dominated": "Zdominowane",
+    "compared": "Porównywane",
 }
 
-HISTORY_COLUMNS = [
-    ("run", "#", 40),
-    ("timestamp", "czas uruchomienia", 130),
-    ("algorithm", "algorytm", 170),
-    ("distribution", "rozkład", 90),
-    ("means", "średnia", 70),
-    ("stds", "odchylenie", 75),
-    ("n_alternatives", "N", 60),
-    ("n_criteria", "k", 35),
-    ("criteria", "kryteria", 120),
-    ("seed", "seed", 90),
-    ("rounded", "zaokr.", 50),
-    ("directions", "kierunek", 80),
-    ("n_nondominated", "|P|", 50),
-    ("n_comparisons", "porównania", 85),
-    ("time_ms", "czas [ms]", 80),
-    ("correct", "poprawny", 110),
-]
+
+# ------------------------------------------------------------------ state
+def criteria_frame(k, previous=None):
+    """Criteria table with k rows; rows of `previous` are kept, new ones get defaults."""
+    rows = []
+    for i in range(k):
+        if previous is not None and i < len(previous):
+            rows.append(previous.iloc[i][CRITERIA_COLUMNS].to_dict())
+        else:
+            rows.append({"name": f"f{i + 1}", "direction": "min", "mean": DEFAULT_MEAN, "std": DEFAULT_STD})
+    return pd.DataFrame(rows, columns=CRITERIA_COLUMNS)
 
 
-def parse_numbers(text):
-    """Parse '10' or '10; 20; 30' (comma accepted as decimal separator)."""
-    parts = [p for p in re.split(r"[;\s]+", text.strip()) if p]
-    if not parts:
-        raise ValueError("Podaj co najmniej jedną liczbę")
-    return [float(p.replace(",", ".")) for p in parts]
+def init_state():
+    defaults = {
+        "points": None,           # current data set (list of tuples)
+        "params": None,           # parameters the current data set was generated with
+        "results": {},            # algorithm name -> result on the current data set
+        "history": [],            # summary rows of all runs
+        "run_counter": 0,
+        "data_version": 0,        # bumped on new data – resets the table selection and plot zoom
+        "criteria_base": criteria_frame(2),
+        "criteria_version": 0,    # bumped when the criteria table is rebuilt (k changed, "all min/max")
+        "seed": 42,
+    }
+    for key, value in defaults.items():
+        st.session_state.setdefault(key, value)
 
 
-def format_directions(signs):
-    return ";".join("min" if s == 1 else "max" for s in signs)
+def randomize_seed():
+    st.session_state.seed = random.randint(0, 2**31 - 1)
 
 
-@contextlib.contextmanager
-def track_comparisons(module, compared):
-    """Temporarily replace module.dominates with a version that counts compared points."""
-    original = module.dominates
+def set_all_directions(direction):
+    table = st.session_state.get("criteria_edited", st.session_state.criteria_base).copy()
+    table["direction"] = direction
+    st.session_state.criteria_base = table
+    st.session_state.criteria_version += 1
 
-    def counting_dominates(a, b):
-        compared[a] += 1
-        compared[b] += 1
-        return original(a, b)
 
-    module.dominates = counting_dominates
+def clear_history():
+    st.session_state.history = []
+    st.session_state.run_counter = 0
+
+
+# --------------------------------------------------------------- helpers
+def criteria_editor(k):
+    """Editable table with name, direction, mean and std of every criterion."""
+    if len(st.session_state.criteria_base) != k:
+        previous = st.session_state.get("criteria_edited", st.session_state.criteria_base)
+        st.session_state.criteria_base = criteria_frame(k, previous)
+        st.session_state.criteria_version += 1
+    edited = st.data_editor(
+        st.session_state.criteria_base,
+        key=f"criteria_{st.session_state.criteria_version}",
+        hide_index=True,
+        num_rows="fixed",
+        width="stretch",
+        column_config={
+            "name": st.column_config.TextColumn("nazwa", width=90),
+            "direction": st.column_config.SelectboxColumn("kier.", options=["min", "max"], required=True,
+                                                          width=55, help="Kierunek optymalizacji"),
+            "mean": st.column_config.NumberColumn("μ", format="%.2f", width=55, help="Średnia"),
+            "std": st.column_config.NumberColumn("σ", format="%.2f", min_value=0.0, width=55,
+                                                 help="Odchylenie standardowe"),
+        },
+    )
+    st.session_state.criteria_edited = edited
+    return edited
+
+
+def criterion_names(criteria, k):
+    """Names of the first k criteria; empty ones default to f1, f2, ..."""
+    names = []
+    for i in range(k):
+        name = criteria["name"].iloc[i] if i < len(criteria) else None
+        name = "" if name is None or pd.isna(name) else str(name).strip()
+        names.append(name or f"f{i + 1}")
+    return names
+
+
+def read_params(distribution, n_alternatives, n_criteria, seed, round_values, criteria):
+    means, stds = criteria["mean"].tolist(), criteria["std"].tolist()
+    if any(pd.isna(v) for v in means + stds):
+        raise ValueError("Uzupełnij średnią i odchylenie dla każdego kryterium.")
+    return {
+        "distribution": distribution,
+        "means": [float(v) for v in means],
+        "stds": [float(v) for v in stds],
+        "n_alternatives": int(n_alternatives),
+        "n_criteria": int(n_criteria),
+        "seed": int(seed),
+        "round_values": bool(round_values),
+        "directions": [-1 if d == "max" else 1 for d in criteria["direction"]],
+    }
+
+
+def axis_label(names, signs, d):
+    return f"{names[d]} ({'min' if signs[d] == 1 else 'max'})"
+
+
+def build_figure(data, names, signs, dims, use_3d, layers, result, selected_ids, title, revision):
+    fig = go.Figure()
+    trace_type = go.Scatter3d if use_3d else go.Scattergl  # WebGL keeps large data sets smooth
+    scale = 0.6 if use_3d else 1.0
+    axes = list(zip("xyz", dims))
+    values_hover = "<br>".join(f"{names[d]}: %{{{axis}:.4g}}" for axis, d in axes)
+    hover = "id: %{customdata}<br>" + values_hover + "<extra>%{fullData.name}</extra>"
+
+    def add_points(indices, label, **marker):
+        indices = np.asarray(indices, dtype=int)
+        if len(indices) == 0:
+            return
+        marker["size"] = marker.get("size", 6) * scale
+        fig.add_trace(trace_type(mode="markers", name=f"{label} ({len(indices)})", customdata=indices,
+                                 hovertemplate=hover, marker=marker,
+                                 **{axis: data[indices, d] for axis, d in axes}))
+
+    all_ids = np.arange(len(data))
+    if "all" in layers:
+        add_points(all_ids, LAYERS["all"], size=5, color="#b0b0b0")
+    if result is not None:
+        mask = result["nondominated_mask"]
+        if "dominated" in layers:
+            add_points(all_ids[~mask], LAYERS["dominated"], symbol="x", size=6, color="#d62728")
+        if "compared" in layers:
+            add_points(all_ids[result["compared_counts"] > 0], LAYERS["compared"], symbol="circle-open",
+                       size=12, color="#ff7f0e", line={"width": 1.5})
+        if "front" in layers and data.shape[1] == 2 and not use_3d and mask.any():
+            front = data[mask][np.lexsort((data[mask][:, dims[1]], data[mask][:, dims[0]]))]
+            # The staircase hugs the dominated region: it depends on the direction of the X criterion
+            fig.add_trace(go.Scatter(x=front[:, dims[0]], y=front[:, dims[1]], mode="lines",
+                                     line={"shape": "hv" if signs[dims[0]] == 1 else "vh",
+                                           "color": "#2ca02c", "width": 1},
+                                     opacity=0.6, name=LAYERS["front"], hoverinfo="skip"))
+        if "nondominated" in layers:
+            add_points(all_ids[mask], LAYERS["nondominated"], size=9, color="#2ca02c",
+                       line={"color": "black", "width": 0.7})
+    if "ideal" in layers:
+        point = ideal_point(data, signs)[None, :]
+        fig.add_trace(trace_type(mode="markers", name=LAYERS["ideal"],
+                                 hovertemplate=values_hover + "<extra>%{fullData.name}</extra>",
+                                 marker={"symbol": "diamond" if use_3d else "star", "size": 16 * scale,
+                                         "color": "#1f77b4"},
+                                 **{axis: point[:, d] for axis, d in axes}))
+    if selected_ids:
+        add_points(selected_ids, "Zaznaczone", symbol="circle-open", size=18, color="magenta",
+                   line={"width": 2.5})
+
+    layout = {
+        "title": {"text": title},
+        "height": 640,
+        "margin": {"l": 10, "r": 10, "t": 90, "b": 10},
+        "legend": {"orientation": "h", "y": 1.0, "yanchor": "bottom", "x": 0},
+        "uirevision": revision,  # keeps zoom / 3D rotation when only layers or selection change
+    }
+    if use_3d:
+        layout["scene"] = {f"{axis}axis_title": axis_label(names, signs, d) for axis, d in axes}
+    else:
+        layout["xaxis_title"] = axis_label(names, signs, dims[0])
+        layout["yaxis_title"] = axis_label(names, signs, dims[1])
+    fig.update_layout(**layout)
+    return fig
+
+
+def axis_select(column, label, key, k, names, default):
+    default = min(default, k - 1)
+    if st.session_state.get(key, default) >= k:
+        st.session_state[key] = default  # the chosen criterion no longer exists
+    return column.selectbox(label, range(k), index=default, format_func=lambda i: names[i], key=key)
+
+
+# ------------------------------------------------------------------ page
+st.set_page_config(page_title="OWD – eksperymenty", page_icon="📈", layout="wide")
+init_state()
+
+with st.sidebar:
+    st.header("Algorytm")
+    algorithm = st.selectbox("Algorytm", list(ALGORITHMS), key="algorithm", label_visibility="collapsed")
+
+    st.header("Dane wejściowe")
+    distribution = st.selectbox("Rozkład", list(DISTRIBUTIONS), format_func=DISTRIBUTIONS.get)
+    n_alternatives = st.number_input("Liczba alternatyw N", min_value=1, max_value=200_000, value=100, step=50)
+    n_criteria = int(st.number_input("Liczba kryteriów k", min_value=1, max_value=50, value=2))
+    seed_column, button_column = st.columns([4, 1], vertical_alignment="bottom")
+    seed = seed_column.number_input("Seed", min_value=0, max_value=2**31 - 1, key="seed")
+    button_column.button("🎲", on_click=randomize_seed, help="Losuj seed")
+    round_values = st.checkbox("Zaokrąglaj do liczb całkowitych")
+
+    st.header("Kryteria")
+    criteria = criteria_editor(n_criteria)
+    min_column, max_column = st.columns(2)
+    min_column.button("Wszystkie min", on_click=set_all_directions, args=("min",), width="stretch")
+    max_column.button("Wszystkie max", on_click=set_all_directions, args=("max",), width="stretch")
+    st.caption("Kierunek, średnia i odchylenie działają od następnego uruchomienia, nazwy – od razu.")
+
+    st.divider()
+    generate_clicked = st.button("Generuj dane", width="stretch")
+    run_clicked = st.button("Uruchom algorytm", type="primary", width="stretch")
+    run_all_clicked = st.button("Uruchom wszystkie algorytmy", width="stretch")
+
+names_now = criterion_names(criteria, n_criteria)
+if len(set(names_now)) != len(names_now) or RESERVED_NAMES & set(names_now):
+    st.sidebar.warning("Nazwy kryteriów muszą być różne i inne niż „id” / „status” – używam nazw domyślnych.")
+    criteria = criteria.assign(name=[f"f{i + 1}" for i in range(n_criteria)])
+
+if generate_clicked or run_clicked or run_all_clicked:
     try:
-        yield
-    finally:
-        module.dominates = original
-
-
-def _dominated_by_any(targets, dominators, chunk=256):
-    """Boolean mask: is targets[i] Pareto-dominated (minimisation) by any row of dominators?"""
-    result = np.zeros(len(targets), dtype=bool)
-    if len(dominators) == 0:
-        return result
-    for start in range(0, len(targets), chunk):
-        t = targets[start:start + chunk, None, :]
-        d = dominators[None, :, :]
-        result[start:start + chunk] = ((d <= t).all(axis=2) & (d < t).any(axis=2)).any(axis=1)
-    return result
-
-
-def verify_pareto(data, mask):
-    """Check the reported nondominated set against the Pareto definition (minimisation).
-
-    Returns (n_extra, n_missing): reported points that are dominated, and nondominated
-    points that were not reported. Costs O(N * |P|) instead of O(N^2).
-    """
-    n_extra = int(_dominated_by_any(data[mask], data).sum())
-    rest = data[~mask]
-    # A dominated point is always dominated by some nondominated one, so if P is correct
-    # every remaining point is dominated by P; only the exceptions need a full check.
-    suspects = rest[~_dominated_by_any(rest, data[mask])]
-    n_missing = int((~_dominated_by_any(suspects, data)).sum())
-    return n_extra, n_missing
-
-
-def format_correctness(n_extra, n_missing):
-    if n_extra == 0 and n_missing == 0:
-        return "tak"
-    return f"NIE (+{n_extra} zbędne, -{n_missing} brak)"
-
-
-class DebouncedCanvas(FigureCanvasTkAgg):
-    """Tk canvas that redraws the figure only after the window stops being resized.
-
-    The stock canvas re-renders the whole figure on every <Configure> event,
-    which makes dragging the window edge very choppy (especially on macOS).
-    """
-    RESIZE_DELAY_MS = 120
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self._resize_job = None
-
-    def resize(self, event):
-        widget = self.get_tk_widget()
-        if self._resize_job is not None:
-            widget.after_cancel(self._resize_job)
-        self._resize_job = widget.after(self.RESIZE_DELAY_MS, lambda: self._do_resize(event))
-
-    def _do_resize(self, event):
-        self._resize_job = None
-        super().resize(event)
-
-
-class ExperimentApp(tk.Tk):
-    def __init__(self):
-        super().__init__()
-        self.title("Optymalizacja wielokryterialna – eksperymenty")
-        self.geometry("1350x880")
-
-        self.points = []          # current data set (list of tuples)
-        self.points_array = None  # the same data as a numpy array (for plotting)
-        self.layer_artists = {}   # plot layer key -> matplotlib artist
-        self.criteria_names = []  # custom criterion names (missing ones default to f1, f2, ...)
-        self.criteria_directions = []  # "min" / "max" per criterion (missing ones default to min)
-        self.criterion_rows = []  # (name_var, direction_var, widgets) for every row of the criteria panel
-        self.data_browser = None  # DataBrowser window, if open
-        self.selected_ids = []    # points selected in the data browser (highlighted on the plot)
-        self.selection_artist = None
-        self.data_params = None   # parameters the current data set was generated with
-        self.result = None        # last algorithm result (dict)
-        self.history = []         # summary rows of all runs
-        self.run_counter = 0
-
-        self._build_controls()
-        self._build_plot()
-        self._build_history()
-        self._update_axis_choices()
-
-    # ------------------------------------------------------------------ GUI
-    def _build_scrollable_panel(self):
-        """Left column inside a scrollable canvas – the settings do not fit on small screens."""
-        container = ttk.Frame(self)
-        container.grid(row=0, column=0, sticky="ns")
-        background = ttk.Style().lookup("TFrame", "background")
-        canvas = tk.Canvas(container, highlightthickness=0, borderwidth=0, background=background or None)
-        scrollbar = ttk.Scrollbar(container, orient="vertical", command=canvas.yview)
-        aqua = self.tk.call("tk", "windowingsystem") == "aqua"
-        # macOS sends many small wheel deltas (trackpad), other systems one event per notch
-        canvas.configure(yscrollcommand=scrollbar.set, yscrollincrement=4 if aqua else 20)
-        canvas.pack(side="left", fill="y")
-        scrollbar.pack(side="right", fill="y")
-        panel = ttk.Frame(canvas, padding=8)
-        canvas.create_window((0, 0), window=panel, anchor="nw")
-
-        def on_panel_resize(_event):
-            canvas.configure(scrollregion=canvas.bbox("all"), width=panel.winfo_reqwidth())
-
-        def on_wheel(event):
-            if canvas.yview() == (0.0, 1.0):
-                return  # everything fits, nothing to scroll
-            if event.num == 4:
-                step = -1
-            elif event.num == 5:
-                step = 1
-            elif aqua:
-                step = -event.delta  # macOS reports small deltas
-            else:
-                step = -event.delta // 120
-            canvas.yview_scroll(step, "units")
-
-        def bind_wheel(_event):
-            for sequence in ("<MouseWheel>", "<Button-4>", "<Button-5>"):
-                canvas.bind_all(sequence, on_wheel)
-
-        def unbind_wheel(_event):
-            for sequence in ("<MouseWheel>", "<Button-4>", "<Button-5>"):
-                canvas.unbind_all(sequence)
-
-        panel.bind("<Configure>", on_panel_resize)
-        # The wheel scrolls the panel only while the pointer is over it
-        container.bind("<Enter>", bind_wheel)
-        container.bind("<Leave>", unbind_wheel)
-        return panel
-
-    def _build_controls(self):
-        panel = self._build_scrollable_panel()
-
-        algo_box = ttk.LabelFrame(panel, text="Algorytm", padding=6)
-        algo_box.pack(fill="x", pady=4)
-        self.algorithm_var = tk.StringVar(value=next(iter(ALGORITHMS)))
-        ttk.Combobox(algo_box, textvariable=self.algorithm_var, values=list(ALGORITHMS),
-                     state="readonly", width=28).pack(fill="x")
-
-        data_box = ttk.LabelFrame(panel, text="Dane wejściowe", padding=6)
-        data_box.pack(fill="x", pady=4)
-        self.distribution_var = tk.StringVar(value=DISTRIBUTIONS["normal"])
-        self.means_var = tk.StringVar(value="10")
-        self.stds_var = tk.StringVar(value="3")
-        self.n_alternatives_var = tk.StringVar(value="100")
-        self.n_criteria_var = tk.StringVar(value="2")
-        self.seed_var = tk.StringVar(value="67")
-        self.round_var = tk.BooleanVar(value=False)
-
-        row = 0
-        ttk.Label(data_box, text="Rozkład").grid(row=row, column=0, sticky="w")
-        ttk.Combobox(data_box, textvariable=self.distribution_var, values=list(DISTRIBUTIONS.values()),
-                     state="readonly", width=26).grid(row=row, column=1, columnspan=2, sticky="ew")
-        for label, var in [("Średnia", self.means_var), ("Odchylenie std.", self.stds_var),
-                           ("Liczba alternatyw N", self.n_alternatives_var),
-                           ("Liczba kryteriów k", self.n_criteria_var)]:
-            row += 1
-            ttk.Label(data_box, text=label).grid(row=row, column=0, sticky="w")
-            ttk.Entry(data_box, textvariable=var, width=14).grid(row=row, column=1, columnspan=2, sticky="ew")
-        row += 1
-        ttk.Label(data_box, text="Seed").grid(row=row, column=0, sticky="w")
-        ttk.Entry(data_box, textvariable=self.seed_var, width=10).grid(row=row, column=1, sticky="ew")
-        ttk.Button(data_box, text="Losuj", width=6, command=self._random_seed).grid(row=row, column=2)
-        row += 1
-        ttk.Checkbutton(data_box, text="Zaokrąglaj do liczb całkowitych",
-                        variable=self.round_var).grid(row=row, column=0, columnspan=3, sticky="w")
-        row += 1
-        ttk.Label(data_box, text="Średnią i odchylenie można podać osobno\ndla każdego kryterium, np. „10; 20”.\n"
-                                 "Pusty seed = losowy.",
-                  foreground="gray").grid(row=row, column=0, columnspan=3, sticky="w", pady=(4, 0))
-        data_box.columnconfigure(1, weight=1)
-
-        criteria_box = ttk.LabelFrame(panel, text="Kryteria", padding=6)
-        criteria_box.pack(fill="x", pady=4)
-        self.criteria_rows_frame = ttk.Frame(criteria_box)
-        self.criteria_rows_frame.pack(fill="x")
-        ttk.Label(self.criteria_rows_frame, text="nazwa", foreground="gray").grid(row=0, column=1, sticky="w")
-        ttk.Label(self.criteria_rows_frame, text="kierunek", foreground="gray").grid(row=0, column=2, sticky="w")
-        self.criteria_rows_frame.columnconfigure(1, weight=1)
-        buttons = ttk.Frame(criteria_box)
-        buttons.pack(fill="x", pady=(4, 0))
-        ttk.Button(buttons, text="Wszystkie min", command=lambda: self._set_all_directions("min")).pack(
-            side="left", expand=True, fill="x")
-        ttk.Button(buttons, text="Wszystkie max", command=lambda: self._set_all_directions("max")).pack(
-            side="left", expand=True, fill="x")
-        ttk.Label(criteria_box, text="Nazwę zatwierdza Enter. Kierunek działa\nod następnego uruchomienia.",
-                  foreground="gray").pack(anchor="w", pady=(4, 0))
-        self.n_criteria_var.trace_add("write", lambda *_: self._update_axis_choices())
-
-        actions = ttk.Frame(panel)
-        actions.pack(fill="x", pady=4)
-        ttk.Button(actions, text="Generuj dane", command=self.on_generate).pack(fill="x", pady=1)
-        ttk.Button(actions, text="Uruchom algorytm", command=self.on_run).pack(fill="x", pady=1)
-        ttk.Button(actions, text="Uruchom wszystkie algorytmy", command=self.on_run_all).pack(fill="x", pady=1)
-        ttk.Button(actions, text="Przeglądaj dane", command=self.open_data_browser).pack(fill="x", pady=1)
-
-        plot_box = ttk.LabelFrame(panel, text="Wykres", padding=6)
-        plot_box.pack(fill="x", pady=4)
-        self.axis_combos = []
-        for i, name in enumerate(["Oś X", "Oś Y", "Oś Z"]):
-            ttk.Label(plot_box, text=name).grid(row=i, column=0, sticky="w")
-            combo = ttk.Combobox(plot_box, state="readonly", width=14)
-            combo.grid(row=i, column=1, sticky="w")
-            combo.bind("<<ComboboxSelected>>", lambda _: self.redraw())
-            self.axis_combos.append(combo)
-        self.plot_3d_var = tk.BooleanVar(value=False)
-        self.plot_3d_check = ttk.Checkbutton(plot_box, text="Wykres 3D", variable=self.plot_3d_var,
-                                             command=self.redraw)
-        self.plot_3d_check.grid(row=3, column=0, columnspan=2, sticky="w")
-        self.layer_vars = {}
-        for i, (key, (label, default)) in enumerate(LAYERS.items()):
-            var = tk.BooleanVar(value=default)
-            self.layer_vars[key] = var
-            ttk.Checkbutton(plot_box, text=label, variable=var, command=self._apply_layers).grid(
-                row=4 + i, column=0, columnspan=2, sticky="w")
-
-        result_box = ttk.LabelFrame(panel, text="Wynik", padding=6)
-        result_box.pack(fill="x", pady=4)
-        self.result_var = tk.StringVar(value="Brak wyników")
-        ttk.Label(result_box, textvariable=self.result_var, justify="left").pack(anchor="w")
-
-        save_box = ttk.LabelFrame(panel, text="Zapis do CSV", padding=6)
-        save_box.pack(fill="x", pady=4)
-        ttk.Button(save_box, text="Zapisz wynik (punkty)", command=self.save_result_csv).pack(fill="x", pady=1)
-        ttk.Button(save_box, text="Zapisz historię eksperymentów", command=self.save_history_csv).pack(fill="x", pady=1)
-        ttk.Button(save_box, text="Wyczyść historię", command=self.clear_history).pack(fill="x", pady=1)
-
-    def _build_plot(self):
-        frame = ttk.Frame(self)
-        frame.grid(row=0, column=1, sticky="nsew")
-        self.figure = Figure(figsize=(8, 6), dpi=100)
-        self.canvas = DebouncedCanvas(self.figure, master=frame)
-        self.canvas.get_tk_widget().pack(fill="both", expand=True)
-        NavigationToolbar2Tk(self.canvas, frame).update()
-        self.columnconfigure(1, weight=1)
-        self.rowconfigure(0, weight=1)
-
-    def _build_history(self):
-        frame = ttk.LabelFrame(self, text="Historia eksperymentów", padding=4)
-        frame.grid(row=1, column=0, columnspan=2, sticky="nsew", padx=6, pady=6)
-        self.history_tree = ttk.Treeview(frame, columns=[c[0] for c in HISTORY_COLUMNS],
-                                         show="headings", height=7)
-        for key, label, width in HISTORY_COLUMNS:
-            self.history_tree.heading(key, text=label)
-            self.history_tree.column(key, width=width, anchor="center")
-        scrollbar = ttk.Scrollbar(frame, orient="vertical", command=self.history_tree.yview)
-        self.history_tree.configure(yscrollcommand=scrollbar.set)
-        self.history_tree.pack(side="left", fill="both", expand=True)
-        scrollbar.pack(side="right", fill="y")
-
-    # -------------------------------------------------------------- helpers
-    def _random_seed(self):
-        self.seed_var.set(str(random.randint(0, 2**31 - 1)))
-
-    def _n_criteria(self):
-        try:
-            return max(1, int(self.n_criteria_var.get()))
-        except ValueError:
-            return 2
-
-    def _names(self, k):
-        """Names of the first k criteria (default fi when not given)."""
-        return [self.criteria_names[i] if i < len(self.criteria_names) and self.criteria_names[i]
-                else f"f{i + 1}" for i in range(k)]
-
-    def _update_axis_choices(self):
-        k = self._n_criteria()
-        names = self._names(k)
-        self._sync_criterion_rows(k)
-        # Axes are tracked by index, so renaming a criterion keeps the selection
-        current = [combo.current() for combo in self.axis_combos]
-        for i, combo in enumerate(self.axis_combos):
-            combo["values"] = names
-            index = current[i]
-            if index < 0 or index >= k or index in current[:i]:
-                index = min(i, k - 1)
-                current[i] = index
-            combo.current(index)
-        self.plot_3d_check.state(["!disabled"] if k >= 3 else ["disabled"])
-        if k < 3:
-            self.plot_3d_var.set(False)
-
-    def _set_names(self, names):
-        """Validate and apply criterion names; empty names fall back to f1, f2, ..."""
-        names = [name.strip() or f"f{i + 1}" for i, name in enumerate(names)]
-        if len(set(names)) != len(names):
-            messagebox.showerror("Nazwy kryteriów", "Nazwy kryteriów muszą być różne.")
-            self._update_axis_choices()  # restore the entry
-            return
-        extra = self.criteria_names[len(names):]
-        self.criteria_names = names + extra
-        self._update_axis_choices()
-        self.redraw()
-        if self.data_browser is not None:
-            self.data_browser.set_names(self._names(self._data_k()))
-
-    def _directions(self, k):
-        """'min'/'max' for the first k criteria (default min when not chosen)."""
-        return [self.criteria_directions[i] if i < len(self.criteria_directions) else "min" for i in range(k)]
-
-    def _sync_criterion_rows(self, k):
-        """Make the criteria panel show exactly k rows (name + direction) with the current values."""
-        while len(self.criterion_rows) > k:
-            for widget in self.criterion_rows.pop()[2]:
-                widget.destroy()
-        while len(self.criterion_rows) < k:
-            i = len(self.criterion_rows)
-            name_var, direction_var = tk.StringVar(), tk.StringVar()
-            label = ttk.Label(self.criteria_rows_frame, text=f"{i + 1}.")
-            label.grid(row=i + 1, column=0, sticky="w", padx=(0, 4))
-            entry = ttk.Entry(self.criteria_rows_frame, textvariable=name_var, width=14)
-            entry.grid(row=i + 1, column=1, sticky="ew", pady=1)
-            entry.bind("<Return>", lambda _: self._apply_names_from_rows())
-            entry.bind("<FocusOut>", lambda _: self._apply_names_from_rows())
-            combo = ttk.Combobox(self.criteria_rows_frame, textvariable=direction_var, values=["min", "max"],
-                                 state="readonly", width=5)
-            combo.grid(row=i + 1, column=2, sticky="w", padx=(4, 0), pady=1)
-            combo.bind("<<ComboboxSelected>>", lambda _, index=i: self._set_direction(index))
-            self.criterion_rows.append((name_var, direction_var, (label, entry, combo)))
-        for (name_var, direction_var, _), name, direction in zip(self.criterion_rows, self._names(k),
-                                                                  self._directions(k)):
-            name_var.set(name)
-            direction_var.set(direction)
-
-    def _set_direction(self, index):
-        directions = self._directions(max(len(self.criteria_directions), index + 1))
-        directions[index] = self.criterion_rows[index][1].get()
-        self.criteria_directions = directions
-
-    def _set_all_directions(self, direction):
-        k = self._n_criteria()
-        self.criteria_directions = [direction] * max(k, len(self.criteria_directions))
-        self._sync_criterion_rows(k)
-
-    def _apply_names_from_rows(self):
-        k = len(self.criterion_rows)
-        names = [name_var.get() for name_var, _, _ in self.criterion_rows]
-        if names != self._names(k):
-            self._set_names(names)
-
-    def rename_criterion(self, index, name):
-        names = self._names(max(self._n_criteria(), index + 1))
-        names[index] = name
-        self._set_names(names)
-
-    def _data_k(self):
-        return len(self.points[0]) if self.points else self._n_criteria()
-
-    def _read_params(self):
-        """Read and validate the data-generation parameters from the form."""
-        distribution = next(k for k, v in DISTRIBUTIONS.items() if v == self.distribution_var.get())
-        seed_text = self.seed_var.get().strip()
-        if not seed_text:
-            self._random_seed()
-            seed_text = self.seed_var.get()
-        return {
-            "distribution": distribution,
-            "means": parse_numbers(self.means_var.get()),
-            "stds": parse_numbers(self.stds_var.get()),
-            "n_alternatives": int(self.n_alternatives_var.get()),
-            "n_criteria": int(self.n_criteria_var.get()),
-            "seed": int(seed_text),
-            "round_values": self.round_var.get(),
-            "directions": [1 if d == "min" else -1 for d in self._directions(int(self.n_criteria_var.get()))],
-        }
-
-    def _generate(self):
-        params = self._read_params()
-        self.points = generate_points(params["distribution"], params["means"], params["stds"],
-                                      params["n_alternatives"], params["n_criteria"],
-                                      seed=params["seed"], round_values=params["round_values"])
-        self.points_array = np.array(self.points)
-        self.data_params = params
-        self.result = None
-
-    def _run_algorithm(self, name):
-        signs = self.data_params["directions"]
-        # Algorithms minimise, so maximised criteria are negated (f -> -f)
-        points_min = [tuple(s * v for s, v in zip(signs, x)) for x in self.points]
-        module, function_name = ALGORITHMS[name]
-        algorithm = getattr(module, function_name)
-
-        # Debug prints of the algorithms are swallowed, so they do not flood the console
-        with contextlib.redirect_stdout(io.StringIO()):
-            # Timed run without comparison tracking, so the bookkeeping does not distort the time
-            start = time.perf_counter()
-            algorithm(points_min)
-            elapsed_ms = (time.perf_counter() - start) * 1000
-
-            compared = Counter()
-            with track_comparisons(module, compared):
-                nondominated, n_comparisons = algorithm(points_min)
-        nondominated = set(nondominated)
-        mask = np.array([x in nondominated for x in points_min], dtype=bool)
-        self.result = {
-            "algorithm": name,
-            "nondominated_mask": mask,
-            "compared_counts": np.array([compared[x] for x in points_min], dtype=int),
-            "n_comparisons": n_comparisons,
-            "time_ms": elapsed_ms,
-            "correctness": verify_pareto(np.array(points_min, dtype=float), mask),
-        }
-        self._add_history_row()
-
-    def _add_history_row(self):
-        p, r = self.data_params, self.result
-        self.run_counter += 1
-        row = {
-            "run": self.run_counter,
-            "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-            "algorithm": r["algorithm"],
-            "distribution": p["distribution"],
-            "means": ";".join(f"{v:g}" for v in p["means"]),
-            "stds": ";".join(f"{v:g}" for v in p["stds"]),
-            "n_alternatives": p["n_alternatives"],
-            "n_criteria": p["n_criteria"],
-            "criteria": "; ".join(self._names(p["n_criteria"])),
-            "seed": p["seed"],
-            "rounded": int(p["round_values"]),
-            "directions": format_directions(p["directions"]),
-            "n_nondominated": int(r["nondominated_mask"].sum()),
-            "n_comparisons": r["n_comparisons"],
-            "time_ms": round(r["time_ms"], 3),
-            "correct": format_correctness(*r["correctness"]),
-        }
-        self.history.append(row)
-        self.history_tree.insert("", "end", values=[row[c[0]] for c in HISTORY_COLUMNS])
-        self.history_tree.yview_moveto(1)
-
-    def _update_result_label(self):
-        if self.result is None:
-            self.result_var.set(f"Wygenerowano {len(self.points)} punktów\n(algorytm nie uruchomiony)")
-            return
-        r = self.result
-        n_nondominated = int(r["nondominated_mask"].sum())
-        n_compared = int((r["compared_counts"] > 0).sum())
-        self.result_var.set(
-            f"{r['algorithm']}\n"
-            f"Kierunek: {format_directions(self.data_params['directions'])}\n"
-            f"Punkty: {len(self.points)}\n"
-            f"Niezdominowane: {n_nondominated}\n"
-            f"Zdominowane: {len(self.points) - n_nondominated}\n"
-            f"Porównywane: {n_compared}\n"
-            f"Liczba porównań: {r['n_comparisons']}\n"
-            f"Czas: {r['time_ms']:.3f} ms\n"
-            f"Poprawny wynik: {format_correctness(*r['correctness'])}"
-        )
-
-    # -------------------------------------------------------------- actions
-    def _guarded(self, action):
-        try:
-            action()
-        except (ValueError, StopIteration) as error:
-            messagebox.showerror("Błąd danych", str(error))
-            return False
-        return True
-
-    def _after_data_change(self):
-        self.selected_ids = []
-        self._update_result_label()
-        self._refresh_browser()
-        self.redraw()
-
-    def on_generate(self):
-        if self._guarded(self._generate):
-            self._after_data_change()
-
-    def on_run(self):
-        # Data are regenerated from the form each time, so every run is reproducible from the seed
-        if self._guarded(lambda: (self._generate(), self._run_algorithm(self.algorithm_var.get()))):
-            self._after_data_change()
-
-    def on_run_all(self):
-        def run_all():
-            self._generate()
-            results = {}
-            for name in ALGORITHMS:
-                self._run_algorithm(name)
-                results[name] = self.result
-            # Show the result of the algorithm selected in the combobox
-            self.result = results[self.algorithm_var.get()]
-        if self._guarded(run_all):
-            self._after_data_change()
-
-    # ---------------------------------------------------------- data view
-    def open_data_browser(self):
-        if self.data_browser is not None:
-            self.data_browser.lift()
-            return
-        self.data_browser = DataBrowser(self, on_select=self._set_selection, on_rename=self.rename_criterion,
-                                        on_close=self._data_browser_closed)
-        self._refresh_browser()
-
-    def _refresh_browser(self):
-        if self.data_browser is None:
-            return
-        r = self.result
-        self.data_browser.set_data(self.points, r["nondominated_mask"] if r else None,
-                                   r["compared_counts"] if r else None, self._names(self._data_k()))
-
-    def _data_browser_closed(self):
-        self.data_browser = None
-        self._set_selection([])
-
-    def _set_selection(self, ids):
-        if ids == self.selected_ids:
-            return
-        self.selected_ids = ids
-        self._draw_selection()
-        self._apply_layers()
-
-    # ---------------------------------------------------------------- plot
-    def redraw(self):
-        """Rebuild the whole figure (new data, result, axes or 2D/3D switch).
-
-        Every layer is drawn once; the layer checkboxes only toggle visibility (_apply_layers).
-        """
-        self.figure.clear()
-        self.layer_artists = {}
-        if not self.points:
-            self.canvas.draw_idle()
-            return
-        data = self.points_array
-        k = data.shape[1]
-        signs = self.data_params["directions"]
-        names = self._names(k)
-        axis_indices = [min(max(combo.current(), 0), k - 1) for combo in self.axis_combos]
-        use_3d = self.plot_3d_var.get() and k >= 3
-        dims = axis_indices if use_3d else axis_indices[:2]
-        ax = self.figure.add_subplot(111, projection="3d" if use_3d else None)
-
-        self.plot_dims = dims
-
-        def coords(rows):
-            return [rows[:, d] for d in dims]
-
-        def markers(rows, **style):
-            # ax.plot with markers renders ~6x faster than ax.scatter (single style for all points)
-            line, = ax.plot(*coords(rows), linestyle="none", **style)
-            return line
-
-        artists = self.layer_artists
-        artists["all"] = markers(data, marker="o", ms=3.5, color="lightgray", label=f"Zbiór punktów ({len(data)})")
-        result = self.result
-        if result is not None:
-            mask = result["nondominated_mask"]
-            nondominated, dominated = data[mask], data[~mask]
-            compared = data[result["compared_counts"] > 0]
-            if len(dominated):
-                artists["dominated"] = markers(dominated, marker="x", ms=4.2, color="tab:red",
-                                               label=f"Zdominowane ({len(dominated)})")
-            if len(compared):
-                artists["compared"] = markers(compared, marker="o", ms=8.4, mfc="none", mec="tab:orange",
-                                              mew=1.2, label=f"Porównywane ({len(compared)})")
-            if k == 2 and not use_3d and len(nondominated):
-                front = nondominated[np.lexsort((nondominated[:, dims[1]], nondominated[:, dims[0]]))]
-                # The staircase hugs the dominated region: it depends on the direction of the X criterion
-                where = "post" if signs[dims[0]] == 1 else "pre"
-                artists["front"], = ax.step(*coords(front), where=where, c="tab:green", alpha=0.6, linewidth=1)
-            if len(nondominated):
-                artists["nondominated"] = markers(nondominated, marker="o", ms=6.3, mfc="tab:green", mec="black",
-                                                  mew=0.5, zorder=5, label=f"Niezdominowane ({len(nondominated)})")
-            title = f"{result['algorithm']} – porównań: {result['n_comparisons']}"
-        else:
-            title = "Wygenerowane dane"
-        ideal = np.array([[data[:, i].min() if signs[i] == 1 else data[:, i].max() for i in range(k)]])
-        artists["ideal"] = markers(ideal, marker="*", ms=11, color="tab:blue", zorder=6, label="Punkt idealny")
-
-        def axis_label(d):
-            return f"{names[d]} ({'min' if signs[d] == 1 else 'max'})"
-        ax.set_xlabel(axis_label(dims[0]))
-        ax.set_ylabel(axis_label(dims[1]))
+        params = read_params(distribution, n_alternatives, n_criteria, seed, round_values, criteria)
+        points = generate_points(params["distribution"], params["means"], params["stds"],
+                                 params["n_alternatives"], params["n_criteria"],
+                                 seed=params["seed"], round_values=params["round_values"])
+    except ValueError as error:
+        st.sidebar.error(str(error))
+    else:
+        # Data are regenerated on every run, so each run is reproducible from the seed
+        st.session_state.points = points
+        st.session_state.params = params
+        st.session_state.results = {}
+        st.session_state.data_version += 1
+        to_run = list(ALGORITHMS) if run_all_clicked else [algorithm] if run_clicked else []
+        for name in to_run:
+            with st.spinner(f"{name}…"):
+                result = run_algorithm(name, points, params["directions"])
+            st.session_state.results[name] = result
+            st.session_state.run_counter += 1
+            st.session_state.history.append(history_row(st.session_state.run_counter, params, result,
+                                                        criterion_names(criteria, n_criteria)))
+
+st.title("Optymalizacja wielokryterialna – eksperymenty")
+points = st.session_state.points
+if points is None:
+    st.info("Ustaw parametry w panelu bocznym i kliknij „Generuj dane” albo „Uruchom algorytm”.")
+    st.stop()
+
+params = st.session_state.params
+data = np.array(points, dtype=float)
+k = data.shape[1]
+names = criterion_names(criteria, k)
+result = st.session_state.results.get(algorithm)
+signs = result["signs"] if result else params["directions"]
+
+# ---------------------------------------------------------------- summary
+if result:
+    mask = result["nondominated_mask"]
+    n_extra, n_missing = result["correctness"]
+    st.caption(f"**{algorithm}** · kierunek: {format_directions(signs)} · N = {len(data)} · k = {k} · "
+               f"rozkład: {DISTRIBUTIONS[params['distribution']]} · seed: {params['seed']}")
+    metrics = st.columns(6)
+    metrics[0].metric("Niezdominowane", int(mask.sum()))
+    metrics[1].metric("Zdominowane", int((~mask).sum()))
+    metrics[2].metric("Porównywane punkty", int((result["compared_counts"] > 0).sum()))
+    metrics[3].metric("Liczba porównań", result["n_comparisons"])
+    metrics[4].metric("Czas [ms]", f"{result['time_ms']:.3f}")
+    metrics[5].metric("Poprawny wynik", "tak" if n_extra == n_missing == 0 else "NIE")
+    if n_extra or n_missing:
+        st.error(f"Wynik niezgodny z definicją dominacji Pareto: {format_correctness(n_extra, n_missing)}.")
+else:
+    st.caption(f"Wygenerowano {len(data)} punktów (k = {k}). Algorytm „{algorithm}” nie był jeszcze "
+               "uruchomiony na tych danych.")
+
+experiment_tab, history_tab = st.tabs(["Wykres i dane",
+                                       f"Historia eksperymentów ({len(st.session_state.history)})"])
+
+with experiment_tab:
+    # The table is prepared first – its selection is needed to highlight points on the plot
+    table = pd.DataFrame(data, columns=names)
+    table.insert(0, "id", np.arange(len(data)))
+    if result:
+        table["status"] = np.where(result["nondominated_mask"], "niezdominowany", "zdominowany")
+        table["porównania"] = result["compared_counts"]
+    status_filter = st.session_state.get("status_filter", "all") if result else "all"
+    if status_filter == "nondominated":
+        shown = table[result["nondominated_mask"]]
+    elif status_filter == "dominated":
+        shown = table[~result["nondominated_mask"]]
+    elif status_filter == "compared":
+        shown = table[result["compared_counts"] > 0]
+    else:
+        shown = table
+    table_key = f"table_{st.session_state.data_version}_{algorithm}_{status_filter}"
+    selection = st.session_state.get(table_key)
+    selected_rows = selection["selection"]["rows"] if selection else []
+    selected_ids = shown["id"].iloc[selected_rows].tolist()
+
+    plot_column, table_column = st.columns([3, 2], gap="medium")
+    with plot_column:
+        controls = st.columns([2, 2, 2, 1], vertical_alignment="bottom")
+        use_3d = controls[3].toggle("3D", key="plot_3d", disabled=k < 3) and k >= 3
+        dims = [axis_select(controls[0], "Oś X", "x_dim", k, names, 0),
+                axis_select(controls[1], "Oś Y", "y_dim", k, names, 1)]
         if use_3d:
-            ax.set_zlabel(axis_label(dims[2]))
-        else:
-            ax.grid(True, alpha=0.3)
+            dims.append(axis_select(controls[2], "Oś Z", "z_dim", k, names, 2))
+        layers = st.pills("Warstwy", list(LAYERS), selection_mode="multi", default=DEFAULT_LAYERS,
+                          format_func=LAYERS.get, key="layers") or []
+
+        title = f"{algorithm} – porównań: {result['n_comparisons']}" if result else "Wygenerowane dane"
         if k > 2 and not use_3d:
-            title += f"\n(rzut na kryteria {names[dims[0]]}, {names[dims[1]]}; k = {k})"
-        ax.set_title(title)
-        self.figure.tight_layout()
-        self.selection_artist = None
-        self._draw_selection()
-        self._apply_layers()
+            title += f"<br><sup>rzut na kryteria {names[dims[0]]}, {names[dims[1]]} (k = {k})</sup>"
+        figure = build_figure(data, names, signs, dims, use_3d, layers, result, selected_ids, title,
+                              revision=f"{st.session_state.data_version}-{dims}-{use_3d}")
+        # No wheel zoom: scrolling the page over a 3D plot would zoom it by accident (use the toolbar)
+        st.plotly_chart(figure, width="stretch", config={"scrollZoom": False})
 
-    def _draw_selection(self):
-        """Highlight the points selected in the data browser."""
-        if self.selection_artist is not None:
-            self.selection_artist.remove()
-            self.selection_artist = None
-        if not self.selected_ids or not self.figure.axes:
-            return
-        rows = self.points_array[self.selected_ids]
-        self.selection_artist, = self.figure.axes[0].plot(
-            *[rows[:, d] for d in self.plot_dims], linestyle="none", marker="o", ms=13, mfc="none",
-            mec="magenta", mew=2, zorder=7, label=f"Zaznaczone ({len(rows)})")
+    with table_column:
+        st.radio("Pokaż", list(STATUS_FILTERS), format_func=STATUS_FILTERS.get, horizontal=True,
+                 key="status_filter", disabled=result is None)
+        st.dataframe(shown, key=table_key, on_select="rerun", selection_mode="multi-row", hide_index=True,
+                     height=560, width="stretch",
+                     column_config={**{name: st.column_config.NumberColumn(format="%.4f") for name in names},
+                                    "porównania": st.column_config.NumberColumn(
+                                        help="W ilu porównaniach brał udział punkt")})
+        st.caption(f"Wierszy: {len(shown)} / {len(table)}. Zaznacz wiersze (pole po lewej), "
+                   "aby wyróżnić punkty na wykresie; kliknięcie nagłówka sortuje.")
+        if result:
+            st.download_button(
+                "Pobierz wynik (CSV)", result_csv(points, params, result, names).encode("utf-8"),
+                file_name=f"wynik_{algorithm.split()[-1]}_{params['distribution']}_N{len(data)}"
+                          f"_seed{params['seed']}.csv",
+                mime="text/csv", width="stretch")
+        else:
+            st.download_button("Pobierz dane (CSV)", table.to_csv(index=False).encode("utf-8"),
+                               file_name=f"dane_{params['distribution']}_N{len(data)}_seed{params['seed']}.csv",
+                               mime="text/csv", width="stretch")
 
-    def _apply_layers(self):
-        """Show/hide already drawn layers – much cheaper than rebuilding the figure."""
-        if not self.layer_artists:
-            return
-        visible = []
-        for key, artist in self.layer_artists.items():
-            artist.set_visible(self.layer_vars[key].get())
-            if artist.get_visible() and not artist.get_label().startswith("_"):
-                visible.append(artist)
-        if self.selection_artist is not None:
-            visible.append(self.selection_artist)
-        ax = self.figure.axes[0]
-        if visible:
-            # A fixed location – loc="best" scans all points on every draw
-            ax.legend(handles=visible, loc="upper right", fontsize=8)
-        elif ax.get_legend():
-            ax.get_legend().remove()
-        self.canvas.draw_idle()
-
-    # ------------------------------------------------------------------ CSV
-    def save_result_csv(self):
-        if self.result is None:
-            messagebox.showinfo("Brak wyniku", "Najpierw uruchom algorytm.")
-            return
-        p, r = self.data_params, self.result
-        default_name = f"wynik_{r['algorithm'].split()[-1]}_{p['distribution']}_N{p['n_alternatives']}_seed{p['seed']}.csv"
-        path = filedialog.asksaveasfilename(defaultextension=".csv", initialfile=default_name,
-                                            filetypes=[("CSV", "*.csv")])
-        if not path:
-            return
-        k = len(self.points[0])
-        with open(path, "w", newline="", encoding="utf-8") as f:
-            # Metadata as comment lines – read with pandas.read_csv(path, comment="#")
-            f.write(f"# algorytm: {r['algorithm']}\n")
-            f.write(f"# rozklad: {p['distribution']}; srednia: {p['means']}; odchylenie: {p['stds']}\n")
-            f.write(f"# N: {p['n_alternatives']}; k: {p['n_criteria']}; seed: {p['seed']}; "
-                    f"zaokraglanie: {p['round_values']}; kierunek: {format_directions(p['directions'])}\n")
-            f.write(f"# liczba_porownan: {r['n_comparisons']}; czas_ms: {r['time_ms']:.3f}; "
-                    f"poprawny: {format_correctness(*r['correctness'])}\n")
-            writer = csv.writer(f)
-            writer.writerow(["id"] + self._names(k) + ["status", "udzial_w_porownaniach"])
-            for i, x in enumerate(self.points):
-                status = "niezdominowany" if r["nondominated_mask"][i] else "zdominowany"
-                writer.writerow([i] + list(x) + [status, int(r["compared_counts"][i])])
-        messagebox.showinfo("Zapisano", f"Zapisano wynik do:\n{path}")
-
-    def save_history_csv(self):
-        if not self.history:
-            messagebox.showinfo("Brak danych", "Historia eksperymentów jest pusta.")
-            return
-        path = filedialog.asksaveasfilename(defaultextension=".csv", initialfile="historia_eksperymentow.csv",
-                                            filetypes=[("CSV", "*.csv")])
-        if not path:
-            return
-        with open(path, "w", newline="", encoding="utf-8") as f:
-            writer = csv.DictWriter(f, fieldnames=[c[0] for c in HISTORY_COLUMNS])
-            writer.writeheader()
-            writer.writerows(self.history)
-        messagebox.showinfo("Zapisano", f"Zapisano historię ({len(self.history)} wierszy) do:\n{path}")
-
-    def clear_history(self):
-        self.history.clear()
-        self.run_counter = 0
-        self.history_tree.delete(*self.history_tree.get_children())
-
-
-if __name__ == "__main__":
-    ExperimentApp().mainloop()
+with history_tab:
+    history = st.session_state.history
+    if history:
+        history_frame = pd.DataFrame(history, columns=list(HISTORY_COLUMNS))
+        st.dataframe(history_frame.rename(columns=HISTORY_COLUMNS), hide_index=True, width="stretch")
+        download_column, clear_column = st.columns(2)
+        download_column.download_button("Pobierz historię (CSV)",
+                                        history_frame.to_csv(index=False).encode("utf-8"),
+                                        file_name="historia_eksperymentow.csv", mime="text/csv",
+                                        width="stretch")
+        clear_column.button("Wyczyść historię", on_click=clear_history, width="stretch")
+    else:
+        st.info("Historia jest pusta – uruchom algorytm.")

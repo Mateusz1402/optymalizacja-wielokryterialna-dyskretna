@@ -1,4 +1,7 @@
-# For pip / venv users (Tkinter must come with the Python installation).
-# Conda users: see environment.yml
+# For pip / venv users. Conda users: see environment.yml
+#   pip install -r requirements.txt
+#   streamlit run app.py
 numpy>=1.26
-matplotlib>=3.8
+pandas>=2.1
+plotly>=5.20
+streamlit>=1.50
