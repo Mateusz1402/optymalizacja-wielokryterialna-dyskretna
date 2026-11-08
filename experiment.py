@@ -169,7 +169,7 @@ def result_csv(points, params, result, names):
     out.write(f"# N: {params['n_alternatives']}; k: {params['n_criteria']}; seed: {params['seed']}; "
               f"zaokraglanie: {params['round_values']}; kierunek: {format_directions(result['signs'])}\n")
     out.write(f"# liczba_porownan: {result['n_comparisons']}; czas_ms: {result['time_ms']:.3f}; "
-              f"poprawny: {format_correctness(*result['correctness'])}\n")
+              f"liczba_niezdominowanych: {result['nondominated_mask'].sum()}\n")
     writer = csv.writer(out, lineterminator="\n")
     writer.writerow(["id"] + list(names) + ["status", "udzial_w_porownaniach"])
     for i, x in enumerate(points):
