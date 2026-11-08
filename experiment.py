@@ -106,25 +106,39 @@ def ideal_point(data, signs):
     return np.array([data[:, i].min() if s == 1 else data[:, i].max() for i, s in enumerate(signs)])
 
 
-def run_algorithm(name, points, signs):
-    """Run one algorithm on `points` (list of tuples) with criterion directions `signs` (+1 min / -1 max)."""
-    # Algorithms minimise, so maximised criteria are negated (f -> -f)
-    points_min = [tuple(s * v for s, v in zip(signs, x)) for x in points]
+def to_minimisation(points, signs):
+    """Negate maximised criteria (sign -1), because all algorithms minimise."""
+    return [tuple(s * v for s, v in zip(signs, x)) for x in points]
+
+
+def measure_algorithm(name, points_min):
+    """Run an algorithm once on minimisation data; return (nondominated, n_comparisons, time_ms)."""
     module, function_name = ALGORITHMS[name]
     algorithm = getattr(module, function_name)
-
     # Debug prints of the algorithms are swallowed, so they do not flood the console
     with contextlib.redirect_stdout(io.StringIO()):
-        # Timed run without comparison tracking, so the bookkeeping does not distort the time
         start = time.perf_counter()
-        algorithm(points_min)
+        nondominated, n_comparisons = algorithm(points_min)
         elapsed_ms = (time.perf_counter() - start) * 1000
+    return nondominated, n_comparisons, elapsed_ms
 
-        compared = Counter()
-        with track_comparisons(module, compared):
-            nondominated, n_comparisons = algorithm(points_min)
+
+def nondominated_mask(points_min, nondominated):
     nondominated = set(nondominated)
-    mask = np.array([x in nondominated for x in points_min], dtype=bool)
+    return np.array([x in nondominated for x in points_min], dtype=bool)
+
+
+def run_algorithm(name, points, signs):
+    """Run one algorithm on `points` (list of tuples) with criterion directions `signs` (+1 min / -1 max)."""
+    points_min = to_minimisation(points, signs)
+    # Timed run without comparison tracking, so the bookkeeping does not distort the time
+    _, _, elapsed_ms = measure_algorithm(name, points_min)
+
+    module, function_name = ALGORITHMS[name]
+    compared = Counter()
+    with contextlib.redirect_stdout(io.StringIO()), track_comparisons(module, compared):
+        nondominated, n_comparisons = getattr(module, function_name)(points_min)
+    mask = nondominated_mask(points_min, nondominated)
     return {
         "algorithm": name,
         "signs": list(signs),
